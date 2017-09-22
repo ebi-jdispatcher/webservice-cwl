@@ -1,0 +1,10 @@
+shortext: 40
+maxloop: 4
+bowtie: 100
+program: mapmi
+mismatchpen: 10
+scorethr: 35
+longext: 70
+maxmis: 1
+excludecan: true
+version: 1.5.9-b31

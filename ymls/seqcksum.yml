@@ -1,0 +1,4 @@
+stype: protein
+length: true
+program: seqcksum
+cksmethod: shae

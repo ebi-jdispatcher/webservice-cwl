@@ -1,0 +1,4 @@
+windowsize: 10
+normalize: false
+program: pepwindow
+version: 6.6.0

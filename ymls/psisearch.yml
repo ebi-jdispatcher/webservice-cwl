@@ -1,0 +1,14 @@
+scoreformat: default
+alignments: 500
+gapext: 1
+scores: 500
+gapopen: 11
+expthr: 10.0
+program: psisearch
+matrix: BLOSUM62
+filter: none
+hist: false
+annotfeats: false
+psithr: 1.0e-3
+mask: true
+hsps: false

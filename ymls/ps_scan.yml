@@ -1,0 +1,8 @@
+database: prosite
+scanControl: both
+overlappingMatch: false
+format: scan
+profileThreshold: 0
+commonMatch: false
+program: ps_scan
+version: 1.79.1

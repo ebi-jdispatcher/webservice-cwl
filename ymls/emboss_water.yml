@@ -1,0 +1,5 @@
+gapext: 0.5
+gapopen: 10
+format: pair
+program: water
+version: 6.6.0

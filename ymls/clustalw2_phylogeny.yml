@@ -1,0 +1,6 @@
+kimura: false
+pim: false
+tossgaps: false
+tree: phylip
+clustering: Neighbour-joining
+program: clustalw2

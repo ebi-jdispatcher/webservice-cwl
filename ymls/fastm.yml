@@ -1,0 +1,10 @@
+filter: none
+dbrange: START-END
+hist: false
+scoreformat: default
+alignments: 50
+scores: 50
+stats: 1
+seqrange: START-END
+hsps: false
+explowlim: 0

@@ -1,0 +1,7 @@
+regions: START-END
+trim: false
+codontable: 0
+program: transeq
+reverse: false
+version: 6.6.0
+frame: 1

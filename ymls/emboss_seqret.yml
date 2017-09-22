@@ -1,0 +1,10 @@
+feature: true
+stype: protein
+firstonly: false
+outputformat: embl
+outputcase: none
+inputformat: unknown
+seqrange: START-END
+program: seqret
+reverse: false
+version: 6.5.7

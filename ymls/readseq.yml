@@ -1,0 +1,10 @@
+subrange: 
+degap: none
+outputformat: 4
+outputcase: none
+inputformat: 0
+transymbol: 
+program: readseq
+fthandle: none
+reverse: false
+version:  2.1.30

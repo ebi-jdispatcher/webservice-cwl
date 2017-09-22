@@ -1,0 +1,5 @@
+database: treefam
+evalue: 10
+program: HMMER_hmmscan
+cutoffOption: e-value
+title: HMMER_hmmscan

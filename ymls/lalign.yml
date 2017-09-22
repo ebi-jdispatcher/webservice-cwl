@@ -1,0 +1,7 @@
+match_scores: +5/-4
+gapopen: -12
+expthr: 10.0
+format: 0
+program: lalign36
+graphics: true
+matrix: BL50

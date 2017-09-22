@@ -1,0 +1,8 @@
+gapext: 0.85
+stype: protein
+gapopen: 11.0
+bonus: 0.0
+format_param: clu
+program: kalign
+termgap: 0.45
+title: Kalign

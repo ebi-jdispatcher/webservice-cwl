@@ -1,0 +1,8 @@
+endweight: false
+gapext: 0.5
+gapopen: 10
+format: pair
+endopen: 10
+program: needle
+version: 6.6.0
+endextend: 0.5
