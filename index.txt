@@ -13,3 +13,4 @@ kalign
 mafft
 muscle
 tcoffee
+emboss_needle

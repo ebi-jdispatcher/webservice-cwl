@@ -6,3 +6,7 @@ endopen: 10
 program: needle
 version: 6.6.0
 endextend: 0.5
+matrix: EBLOSUM62
+format_param: pair
+stype: protein
+title: EMBOSS Needle

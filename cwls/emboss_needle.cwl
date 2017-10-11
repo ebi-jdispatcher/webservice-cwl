@@ -28,7 +28,7 @@ inputs:
       prefix: --asequence
     default:
       class: File
-      location: single.seq
+      location: ../sequence/single.seq
 
   bsequence:
     type: File
@@ -37,7 +37,7 @@ inputs:
       prefix: --bsequence
     default:
       class: File
-      location: single.seq
+      location: ../sequence/single.seq
 
 
   
@@ -90,17 +90,17 @@ inputs:
       prefix: --endextend
 #    default: '$defaultValue'
 
-  format:
+  format_param:
     type: string  
     inputBinding:
-      position: 11
+      position: 12
       prefix: --format
 #    default: '$defaultValue'
 
   stype:
     type: string  
     inputBinding:
-      position: 12
+      position: 13
       prefix: --stype
 #    default: '$defaultValue'
 
