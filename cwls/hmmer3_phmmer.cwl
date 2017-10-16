@@ -11,7 +11,7 @@ inputs:
        
     default:
       class: File
-      location: ../tools/hmmer3_phmmer.pl
+      location: ../tools/hmmer3_phmmer_lwp.pl
 
   email:
     type: string
@@ -28,24 +28,24 @@ inputs:
       prefix: --sequence
     default:
       class: File
-      location: single.seq
+      location: ../sequence/single.seq
 
 
 
 
   
   alignView:
-    type: 
+    type: boolean
     inputBinding:
       position: 8
       prefix: --alignView
 #    default: '$defaultValue'
 
-  sequenceDatabase:
+  seqdb:
     type: string  
     inputBinding:
       position: 16
-      prefix: --sequenceDatabase
+      prefix: --seqdb
 #    default: '$defaultValue'
 
   title:
@@ -56,70 +56,70 @@ inputs:
 #    default: '$defaultValue'
 
   incE:
-    type: string  
+    type: double  
     inputBinding:
       position: 21
       prefix: --incE
 #    default: '$defaultValue'
 
   incdomE:
-    type: string  
+    type: double  
     inputBinding:
       position: 22
       prefix: --incdomE
 #    default: '$defaultValue'
 
   dE:
-    type: string  
+    type: double  
     inputBinding:
       position: 23
       prefix: --E
 #    default: '$defaultValue'
 
   domE:
-    type: string  
+    type: double  
     inputBinding:
       position: 24
       prefix: --domE
 #    default: '$defaultValue'
 
   incT:
-    type: string  
+    type: double  
     inputBinding:
       position: 25
       prefix: --incT
 #    default: '$defaultValue'
 
   incdomT:
-    type: string  
+    type: double  
     inputBinding:
       position: 26
       prefix: --incdomT
 #    default: '$defaultValue'
 
   dT:
-    type: string  
+    type: double  
     inputBinding:
       position: 27
       prefix: --T
 #    default: '$defaultValue'
 
   domT:
-    type: string  
+    type: double  
     inputBinding:
       position: 28
       prefix: --domT
 #    default: '$defaultValue'
 
   popen:
-    type: string  
+    type: double  
     inputBinding:
       position: 29
       prefix: --popen
 #    default: '$defaultValue'
 
   pextend:
-    type: string  
+    type: double  
     inputBinding:
       position: 30
       prefix: --pextend

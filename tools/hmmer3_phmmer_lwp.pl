@@ -76,7 +76,9 @@ use Data::Dumper;
 # Base URL for service
 #my $baseUrl = 'http://www.ebi.ac.uk/Tools/services/rest/hmmer3_phmmer';
 #my $baseUrl = 'http://wwwdev.ebi.ac.uk/Tools/services/rest/hmmer3_phmmer';
-my $baseUrl = 'http://ashdev-2.ebi.ac.uk:9889/Tools/services/rest/hmmer3_phmmer';
+#my $baseUrl = 'http://ashdev-2.ebi.ac.uk:9889/Tools/services/rest/hmmer3_phmmer';
+my $baseUrl = 'http://ves-hx-21.ebi.ac.uk:8080/Tools/services/rest/hmmer3_phmmer';
+
 
 
 # Set interval for checking status
@@ -95,7 +97,7 @@ GetOptions(
 
 	# Tool specific options
 	'sequence=s'   => \$params{'sequence'}, # string  Frequently used, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
-	'sequenceDatabase=s'   => \$tool_params{'sequenceDatabase'}, # string  Frequently used, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
+	'seqdb=s'   => \$tool_params{'seqdb'}, # string  Frequently used, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
 	'alignView'   => \$tool_params{'alignView'},  # Output alignment in result
 	'incE' => \$params{'incE'},   			     # Siginificance E-values[Model] (ex:0.01)
 	'E' => \$tool_params{'E'}, 		               # Report E-values[Model] (ex:1)
@@ -941,9 +943,7 @@ HMMER phmmer is used to search sequences against collections of profiles.
   --database         : str  : string Frequently used
                               [Reference Proteomes:uniprotrefprot,
                               UniProtKB:uniprotkb, SwissProt: swissprot, PDB:pdb]
-  --sequenceDatabase : str  : string Frequently used
-                              [Reference Proteomes:uniprotrefprot,
-                              UniProtKB:uniprotkb, SwissProt: swissprot, PDB:pdb]
+  --seqdb			 : str  : string Frequently used
   --alignView        :      : Output alignment in result
   --incE             :      : Siginificance E-values[Model] (ex:0.01)
   --incdomE          :      : Siginificance E-values[Hit] (ex:0.03)
