@@ -15,3 +15,7 @@ cwltools ./cwls/tcoffee.cwl ./ymls/tcoffee.yml
 cwl-runner ./cwls/hmmer3_phmmer.cwl ./ymls/hmmer3_phmmer.yml
 ```
 
+### How to run dbfetch_lwp.pl
+
+```
+dbfetch_lwp.pl fetchBatch UNIPROT 1433T_RAT,WAP_RAT xml
