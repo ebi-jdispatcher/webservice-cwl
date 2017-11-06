@@ -1,17 +1,12 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
-inputs:
+baseCommand: kalign_lwp.pl 
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/ebitools-container
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/kalign_lwp.pl
+inputs:
 
   email:
     type: string

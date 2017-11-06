@@ -1,17 +1,12 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
-inputs:
+baseCommand: ncbiblast_lwp.pl 
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/ebitools-container
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/ncbiblast_lwp.pl
+inputs:
 
   email:
     type: string
@@ -23,13 +18,11 @@ inputs:
     
   
   sequence:
-    type: File
+    type: string
     inputBinding:
       position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/single.seq
+    default: uniprot:wap_rat
 
 
 

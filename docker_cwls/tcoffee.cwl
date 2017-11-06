@@ -1,7 +1,11 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
+baseCommand: tcoffee_lwp.pl 
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/ebitools-container
+
 inputs:
 
   command: 
