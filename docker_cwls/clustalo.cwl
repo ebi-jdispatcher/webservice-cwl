@@ -1,17 +1,12 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
-inputs:
+baseCommand: clustalo_lwp.pl 
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/ebitools-container
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/clustalo_lwp.pl
+inputs:
 
   email:
     type: string
@@ -22,17 +17,11 @@ inputs:
     default: 'joonlee@ebi.ac.uk'
     
   sequence:
-    type: File
+    type: string
     inputBinding:
       position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/multi.seq
-
-
-
-
+    default: sp:wap_rat,sp:wap_mouse
   
   title:
     type: string  
@@ -102,13 +91,6 @@ inputs:
     inputBinding:
       position: 13
       prefix: --outfmt
-#    default: '$defaultValue'
-
-  order:
-    type: string  
-    inputBinding:
-      position: 14
-      prefix: --order
 #    default: '$defaultValue'
 
   stype:

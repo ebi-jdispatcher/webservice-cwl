@@ -17,19 +17,11 @@ inputs:
     default: 'joonlee@ebi.ac.uk'
     
   sequence:
-    type: File
+    type: string
     inputBinding:
       position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/multi.seq
-    
-  
-
-
-
-
+    default: sp:wap_rat,sp:wap_mouse
   
   title:
     type: string  
@@ -80,13 +72,6 @@ inputs:
       prefix: --nbtree
 #    default: '$defaultValue'
 
-  treeout:
-    type: boolean 
-    inputBinding:
-      position: 11
-      prefix: --treeout
-#    default: '$defaultValue'
-
   maxiterate:
     type: int     
     inputBinding:
@@ -100,14 +85,6 @@ inputs:
       position: 13
       prefix: --ffts
 #    default: '$defaultValue'
-
-  stype:
-    type: string  
-    inputBinding:
-      position: 14
-      prefix: --stype
-#    default: '$defaultValue'
-
 
 outputs: 
   cwl_out: 

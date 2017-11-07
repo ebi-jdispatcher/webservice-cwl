@@ -8,15 +8,6 @@ hints:
 
 inputs:
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/pratt_lwp.pl
-
   email:
     type: string
     doc: Submitter's email.
@@ -26,19 +17,11 @@ inputs:
     default: 'joonlee@ebi.ac.uk'
     
   sequence:
-    type: File
+    type: string
     inputBinding:
       position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/aligned.seq
-    
-  
-
-
-
-
+    default: ">UniProt/Swiss-Prot|P26898|IL2RA_SHEEP\nSP:IL2RA_SHEEP\n>UniProt/Swiss-Prot|Q95118|IL2RG_BOVIN\nSP:IL2RA_BOVIN"
   
   title:
     type: string       

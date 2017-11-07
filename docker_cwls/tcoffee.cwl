@@ -8,15 +8,6 @@ hints:
 
 inputs:
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/tcoffee_lwp.pl
-
   email:
     type: string
     doc: Submitter's email.
@@ -26,19 +17,11 @@ inputs:
     default: 'joonlee@ebi.ac.uk'
     
   sequence:
-    type: File
+    type: string
     inputBinding:
       position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/multi.seq
-    
-  
-
-
-
-
+    default: sp:wap_rat,sp:wap_mouse
   
   title:
     type: string 

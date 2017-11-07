@@ -17,20 +17,12 @@ inputs:
     default: 'joonlee@ebi.ac.uk'
     
   sequence:
-    type: File
+    type: string
     inputBinding:
       position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/multi.seq
+    default: sp:wap_rat,sp:wap_mouse
     
-  
-
-
-
-
-  
   title:
     type: string 
     inputBinding:
