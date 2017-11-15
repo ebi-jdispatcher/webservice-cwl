@@ -1,7 +1,7 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: phobius_lwp.pl 
+baseCommand: phobius_lwp.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/ebitools-container
@@ -15,38 +15,38 @@ inputs:
       position: 2
       prefix: --email
     default: 'joonlee@ebi.ac.uk'
-    
+
   sequence:
     type: string
     inputBinding:
       position: 3
       prefix: --sequence
     default: uniprot:wap_rat
-    
-  
 
 
 
 
-  
+
+
+
   title:
-    type: string 
+    type: string
     inputBinding:
       position: 4
       prefix: --title
 #    default: '$defaultValue'
 
-  format:
-    type: string 
+  eformat:
+    type: string
     inputBinding:
       position: 5
-      prefix: 
+      prefix: --format
 #    default: '$defaultValue'
 
 
 
-outputs: 
-  cwl_out: 
+outputs:
+  cwl_out:
     type: File[]
     streamable: true
     outputBinding:
