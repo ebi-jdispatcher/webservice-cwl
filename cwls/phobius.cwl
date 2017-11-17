@@ -29,28 +29,21 @@ inputs:
     default:
       class: File
       location: ../sequence/single.seq
-    
-  
-
-
-
 
   
   title:
-    type: string 
+    type: string?
     inputBinding:
       position: 4
       prefix: --title
-#    default: '$defaultValue'
+#    default: 'Title'
 
-  format:
-    type: string 
+  phobius_format:
+    type: string?
     inputBinding:
       position: 5
-      prefix: 
-#    default: '$defaultValue'
-
-
+      prefix: --format
+#    default: 'grp'
 
 outputs: 
   cwl_out: 
