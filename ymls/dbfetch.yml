@@ -1,0 +1,4 @@
+method: fetchBatch
+dbName: UNIPROT
+idList: 1433T_RAT,WAP_RAT
+outFormat: fasta
