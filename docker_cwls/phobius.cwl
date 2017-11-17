@@ -22,13 +22,7 @@ inputs:
       position: 3
       prefix: --sequence
     default: uniprot:wap_rat
-    
-  
-
-
-
-
-  
+      
   title:
     type: string 
     inputBinding:
@@ -36,11 +30,11 @@ inputs:
       prefix: --title
 #    default: '$defaultValue'
 
-  format:
+  phobius_format:
     type: string 
     inputBinding:
       position: 5
-      prefix: 
+      prefix: --format
 #    default: '$defaultValue'
 
 
