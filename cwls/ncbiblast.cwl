@@ -6,7 +6,7 @@ baseCommand: ncbiblast_lwp.pl
 inputs:
 
   email:
-    type: string
+    type: string?
     doc: Submitter's email.
     inputBinding:
       position: 1
@@ -19,19 +19,19 @@ inputs:
       prefix: --sequence
 
   program:
-    type: string
+    type: string?
     inputBinding:
       position: 3
       prefix: --program
 
   stype:
-    type: string
+    type: string?
     inputBinding:
       position: 4
       prefix: --stype
 
   database:
-    type: string
+    type: string?
     inputBinding:
       position: 5
       prefix: --database
@@ -120,10 +120,23 @@ inputs:
       position: 19
       prefix: --outformat
 
+  polljob:
+    type: boolean?
+    inputBinding:
+      position: 20
+      prefix: --polljob
+
+  jobid:
+    type: string?
+    inputBinding:
+      position: 21
+      prefix: --jobid
+
   input_file:
     type: File?
     inputBinding:
-      position: 20
+      position: 22
+
 
 outputs:
   all_out:
