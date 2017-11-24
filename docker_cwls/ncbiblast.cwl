@@ -88,7 +88,7 @@ inputs:
       prefix: --gapext
 
   filter:
-    type: string?
+    type: boolean?
     inputBinding:
       position: 14
       prefix: --filter
