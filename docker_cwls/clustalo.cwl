@@ -81,7 +81,7 @@ inputs:
       position: 12
       prefix: --hmmiterations
 
-  outfmt:
+  format_alignment:
     type:
         type: enum
         symbols:
