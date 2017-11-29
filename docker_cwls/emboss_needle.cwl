@@ -71,20 +71,20 @@ inputs:
 
   format_alignment:
     type:
-        type: enum
-        symbols:
-          - pair
-          - markx0
-          - markx1
-          - markx2
-          - markx3
-          - markx10
-          - srspair
-          - score
-        inputBinding:
-          position: 11
-          prefix: --format
-    default: pair
+        - "null"
+        - type: enum
+          symbols:
+            - pair
+            - markx0
+            - markx1
+            - markx2
+            - markx3
+            - markx10
+            - srspair
+            - score
+          inputBinding:
+            position: 11
+            prefix: --format
 
   stype:
     type: string?

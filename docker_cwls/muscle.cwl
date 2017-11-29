@@ -29,18 +29,19 @@ inputs:
 
   format_alignment:
     type:
-        type: enum
-        symbols:
-          - fasta
-          - clw
-          - clwstrict
-          - html
-          - msf
-          - phyi
-          - phys
-        inputBinding:
-          position: 4
-          prefix: --format
+        - "null"
+        - type: enum
+          symbols:
+            - fasta
+            - clw
+            - clwstrict
+            - html
+            - msf
+            - phyi
+            - phys
+          inputBinding:
+            position: 4
+            prefix: --format
     default: clw
 
   tree:

@@ -83,21 +83,21 @@ inputs:
 
   format_alignment:
     type:
-        type: enum
-        symbols:
-          - clustal
-          - clustal_num
-          - fa
-          - msf
-          - nexus
-          - phylip
-          - selex
-          - stockholm
-          - vienna
-        inputBinding:
-          position: 13
-          prefix: --outfmt
-    default: clustal
+        - "null"
+        - type: enum
+          symbols:
+            - clustal
+            - clustal_num
+            - fa
+            - msf
+            - nexus
+            - phylip
+            - selex
+            - stockholm
+            - vienna
+          inputBinding:
+            position: 13
+            prefix: --outfmt
 
   outformat:
     type: string?
