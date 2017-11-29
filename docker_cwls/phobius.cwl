@@ -9,39 +9,100 @@ hints:
 inputs:
 
   email:
-    type: string
+    type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 2
+      position: 1
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
 
   sequence:
-    type: string
+    type: string?
+    inputBinding:
+      position: 2
+      prefix: --sequence
+
+  title:
+    type: string?
     inputBinding:
       position: 3
-      prefix: --sequence
-    default: uniprot:wap_rat
-    
-  title:
-    type: string
-    inputBinding:
-      position: 4
       prefix: --title
-#    default: '$defaultValue'
 
   phobius_format:
-    type: string 
+    type:
+        - "null"
+        - type: enum
+          symbols:
+            - short
+            - long
+            - grp
+            - raw
+          inputBinding:
+            position: 4
+            prefix: --format
+
+  outformat:
+    type: string?
     inputBinding:
       position: 5
-      prefix: --format
-#    default: '$defaultValue'
+      prefix: --outformat
 
+  polljob:
+    type: boolean?
+    inputBinding:
+      position: 6
+      prefix: --polljob
+
+  jobid:
+    type: string?
+    inputBinding:
+      position: 7
+      prefix: --jobid
+
+  input_file:
+    type: File?
+    inputBinding:
+      position: 8
 
 
 outputs:
-  cwl_out:
+  all_out:
     type: File[]
     streamable: true
     outputBinding:
-      glob: "*.*"
+      glob: "*"
+
+  out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.out.txt"
+
+  sequence_out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.sequence.txt"
+
+  visual-png:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.visual-png.png"
+
+  plp:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.plp.txt"
+
+  gnuplot:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.gnuplot.txt"
+
+  error:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.error.txt"
