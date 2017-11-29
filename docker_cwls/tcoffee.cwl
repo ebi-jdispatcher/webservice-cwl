@@ -12,41 +12,36 @@ inputs:
     type: string
     doc: Submitter's email.
     inputBinding:
-      position: 2
       prefix: --email
     default: 'joonlee@ebi.ac.uk'
     
   sequence:
     type: string
     inputBinding:
-      position: 3
       prefix: --sequence
     default: sp:wap_rat,sp:wap_mouse
   
   title:
     type: string 
     inputBinding:
-      position: 4
       prefix: --title
 #    default: '$defaultValue'
 
   matrix:
     type: string 
     inputBinding:
-      position: 5
       prefix: --matrix
 #    default: '$defaultValue'
 
   order:
     type: string 
     inputBinding:
-      position: 6
       prefix: --order
 #    default: '$defaultValue'
 
 
 outputs: 
-  cwl_out: 
+  all_out: 
     type: File[]
     streamable: true
     outputBinding:

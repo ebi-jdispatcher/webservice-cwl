@@ -12,31 +12,26 @@ inputs:
     type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 1
       prefix: --email
 
   sequence:
     type: string?
     inputBinding:
-      position: 2
       prefix: --sequence
 
   title:
     type: string?
     inputBinding:
-      position: 3
       prefix: --title
 
   goterms:
     type: boolean?
     inputBinding:
-      position: 4
       prefix: --goterms
 
   pathways:
     type: boolean?
     inputBinding:
-      position: 5
       prefix: --pathways
 
   appl:
@@ -56,31 +51,27 @@ inputs:
             - SFLD
           inputBinding:
             itemSeparator: ","
-            position: 6
             prefix: --appl
 
   outformat:
     type: string?
     inputBinding:
-      position: 7
       prefix: --outformat
 
   polljob:
     type: boolean?
     inputBinding:
-      position: 8
       prefix: --polljob
 
   jobid:
     type: string?
     inputBinding:
-      position: 9
       prefix: --jobid
 
   input_file:
     type: File?
     inputBinding:
-      position: 10
+      position: 1
 
 
 outputs:

@@ -12,61 +12,51 @@ inputs:
     type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 1
       prefix: --email
 
   asequence:
     type: string?
     inputBinding:
-      position: 2
       prefix: --asequence
 
   bsequence:
     type: string?
     inputBinding:
-      position: 3
       prefix: --bsequence
 
   title:
     type: string?
     inputBinding:
-      position: 4
       prefix: --title
 
   matrix:
     type: string?
     inputBinding:
-      position: 5
       prefix: --matrix
 
   gapopen:
     type: float?
     inputBinding:
-      position: 6
       prefix: --gapopen
 
   gapext:
     type: float?
     inputBinding:
-      position: 7
       prefix: --gapext
 
   endweight:
     type: boolean?
     inputBinding:
-      position: 8
       prefix: --endweight
 
   endopen:
     type: float?
     inputBinding:
-      position: 9
       prefix: --endopen
 
   endextend:
     type: float?
     inputBinding:
-      position: 10
       prefix: --endextend
 
   format_alignment:
@@ -83,37 +73,32 @@ inputs:
             - srspair
             - score
           inputBinding:
-            position: 11
             prefix: --format
 
   stype:
     type: string?
     inputBinding:
-      position: 12
       prefix: --stype
 
   outformat:
     type: string?
     inputBinding:
-      position: 13
       prefix: --outformat
 
   polljob:
     type: boolean?
     inputBinding:
-      position: 14
       prefix: --polljob
 
   jobid:
     type: string?
     inputBinding:
-      position: 15
       prefix: --jobid
 
   input_file:
     type: File?
     inputBinding:
-      position: 16
+      position: 1
 
 
 outputs:

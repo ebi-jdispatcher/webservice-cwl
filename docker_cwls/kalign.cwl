@@ -12,14 +12,12 @@ inputs:
     type: string
     doc: Submitter's email.
     inputBinding:
-      position: 2
       prefix: --email
     default: 'joonlee@ebi.ac.uk'
     
   sequence:
     type: string
     inputBinding:
-      position: 3
       prefix: --sequence
     default: sp:wap_rat,sp:wap_mouse
   
@@ -31,55 +29,48 @@ inputs:
   stype:
     type: string 
     inputBinding:
-      position: 8
       prefix: --stype
 #    default: '$defaultValue'
 
   title:
     type: string 
     inputBinding:
-      position: 12
       prefix: --title
 #    default: '$defaultValue'
 
   format_param:
     type: string 
     inputBinding:
-      position: 13
       prefix: --format
 #    default: 'fasta'
 
   gapopen:
     type: float  
     inputBinding:
-      position: 14
       prefix: --gapopen
 #    default: '$defaultValue'
 
   gapext:
     type: float  
     inputBinding:
-      position: 15
       prefix: --gapext
 #    default: '$defaultValue'
 
   termgap:
     type: float  
     inputBinding:
-      position: 16
       prefix: --termgap
 #    default: '$defaultValue'
 
   bonus:
     type: float  
     inputBinding:
-      position: 17
       prefix: --bonus
 #    default: '$defaultValue'
 
 
 outputs: 
-  cwl_out: 
+  all_out: 
     type: File[]
     streamable: true
     outputBinding:

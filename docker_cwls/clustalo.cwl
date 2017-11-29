@@ -12,73 +12,61 @@ inputs:
     type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 1
       prefix: --email
 
   sequence:
     type: string?
     inputBinding:
-      position: 2
       prefix: --sequence
 
   stype:
     type: string?
     inputBinding:
-      position: 3
       prefix: --stype
 
   title:
     type: string?
     inputBinding:
-      position: 4
       prefix: --title
 
   guidetreeout:
     type: boolean?
     inputBinding:
-      position: 5
       prefix: --guidetreeout
 
   dismatout:
     type: boolean?
     inputBinding:
-      position: 6
       prefix: --dismatout
 
   dealign:
     type: boolean?
     inputBinding:
-      position: 7
       prefix: --dealign
 
   mbed:
     type: boolean?
     inputBinding:
-      position: 8
       prefix: --mbed
 
   mbediteration:
     type: boolean?
     inputBinding:
-      position: 9
       prefix: --mbediteration
 
   iterations:
     type: int?
     inputBinding:
-      position: 10
       prefix: --iterations
 
   gtiterations:
     type: int?
     inputBinding:
-      position: 11
       prefix: --gtiterations
 
   hmmiterations:
     type: int?
     inputBinding:
-      position: 12
       prefix: --hmmiterations
 
   format_alignment:
@@ -96,31 +84,27 @@ inputs:
             - stockholm
             - vienna
           inputBinding:
-            position: 13
             prefix: --outfmt
 
   outformat:
     type: string?
     inputBinding:
-      position: 14
       prefix: --outformat
 
   polljob:
     type: boolean?
     inputBinding:
-      position: 15
       prefix: --polljob
 
   jobid:
     type: string?
     inputBinding:
-      position: 16
       prefix: --jobid
 
   input_file:
     type: File?
     inputBinding:
-      position: 17
+      position: 1
 
 
 outputs:

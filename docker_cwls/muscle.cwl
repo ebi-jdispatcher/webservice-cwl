@@ -12,19 +12,16 @@ inputs:
     type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 1
       prefix: --email
 
   sequence:
     type: string?
     inputBinding:
-      position: 2
       prefix: --sequence
 
   title:
     type: string?
     inputBinding:
-      position: 3
       prefix: --title
 
   format_alignment:
@@ -40,44 +37,38 @@ inputs:
             - phyi
             - phys
           inputBinding:
-            position: 4
             prefix: --format
     default: clw
 
   tree:
     type: string?
     inputBinding:
-      position: 5
       prefix: --tree
 
   order:
     type: string?
     inputBinding:
-      position: 6
       prefix: --order
 
   outformat:
     type: string?
     inputBinding:
-      position: 7
       prefix: --outformat
 
   polljob:
     type: boolean?
     inputBinding:
-      position: 8
       prefix: --polljob
 
   jobid:
     type: string?
     inputBinding:
-      position: 9
       prefix: --jobid
 
   input_file:
     type: File?
     inputBinding:
-      position: 10
+      position: 1
 
 
 outputs:
