@@ -1,7 +1,7 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: iprscan5_lwp.pl 
+baseCommand: iprscan5_lwp.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/ebitools-container
@@ -9,54 +9,128 @@ hints:
 inputs:
 
   email:
-    type: string
+    type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 2
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
-    
+
   sequence:
-    type: string
+    type: string?
     inputBinding:
-      position: 3
       prefix: --sequence
-    default: uniprot:wap_rat
 
-
-  
   title:
-    type: string        
+    type: string?
     inputBinding:
-      position: 4
       prefix: --title
-#    default: '$defaultValue'
 
   goterms:
-    type: boolean       
+    type: boolean?
     inputBinding:
-      position: 5
       prefix: --goterms
-#    default: '$defaultValue'
 
   pathways:
-    type: boolean       
+    type: boolean?
     inputBinding:
-      position: 6
       prefix: --pathways
-#    default: '$defaultValue'
 
   appl:
-    type: string
+    type:
+        - "null"
+        - type: enum
+          symbols:
+            - PrositePatterns
+            - SuperFamily
+            - SignalP
+            - TMHMM
+            - Panther
+            - Gene3d
+            - Phobius
+            - Coils
+            - CDD
+            - SFLD
+          inputBinding:
+            itemSeparator: ","
+            prefix: --appl
+
+  outformat:
+    type: string?
     inputBinding:
-      position: 7
-      prefix: --appl
-#    default: '$defaultValue'
+      prefix: --outformat
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  input_file:
+    type: File?
+    inputBinding:
+      position: 1
 
 
-outputs: 
-  cwl_out: 
+outputs:
+  all_out:
     type: File[]
     streamable: true
     outputBinding:
-      glob: "*.*"
+      glob: "*"
+
+  out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.out.txt"
+
+  log:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.log.txt"
+
+  tsv:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.tsv.txt"
+
+  xml:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.xml.xml"
+
+  htmltarball:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.htmltarball.html.tar.gz"
+
+  gff:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.gff.txt"
+
+  svg:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.svg.svg"
+
+  sequence_out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.sequence.txt"
+
+  json:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.json.txt"

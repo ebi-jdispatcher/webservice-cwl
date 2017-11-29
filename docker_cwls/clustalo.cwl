@@ -1,7 +1,7 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: clustalo_lwp.pl 
+baseCommand: clustalo_lwp.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/ebitools-container
@@ -9,101 +9,137 @@ hints:
 inputs:
 
   email:
-    type: string
+    type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 2
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
-    
+
   sequence:
-    type: string
+    type: string?
     inputBinding:
-      position: 3
       prefix: --sequence
-    default: sp:wap_rat,sp:wap_mouse
-  
-  title:
-    type: string  
-    inputBinding:
-      position: 4
-      prefix: --title
-#    default: '$defaultValue'
-
-  guidetreeout:
-    type: boolean 
-    inputBinding:
-      position: 5
-      prefix: --guidetreeout
-#    default: '$defaultValue'
-
-  dismatout:
-    type: boolean 
-    inputBinding:
-      position: 6
-      prefix: --dismatout
-#    default: '$defaultValue'
-
-  dealign:
-    type: boolean 
-    inputBinding:
-      position: 7
-      prefix: --dealign
-#    default: '$defaultValue'
-
-  mbed:
-    type: boolean 
-    inputBinding:
-      position: 8
-      prefix: --mbed
-#    default: '$defaultValue'
-
-  mbediteration:
-    type: boolean 
-    inputBinding:
-      position: 9
-      prefix: --mbediteration
-#    default: '$defaultValue'
-
-  iterations:
-    type: int     
-    inputBinding:
-      position: 10
-      prefix: --iterations
-#    default: '$defaultValue'
-
-  gtiterations:
-    type: int     
-    inputBinding:
-      position: 11
-      prefix: --gtiterations
-#    default: '$defaultValue'
-
-  hmmiterations:
-    type: int     
-    inputBinding:
-      position: 12
-      prefix: --hmmiterations
-#    default: '$defaultValue'
-
-  outfmt:
-    type: string  
-    inputBinding:
-      position: 13
-      prefix: --outfmt
-#    default: '$defaultValue'
 
   stype:
-    type: string  
+    type: string?
     inputBinding:
-      position: 15
       prefix: --stype
-#    default: '$defaultValue'
+
+  title:
+    type: string?
+    inputBinding:
+      prefix: --title
+
+  guidetreeout:
+    type: boolean?
+    inputBinding:
+      prefix: --guidetreeout
+
+  dismatout:
+    type: boolean?
+    inputBinding:
+      prefix: --dismatout
+
+  dealign:
+    type: boolean?
+    inputBinding:
+      prefix: --dealign
+
+  mbed:
+    type: boolean?
+    inputBinding:
+      prefix: --mbed
+
+  mbediteration:
+    type: boolean?
+    inputBinding:
+      prefix: --mbediteration
+
+  iterations:
+    type: int?
+    inputBinding:
+      prefix: --iterations
+
+  gtiterations:
+    type: int?
+    inputBinding:
+      prefix: --gtiterations
+
+  hmmiterations:
+    type: int?
+    inputBinding:
+      prefix: --hmmiterations
+
+  format_alignment:
+    type:
+        - "null"
+        - type: enum
+          symbols:
+            - clustal
+            - clustal_num
+            - fa
+            - msf
+            - nexus
+            - phylip
+            - selex
+            - stockholm
+            - vienna
+          inputBinding:
+            prefix: --outfmt
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  input_file:
+    type: File?
+    inputBinding:
+      position: 1
 
 
-outputs: 
-  cwl_out: 
+outputs:
+  all_out:
     type: File[]
     streamable: true
     outputBinding:
-      glob: "*.*"
+      glob: "*"
+
+  out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.out.txt"
+
+  sequence_out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.sequence.txt"
+
+  aln:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.aln-*.*"
+
+  phylotree:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.phylotree.ph"
+
+  pim:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.pim.pim"
