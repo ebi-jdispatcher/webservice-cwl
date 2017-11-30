@@ -1,8 +1,0 @@
-{
-    "email": "my@ebi.com",
-    "multifasta": true,
-    "input_file": {
-        "class": "File",
-        "path": "seq2.fasta"
-    }
-}

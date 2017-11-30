@@ -1,5 +1,0 @@
-type: enum
-name: opt
-symbols:
-    - aa
-    - bb
