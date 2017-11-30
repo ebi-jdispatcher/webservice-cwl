@@ -35,6 +35,7 @@ inputs:
       prefix: --pathways
 
   appl:
+    # It only allows one appl (last provided)
     type:
         - "null"
         - type: enum
