@@ -109,20 +109,20 @@ inputs:
     inputBinding:
       prefix: --jobid
 
-  input_file:
+  input-file:
     type: File?
     inputBinding:
       position: 1
 
 
 outputs:
-  all_out:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:
       glob: "*"
 
-  wrapper_out:
+  wrapper-out:
     type: File?
     streamable: true
     outputBinding:
@@ -134,7 +134,7 @@ outputs:
     outputBinding:
       glob: "*.out.txt"
 
-  sequence_out:
+  sequence-out:
     type: File?
     streamable: true
     outputBinding:
@@ -146,13 +146,13 @@ outputs:
     outputBinding:
       glob: "*.ids.txt"
 
-  preselected_ids:
+  preselected-ids:
     type: File?
     streamable: true
     outputBinding:
       glob: "*.preselected_ids.txt"
 
-  preselected_seq:
+  preselected-seq:
     type: File?
     streamable: true
     outputBinding:

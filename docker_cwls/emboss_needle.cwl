@@ -59,7 +59,7 @@ inputs:
     inputBinding:
       prefix: --endextend
 
-  format_alignment:
+  format-alignment:
     type:
         - "null"
         - type: enum
@@ -95,14 +95,14 @@ inputs:
     inputBinding:
       prefix: --jobid
 
-  input_file:
+  input-file:
     type: File?
     inputBinding:
       position: 1
 
 
 outputs:
-  all_out:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:
@@ -114,13 +114,13 @@ outputs:
     outputBinding:
       glob: "*.out.txt"
 
-  asequence_out:
+  asequence-out:
     type: File?
     streamable: true
     outputBinding:
       glob: "*.asequence.txt"
 
-  bsequence_out:
+  bsequence-out:
     type: File?
     streamable: true
     outputBinding:

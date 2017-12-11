@@ -115,7 +115,7 @@ inputs:
 
 
 outputs:
-  all_out:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:

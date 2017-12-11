@@ -1,7 +1,7 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: fasta_lwp.pl 
+baseCommand: fasta_lwp.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/ebitools-container
@@ -13,7 +13,7 @@ inputs:
     inputBinding:
       prefix: --email
     default: 'joonlee@ebi.ac.uk'
-    
+
   sequence:
     type: string
     inputBinding:
@@ -23,15 +23,15 @@ inputs:
 
 
 
-  
+
   program:
-    type: string        
+    type: string
     inputBinding:
       prefix: --program
 #    default: '$defaultValue'
 
   stype:
-    type: string        
+    type: string
     inputBinding:
       prefix: --stype
 #    default: '$defaultValue'
@@ -43,122 +43,122 @@ inputs:
 #    default: '$defaultValue'
 
   title:
-    type: string  
+    type: string
     inputBinding:
       prefix: --title
 #    default: '$defaultValue'
 
   matrix:
-    type: string  
+    type: string
     inputBinding:
       prefix: --matrix
 #    default: '$defaultValue'
 
-  match_scores:
-    type: string  
+  match-scores:
+    type: string
     inputBinding:
       prefix: --match_scores
 #    default: '$defaultValue'
 
   gapopen:
-    type: int     
+    type: int
     inputBinding:
       prefix: --gapopen
 #    default: '$defaultValue'
 
   gapext:
-    type: int     
+    type: int
     inputBinding:
       prefix: --gapext
 #    default: '$defaultValue'
 
   hsps:
-    type: boolean 
+    type: boolean
     inputBinding:
       prefix: --hsps
 #    default: '$defaultValue'
 
   expupperlim:
-    type: double  
+    type: double
     inputBinding:
       prefix: --expupperlim
 #    default: '$defaultValue'
 
   explowlim:
-    type: double  
+    type: double
     inputBinding:
       prefix: --explowlim
 #    default: '$defaultValue'
 
   strand:
-    type: string  
+    type: string
     inputBinding:
       prefix: --strand
 #    default: '$defaultValue'
 
   hist:
-    type: boolean 
+    type: boolean
     inputBinding:
       prefix: --hist
 #    default: '$defaultValue'
 
   scores:
-    type: int     
+    type: int
     inputBinding:
       prefix: --scores
 #    default: '$defaultValue'
 
   alignments:
-    type: int     
+    type: int
     inputBinding:
       prefix: --alignments
 #    default: '$defaultValue'
 
   scoreformat:
-    type: string  
+    type: string
     inputBinding:
       prefix: --scoreformat
 #    default: '$defaultValue'
 
   stats:
-    type: string  
+    type: string
     inputBinding:
       prefix: --stats
 #    default: '$defaultValue'
 
   annotfeats:
-    type: boolean 
+    type: boolean
     inputBinding:
       prefix: --annotfeats
 #    default: '$defaultValue'
 
   dbrange:
-    type: string  
+    type: string
     inputBinding:
       prefix: --dbrange
 #    default: '$defaultValue'
 
   seqrange:
-    type: string  
+    type: string
     inputBinding:
       prefix: --seqrange
 #    default: '$defaultValue'
 
   filter:
-    type: string  
+    type: string
     inputBinding:
       prefix: --filter
 #    default: '$defaultValue'
 
   ktup:
-    type: int     
+    type: int
     inputBinding:
       prefix: --ktup
 #    default: '$defaultValue'
 
 
-outputs: 
-  all_out: 
+outputs:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:

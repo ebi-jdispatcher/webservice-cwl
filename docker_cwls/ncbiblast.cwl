@@ -114,14 +114,14 @@ inputs:
     inputBinding:
       prefix: --jobid
 
-  input_file:
+  input-file:
     type: File?
     inputBinding:
       position: 1
 
 
 outputs:
-  all_out:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:
@@ -133,7 +133,7 @@ outputs:
     outputBinding:
       glob: "*.out.txt"
 
-  sequence_out:
+  sequence-out:
     type: File?
     streamable: true
     outputBinding:
