@@ -24,7 +24,7 @@ inputs:
     inputBinding:
       prefix: --title
 
-  phobius-format:
+  format-results:
     type:
         - "null"
         - type: enum
