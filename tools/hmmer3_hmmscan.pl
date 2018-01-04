@@ -97,7 +97,7 @@ GetOptions(
 
 	# Tool specific options
 	'sequence=s'   => \$params{'sequence'},
-	'hmmDatabase=s'   => \$tool_params{'hmm3Database'}, # database to search, Pfam Tigrfam gene3d pirsf superfamily are available
+	'hmmDatabase=s'   => \$tool_params{'hmmDatabase'}, # database to search, Pfam Tigrfam gene3d pirsf superfamily are available
 	'alignView'   => \$tool_params{'alignView'},  # Output alignment in result
 
 	'incE' => \$params{'incE'},   			  # Siginificance E-values[Model] (ex:0.01)
