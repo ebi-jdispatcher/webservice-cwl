@@ -9,7 +9,8 @@ stats: '1'
 seqrange: START-END
 hsps: false
 explowlim: 0
-database: uniprotkb_swissprot
+#database: uniprotkb_swissprot
+database: mpro
 expupperlim: 10
 gapext: -2
 gapopen: -10
@@ -20,3 +21,4 @@ matrix: BL50
 match_scores: none
 strand: none
 title: Fasta
+

@@ -18,7 +18,7 @@ inputs:
     
   
   sequence:
-    type: string
+    type: string?
     inputBinding:
       position: 3
       prefix: --sequence
@@ -134,7 +134,7 @@ inputs:
 #    default: '$defaultValue'
 
   align:
-    type: int     
+    type: int?     
     inputBinding:
       position: 42
       prefix: --align
