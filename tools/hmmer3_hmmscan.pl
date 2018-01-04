@@ -76,7 +76,9 @@ use Data::Dumper;
 # Base URL for service
 #my $baseUrl = 'http://www.ebi.ac.uk/Tools/services/rest/hmmer_hmmscan';
 #my $baseUrl = 'http://wwwdev.ebi.ac.uk/Tools/services/rest/hmmer3_hmmscan';
-my $baseUrl = 'http://ashdev-2.ebi.ac.uk:9889/Tools/services/rest/hmmer3_hmmscan/';
+#my $baseUrl = 'http://ashdev-2.ebi.ac.uk:9889/Tools/services/rest/hmmer3_hmmscan/';
+#my $baseUrl = 'http://ves-hx-21.ebi.ac.uk:8080/Tools/services/rest/hmmer3_hmmscan';
+my $baseUrl = 'http://wp-p2m-21.ebi.ac.uk:8080/Tools/services/rest/hmmer3_hmmscan';
 
 
 # Set interval for checking status
@@ -95,7 +97,7 @@ GetOptions(
 
 	# Tool specific options
 	'sequence=s'   => \$params{'sequence'},
-	'hmmDatabase=s'   => \$tool_params{'hmmDatabase'}, # database to search, Pfam Tigrfam gene3d pirsf superfamily are available
+	'hmmDatabase=s'   => \$tool_params{'hmm3Database'}, # database to search, Pfam Tigrfam gene3d pirsf superfamily are available
 	'alignView'   => \$tool_params{'alignView'},  # Output alignment in result
 
 	'incE' => \$params{'incE'},   			  # Siginificance E-values[Model] (ex:0.01)
