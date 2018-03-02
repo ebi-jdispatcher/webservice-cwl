@@ -76,8 +76,7 @@ use Data::Dumper;
 # Base URL for service
 #my $baseUrl = 'http://www.ebi.ac.uk/Tools/services/rest/hmmer3_phmmer';
 #my $baseUrl = 'http://wwwdev.ebi.ac.uk/Tools/services/rest/hmmer3_phmmer';
-#my $baseUrl = 'http://ashdev-2.ebi.ac.uk:9889/Tools/services/rest/hmmer3_phmmer';
-my $baseUrl = 'http://ves-hx-21.ebi.ac.uk:8080/Tools/services/rest/hmmer3_phmmer';
+my $baseUrl = 'http://wp-p2m-21.ebi.ac.uk:8080/Tools/services/rest/hmmer3_phmmer';
 
 
 
