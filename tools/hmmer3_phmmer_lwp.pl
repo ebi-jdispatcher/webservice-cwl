@@ -74,11 +74,7 @@ use File::Basename;
 use Data::Dumper;
 
 # Base URL for service
-#my $baseUrl = 'http://www.ebi.ac.uk/Tools/services/rest/hmmer3_phmmer';
-#my $baseUrl = 'http://wwwdev.ebi.ac.uk/Tools/services/rest/hmmer3_phmmer';
-my $baseUrl = 'http://wp-p2m-21.ebi.ac.uk:8080/Tools/services/rest/hmmer3_phmmer';
-
-
+my $baseUrl = 'http://www.ebi.ac.uk/Tools/services/rest/hmmer3_phmmer';
 
 # Set interval for checking status
 my $checkInterval = 10;
