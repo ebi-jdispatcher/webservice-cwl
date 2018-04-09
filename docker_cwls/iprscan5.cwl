@@ -118,11 +118,11 @@ outputs:
     outputBinding:
       glob: "*.gff.txt"
 
-  svg:
+  svgtarball:
     type: File?
     streamable: true
     outputBinding:
-      glob: "*.svg.svg"
+      glob: "*.svg.tar.gz"
 
   sequence-out:
     type: File?
