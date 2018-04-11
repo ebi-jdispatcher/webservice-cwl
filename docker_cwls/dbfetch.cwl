@@ -19,13 +19,13 @@ inputs:
       position: 0
 
   dbName:
-    type: string
+    type: string?
     doc: Database to be searched.
     inputBinding:
       position: 1
 
   idList:
-    type: string[]?
+    type: string[]
     doc: fetching idList
     inputBinding:
       itemSeparator: ","

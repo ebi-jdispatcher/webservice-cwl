@@ -1,13 +1,15 @@
 cut_ga: true
 incdomE: 0.03
-E: 1
+dE: 1
 nobias: true
 incT: 25
 program: HMMER3
 domE: 3
-T: 7.0
+dT: 7.0
 incdomT: 22
 incE: 0.01
 hmmdbparam: 52371
 domT: 5.0
 alignView: true
+hmmdb: Pfam
+title: Hmmer3 hmmscan

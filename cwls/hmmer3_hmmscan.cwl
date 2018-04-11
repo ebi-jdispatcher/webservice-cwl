@@ -11,7 +11,7 @@ inputs:
        
     default:
       class: File
-      location: ../tools/hmmer3_hmmscan.pl
+      location: ../tools/hmmer3_hmmscan_lwp.pl
 
   email:
     type: string
@@ -28,7 +28,7 @@ inputs:
       prefix: --sequence
     default:
       class: File
-      location: single.seq
+      location: ../sequence/single.seq
 
 
 
@@ -49,56 +49,56 @@ inputs:
 #    default: '$defaultValue'
 
   incE:
-    type: string  
+    type: double  
     inputBinding:
       position: 13
       prefix: --incE
 #    default: '$defaultValue'
 
   incdomE:
-    type: string  
+    type: double  
     inputBinding:
       position: 14
       prefix: --incdomE
 #    default: '$defaultValue'
 
   dE:
-    type: string  
+    type: double  
     inputBinding:
       position: 15
       prefix: --E
 #    default: '$defaultValue'
 
   domE:
-    type: string  
+    type: double  
     inputBinding:
       position: 16
       prefix: --domE
 #    default: '$defaultValue'
 
   incT:
-    type: string  
+    type: double  
     inputBinding:
       position: 17
       prefix: --incT
 #    default: '$defaultValue'
 
   incdomT:
-    type: string  
+    type: double  
     inputBinding:
       position: 18
       prefix: --incdomT
 #    default: '$defaultValue'
 
   dT:
-    type: string  
+    type: double  
     inputBinding:
       position: 19
       prefix: --T
 #    default: '$defaultValue'
 
   domT:
-    type: string  
+    type: double  
     inputBinding:
       position: 20
       prefix: --domT
@@ -118,7 +118,7 @@ inputs:
       prefix: --nobias
 #    default: '$defaultValue'
 
-  hmmDatabase:
+  hmmdb:
     type: string  
     inputBinding:
       position: 23
