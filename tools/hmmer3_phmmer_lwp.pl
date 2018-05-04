@@ -72,6 +72,8 @@ use XML::Simple;
 use Getopt::Long qw(:config no_ignore_case bundling);
 use File::Basename;
 use Data::Dumper;
+use JSON::XS;
+use Try::Tiny;
 
 # Base URL for service
 my $baseUrl = 'http://www.ebi.ac.uk/Tools/services/rest/hmmer3_phmmer';
@@ -91,44 +93,55 @@ my %tool_params = ();
 GetOptions(
 
 	# Tool specific options
-	'sequence=s'   => \$params{'sequence'}, # string  Frequently used, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
-	'seqdb=s'   => \$tool_params{'seqdb'}, # string  Frequently used, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
-	'alignView'   => \$tool_params{'alignView'},  # Output alignment in result
-	'incE' => \$params{'incE'},   			     # Siginificance E-values[Model] (ex:0.01)
-	'E' => \$tool_params{'E'}, 		               # Report E-values[Model] (ex:1)
-	'evalue' => \$tool_params{'evalue'}, 		               # Report E-values[Model] (ex:1)
-	'domE' => \$tool_params{'domE'},              # Report E-values[Hit] (ex:1)
-	'incdomE' => \$params{'incdomE'},             # Siginificance E-values[Hit] (ex:0.03)
-	'incdomT' => \$params{'incdomT'},             # Significance bit scores[Hit] (ex:22))
-	'T' => \$params{'T'},                         # Report bit scores[Sequence] (ex:7)
-	'domT' => \$tool_params{'domT'},              # Report bit scores[Hit] (ex:5)
-	'incT' => \$params{'incT'},                   # Significance bit scores[Sequence] (ex:25)
-	'popen' => \$params{'popen'},                 # Gap Penalties for Open
-	'pextend' => \$params{'pextend'},             # Gap Penalties for Extended
-	'mx' => \$params{'mx'},                       # Substitution scoring matrix [BLOSUM45, BLOSUM62, BLOSUM90, PAM30, PAM70]
-	'nobias' => \$params{'nobias'},               # True for turnning off, bias composition filter
+	'sequence=s'   => \$params{'sequence'},		# string Input Sequence 
+	'seqdb=s'   => \$tool_params{'seqdb'},		# string Frequently used, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
+	'alignView=s'   => \$tool_params{'alignView'},# Output alignment in result
+	
+	'E=f' => \$tool_params{'E'}, 					# Report E-values[Model] (ex:1)	
+	'incE=f' => \$tool_params{'incE'},   			# Siginificance E-values[Model] (ex:0.01)
+	'domE=f' => \$tool_params{'domE'},            # Report E-values[Hit] (ex:1)
+	'incdomE=f' => \$tool_params{'incdomE'},           # Siginificance E-values[Hit] (ex:0.03)
+	
+	'T=f' => \$tool_params{'T'},                       # Report bit scores[Sequence] (ex:7)
+	'incT=f' => \$tool_params{'incT'},                 # Significance bit scores[Sequence] (ex:25)
+	'domT=f' => \$tool_params{'domT'},            # Report bit scores[Hit] (ex:5)
+	'incdomT=f' => \$tool_params{'incdomT'},			# Significance bit scores[Hit] (ex:22))
 
+	'popen' => \$params{'popen'},               # Gap Penalties for Open
+	'pextend' => \$params{'pextend'},           # Gap Penalties for Extended
+	'mx' => \$params{'mx'},                     # Substitution scoring matrix [BLOSUM45, BLOSUM62, BLOSUM90, PAM30, PAM70]
+	'nobias' => \$params{'nobias'},             # True for turnning off, bias composition filter
 
 	# Generic options
-	'email=s'       => \$params{'email'},          # User e-mail address
-	'title=s'       => \$params{'title'},          # Job title
-	'outfile=s'     => \$params{'outfile'},        # File name for results
-	'outformat=s'   => \$params{'outformat'},      # Output format for results
-	'jobid=s'       => \$params{'jobid'},          # JobId
-	'help|h'        => \$params{'help'},           # Usage help
-	'async'         => \$params{'async'},          # Asynchronous submission
-	'polljob'       => \$params{'polljob'},        # Get job result
-	'resultTypes'   => \$params{'resultTypes'},    # Get result types
-	'status'        => \$params{'status'},         # Get job status
-	'params'        => \$params{'params'},         # List input parameters
-	'paramDetail=s' => \$params{'paramDetail'},    # Get details for parameter
-	'quiet'         => \$params{'quiet'},          # Decrease output level
-	'verbose'       => \$params{'verbose'},        # Increase output level
-	'debugLevel=i'  => \$params{'debugLevel'},     # Debug output level
-	'baseUrl=s'     => \$baseUrl,                  # Base URL for service.
+	'email=s'       => \$params{'email'},		# User e-mail address
+	'title=s'       => \$params{'title'},		# Job title
+	'outfile=s'     => \$params{'outfile'},		# File name for results
+	'outformat=s'   => \$params{'outformat'},	# Output format for results
+	'jobid=s'       => \$params{'jobid'},		# JobId
+	'help|h'        => \$params{'help'},		# Usage help
+	'async'         => \$params{'async'},		# Asynchronous submission
+	'polljob'       => \$params{'polljob'},		# Get job result
+	'resultTypes'   => \$params{'resultTypes'},	# Get result types
+	'status'        => \$params{'status'},		# Get job status
+	'params'        => \$params{'params'},      # List input parameters
+	'paramDetail=s' => \$params{'paramDetail'}, # Get details for parameter
+	'quiet'         => \$params{'quiet'},		# Decrease output level
+	'verbose'       => \$params{'verbose'},		# Increase output level
+	'debugLevel=i'  => \$params{'debugLevel'},	# Debug output level
+	'baseUrl=s'     => \$baseUrl,				# Base URL for service.
+
+	'acc=i'     => \$params{'acc'}				# Get accession ID, how many from top
 );
 if ( $params{'verbose'} ) { $outputLevel++ }
 if ( $params{'quiet'} )  { $outputLevel-- }
+
+if ( lc $tool_params{'alignView'} eq 'true') {
+	delete $tool_params{'alignView'};
+} elsif ( lc $tool_params{'alignView'} eq 'false') {
+} else {		
+	print "The alignView option should be one of the restricted values : true or false. \n";
+	exit(0);
+}
 
 # Debug mode: LWP version
 &print_debug_message( 'MAIN', 'LWP::VERSION: ' . $LWP::VERSION,
@@ -202,6 +215,9 @@ else {
 	# Load the sequence data and submit.
 	&submit_job( &load_data() );
 }
+
+# seq db index
+my $db_index = "2";# default uniprotkb
 
 =head1 FUNCTIONS
 
@@ -290,6 +306,52 @@ sub rest_request {
 	my $response = $ua->get($requestUrl,
 		'Accept-Encoding' => $can_accept, # HTTP compression.
 	);
+	print_debug_message( 'rest_request', 'HTTP status: ' . $response->code,	11 );
+	print_debug_message( 'rest_request', 'response length: ' . length($response->content()), 11 );
+	print_debug_message( 'rest_request', 'request:' ."\n" . $response->request()->as_string(), 32 );
+	print_debug_message( 'rest_request', 'response: ' . "\n" . $response->as_string(), 32 );
+
+	# Unpack possibly compressed response.
+	my $retVal;
+	if ( defined($can_accept) && $can_accept ne '') {
+	    $retVal = $response->decoded_content();
+	}
+	# If unable to decode use orginal content.
+	$retVal = $response->content() unless defined($retVal);
+	# Check for an error.
+	&rest_error($response, $retVal);
+	print_debug_message( 'rest_request', 'End', 11 );
+
+	# Return the response data
+	return $retVal;
+}
+
+
+=head2 rest_request_for_accid()
+
+Perform a REST request (HTTP GET).
+
+  my $response_str = &rest_request($url);
+
+=cut
+
+sub rest_request_for_accid {
+	print_debug_message( 'rest_request', 'Begin', 11 );
+	my $requestUrl = shift;
+	print_debug_message( 'rest_request', 'URL: ' . $requestUrl, 11 );
+
+	# Get an LWP UserAgent.
+	$ua = &rest_user_agent() unless defined($ua);
+	# Available HTTP compression methods.
+	my $can_accept;
+	eval {
+	    $can_accept = HTTP::Message::decodable();
+	};
+	$can_accept = '' unless defined($can_accept);
+	# Perform the request
+	my $response = $ua->get($requestUrl,
+		'Accept-Encoding' => $can_accept, # HTTP compression.
+	);
 	print_debug_message( 'rest_request', 'HTTP status: ' . $response->code,
 		11 );
 	print_debug_message( 'rest_request',
@@ -307,11 +369,108 @@ sub rest_request {
 	$retVal = $response->content() unless defined($retVal);
 	# Check for an error.
 	&rest_error($response, $retVal);
-	print_debug_message( 'rest_request', 'retVal: ' . $retVal, 12 );
 	print_debug_message( 'rest_request', 'End', 11 );
+		
+	my @lines = split /\n/, $retVal;
+	
+	my $v_cnt = 0;
+	my $top_acc = 20;
+	if (defined $params{'acc'}) {
+		$top_acc = $params{'acc'};
+	}
 
+	foreach my $line (@lines) {
+
+		# Updating HMMER numeric ID to Accession
+		if ( $v_cnt >= $top_acc) {
+			 last;			 
+		}
+	
+		my $where_id_begin = index($line, '>>');		
+
+		if ($where_id_begin>-1) {			
+			$v_cnt++;
+
+			my $grab_id = substr($line, $where_id_begin+3, 30);
+			$grab_id =~ s/\s*$//; # trim left whitespace
+
+			try {
+
+				my $acc_id = rest_get_accid($grab_id);
+				
+				if ($grab_id ) {
+					if ($acc_id ) {
+
+						my $numeric1 = ' '.sprintf ("%09d", $grab_id ).' ';
+						my $numeric2 = ' '.$grab_id.' ';
+						my $new_id = ' '.$acc_id.' ';
+
+						$retVal =~ s/$numeric1/$new_id/g;	
+						$retVal =~ s/$numeric2/$new_id/g;	
+					}
+				}
+			} catch {
+				#warn "Caught Getting Accession error: $_";
+				warn " Not found the Accession for: " . $grab_id;
+				#last;	
+			}
+		}	
+	
+	}
+	
 	# Return the response data
 	return $retVal;
+}
+
+
+=head2 rest_get_accid()
+
+Retrive acc with entry id.
+http://www.ebi.ac.uk/ebisearch/ws/rest/hmmer_seq/entry/14094/xref/uniprot
+http://www.ebi.ac.uk/ebisearch/ws/rest/hmmer_seq/entry/14094?fields=id,content
+
+=cut
+
+sub rest_get_accid {
+	print_debug_message( 'rest_get_accid', '################ Begin', 42 );
+	#my (@reference);
+	my $each_acc_id;
+	my ($entryid) = @_;
+	
+	my $domainid ='hmmer_seq';	
+	my $ebisearch_baseUrl = 'http://www.ebi.ac.uk/ebisearch/ws/rest/';
+
+	my $url = $ebisearch_baseUrl . $domainid . "/entry/".$entryid."?fields=id,content";
+	my $reference_list_xml_str = &rest_request($url);
+	my $reference_list_xml     = XMLin($reference_list_xml_str);
+
+	# read XML file
+	my $data = XMLin($reference_list_xml_str);
+	my $acc_info = $data->{'entries'}->{'entry'}->{'fields'}->{'field'}->{'content'}->{'values'}->{'value'};
+
+	if ($acc_info) {
+		print_debug_message( 'rest_get_accid', 'acc_info is: ' . $acc_info, 42 );
+
+		my $decoded;
+
+		try {
+			$decoded = JSON::XS::decode_json($acc_info);
+		}
+		catch {
+			warn "Caught JSON::XS decode error: $_";
+		};
+
+		my @dbs1 = $decoded->{'db'};		
+		my @selected_db = $dbs1[0]->[$db_index];
+
+		$each_acc_id = $selected_db[0]->[0]->{'dn'};	
+
+	} else {
+		print_debug_message( 'rest_get_accid', '=acc_info NONE: ' , 42 );
+	}
+	
+	print_debug_message( 'rest_get_accid', 'End', 42 );
+	return ($each_acc_id);
 }
 
 =head2 rest_get_parameters()
@@ -461,7 +620,8 @@ sub rest_get_result {
 	print_debug_message( 'rest_get_result', 'jobid: ' . $job_id, 1 );
 	print_debug_message( 'rest_get_result', 'type: ' . $type,    1 );
 	my $url    = $baseUrl . '/result/' . $job_id . '/' . $type;
-	my $result = &rest_request($url);
+#	my $result = &rest_request($url);
+	my $result = &rest_request_for_accid($url);
 	print_debug_message( 'rest_get_result', length($result) . ' characters',
 		1 );
 	print_debug_message( 'rest_get_result', 'End', 1 );
@@ -657,6 +817,50 @@ sub submit_job {
 
 	# Set input sequence
 	$tool_params{'sequence'} = shift;
+
+	# Set input seqdb ; ensemblgenomes,uniprotkb,uniprotrefprot,rp15,rp35,rp55,rp75,ensembl,merops,qfo,swissprot,pdb,meropsscan
+	my $param_seqdb = $tool_params{'seqdb'};
+
+	if ($param_seqdb eq 'ensemblgenomes'  ) {
+		$db_index = "1";
+	}
+	if ($param_seqdb eq 'uniprotkb'  ) {
+		$db_index = "2";
+	}
+	if ($param_seqdb eq 'rp75'  ) {
+		$db_index = "3";
+	}
+	if ($param_seqdb eq 'uniprotrefprot'  ) {
+		$db_index = "4";
+	}
+	if ($param_seqdb eq 'rp55'  ) {
+		$db_index = "5";
+	}
+	if ($param_seqdb eq 'rp35'  ) {
+		$db_index = "6";
+	}
+	if ($param_seqdb eq 'rp15'  ) {
+		$db_index = "7";
+	}
+	if ($param_seqdb eq 'ensembl'  ) {
+		$db_index = "8";
+	}
+	if ($param_seqdb eq 'merops'  ) {
+		$db_index = "9";
+	}
+	if ($param_seqdb eq 'qfo'  ) {
+		$db_index = "10";
+	}
+	if ($param_seqdb eq 'swissprot'  ) {
+		$db_index = "11";
+	}
+	if ($param_seqdb eq 'pdb'  ) {
+		$db_index = "12";
+	}
+	if ($param_seqdb eq 'meropsscan'  ) {
+		$db_index = "13";
+	}
+
 
 	# Load parameters
 	&load_params();
@@ -935,24 +1139,21 @@ HMMER phmmer is used to search sequences against collections of profiles.
 
 [Optional]
 
-  --database         : str  : string Frequently used
-                              [Reference Proteomes:uniprotrefprot,
-                              UniProtKB:uniprotkb, SwissProt: swissprot, PDB:pdb]
-  --seqdb			 : str  : string Frequently used
-  --alignView        :      : Output alignment in result
-  --incE             :      : Siginificance E-values[Model] (ex:0.01)
-  --incdomE          :      : Siginificance E-values[Hit] (ex:0.03)
-  -E                 :      : Report E-values[Model] (ex:1)
-  --domE             :      : Report E-values[Hit] (ex:1)
-  --incT             :      : Significance bit scores[Sequence] (ex:25)
-  --incdomT          :      : Significance bit scores[Hit] (ex:22)
-  --T                :      : Report bit scores[Sequence] (ex:7)
-  --domT             :      : Report bit scores[Hit] (ex:5)
+  --seqdb			 : str  : The sequence database field changes which target sequence database is searched. Accepted values are ensemblgenomes,uniprotkb,uniprotrefprot,rp15,rp35,rp55,rp75,ensembl,merops,qfo,swissprot,pdb,meropsscan
+  --alignView        : str  : Output alignment in result
+  --incE             : real : Siginificance E-values[Model] (ex:0.01)
+  --incdomE          : real : Siginificance E-values[Hit] (ex:0.03)
+  --E                : int  : Report E-values[Model] (ex:1)
+  --domE             : int  : Report E-values[Hit] (ex:1)
+  --incT             : real : Significance bit scores[Sequence] (ex:25)
+  --incdomT          : real : Significance bit scores[Hit] (ex:22)
+  --T                : int  : Report bit scores[Sequence] (ex:7)
+  --domT             : int  : Report bit scores[Hit] (ex:5)
   --popen            :      : Gap Penalties for Open
   --pextend          :      : Gap Penalties for Extend
-  --mx               :      : Substitution scoring matrix
+  --mx               : str  : Substitution scoring matrix
                               [BLOSUM45, BLOSUM62, BLOSUM90, PAM30, PAM70]
-  --nobias           :      : True for turnning off, bias composition filter
+  --nobias           : str  : True for turnning off, bias composition filter
 
 [General]
 
