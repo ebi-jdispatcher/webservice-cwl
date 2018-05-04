@@ -1,17 +1,17 @@
+program: HMMER3
+title: Hmmer3 phmmer
+dE: 1
+domE: 3
+incE: 0.01
 incdomE: 0.03
 popen: 0.02
-dE: 1
-nobias: true
-incT: 25
-evalue: 0.01
+nobias: 'true'
+#dT: 7.0
+#incT: 25
+#domT: 5.0
+#incdomT: 22
 mx: BLOSUM62
-program: HMMER3
-domE: 3
 pextend: 0.4
-dT: 7.0
-incdomT: 22
-incE: 0.01
-domT: 5.0
-alignView: true
+alignView: 'true'
 seqdb: swissprot
-title: Hmmer3 phmmer
+acc: 5
