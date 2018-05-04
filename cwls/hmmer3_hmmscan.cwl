@@ -28,103 +28,85 @@ inputs:
       prefix: --sequence
     default:
       class: File
-      location: ../sequence/single.seq
-
-
-
-
+      location: ../sequence/hmmer.seq
   
   alignView:
-    type: boolean
+    type: string
     inputBinding:
       position: 8
       prefix: --alignView
-#    default: '$defaultValue'
 
   title:
     type: string  
     inputBinding:
       position: 12
       prefix: --title
-#    default: '$defaultValue'
-
-  incE:
-    type: double  
-    inputBinding:
-      position: 13
-      prefix: --incE
-#    default: '$defaultValue'
-
-  incdomE:
-    type: double  
-    inputBinding:
-      position: 14
-      prefix: --incdomE
-#    default: '$defaultValue'
 
   dE:
     type: double  
     inputBinding:
       position: 15
       prefix: --E
-#    default: '$defaultValue'
+
+  incE:
+    type: double  
+    inputBinding:
+      position: 13
+      prefix: --incE
 
   domE:
     type: double  
     inputBinding:
       position: 16
       prefix: --domE
-#    default: '$defaultValue'
 
-  incT:
+  incdomE:
     type: double  
     inputBinding:
-      position: 17
-      prefix: --incT
-#    default: '$defaultValue'
+      position: 14
+      prefix: --incdomE
 
-  incdomT:
-    type: double  
-    inputBinding:
-      position: 18
-      prefix: --incdomT
-#    default: '$defaultValue'
+#  dT:
+#    type: double  
+#    inputBinding:
+#      position: 19
+#      prefix: --T
 
-  dT:
-    type: double  
-    inputBinding:
-      position: 19
-      prefix: --T
-#    default: '$defaultValue'
+#  incT:
+#    type: double  
+#    inputBinding:
+#      position: 17
+#      prefix: --incT
 
-  domT:
-    type: double  
-    inputBinding:
-      position: 20
-      prefix: --domT
-#    default: '$defaultValue'
+#  domT:
+#    type: double  
+#    inputBinding:
+#      position: 20
+#      prefix: --domT
+
+#  incdomT:
+#    type: double  
+#    inputBinding:
+#      position: 18
+#      prefix: --incdomT
 
   cut_ga:
-    type: boolean 
+    type: string 
     inputBinding:
       position: 21
       prefix: --cut_ga
-#    default: '$defaultValue'
 
   nobias:
-    type: boolean 
+    type: string 
     inputBinding:
       position: 22
       prefix: --nobias
-#    default: '$defaultValue'
 
   hmmdb:
     type: string  
     inputBinding:
       position: 23
-      prefix: --hmmDatabase
-#    default: '$defaultValue'
-
+      prefix: --hmmdb
 
 outputs: 
   cwl_out: 
