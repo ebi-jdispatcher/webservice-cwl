@@ -95,7 +95,7 @@ GetOptions(
 	# Tool specific options
 	'sequence=s'   => \$params{'sequence'},			
 	'hmmdb=s'   => \$tool_params{'hmmDatabase'},	# database to search, Pfam Tigrfam gene3d pirsf superfamily are available
-	'alignView=s'   => \$tool_params{'alignView'},	  # Output alignment in result
+	'alignView=s'   => \$tool_params{'alignView'},	  # Output alignment in result. The default is true.
 
 	'incE=f' => \$tool_params{'incE'},				# Siginificance E-values[Model] (ex:0.01)
 	'E=f' => \$tool_params{'E'},				# Report E-values[Model] (ex:1)
@@ -133,11 +133,15 @@ GetOptions(
 if ( $params{'verbose'} ) { $outputLevel++ }
 if ( $params{'quiet'} )  { $outputLevel-- }
 
+if (!($tool_params{'alignView'})) {
+	$tool_params{'alignView'} = 'true';
+}
+
 if ( lc $tool_params{'alignView'} eq 'true') {
 	delete $tool_params{'alignView'};
 } elsif ( lc $tool_params{'alignView'} eq 'false') {
 } else {		
-	print "The alignView option should be one of the restricted values : true or false. \n";
+	print "The alignView option should be one of the restricted values : true or false. The default is true. \n";
 	exit(0);
 }
 
@@ -822,14 +826,14 @@ sub submit_job {
 		$db_index = "3";
 	}	
 	if ($param_hmmdb eq 'pfam' || $param_hmmdb eq 'Pfam' ) {
-		$tool_params{'hmmDatabase'} = 'Pfam';
+		$tool_params{'hmmDatabase'} = 'pfam';
 		$db_index = "4";
 	}	
 	if ($param_hmmdb eq 'superfamily'  ) {
 		$db_index = "5";
 	}	
-	if ($param_hmmdb eq 'tigrfam' || $param_hmmdb eq 'tigrfam') {
-		$tool_params{'hmmDatabase'} = 'Tigrfam';
+	if ($param_hmmdb eq 'tigrfam' || $param_hmmdb eq 'Tigrfam') {
+		$tool_params{'hmmDatabase'} = 'tigrfam';
 		$db_index = "6";
 	}		
 	if ($param_hmmdb eq 'pirsf'  ) {
@@ -1114,21 +1118,23 @@ HMMER hmmscan is used to search sequences against collections of profiles.
 
   seqFile            : file : aligned sequences ("-" for STDIN)
   --email            : str  : e-mail address
+  --hmmdb			 : str  : This field indicates which profile HMM database the query should be searched against. Accepted values are gene3d, pfam, tigrfam, superfamily, pirsf
 
 [Optional]
-
-  --hmmdb			 : str  : This field indicates which profile HMM database the query should be searched against. Accepted values are gene3d, pfam, tigrfam, superfamily, pirsf
-  --alignView        :      : Output alignment in result
+  
   --incE             : real : Siginificance E-values[Model] (ex:0.01)
   --incdomE          :      : Siginificance E-values[Hit] (ex:0.03)
   --E                : int  : Report E-values[Model] (ex:1)
   --domE             :      : Report E-values[Hit] (ex:1)
+
   --incT             :      : Significance bit scores[Sequence] (ex:25)
   --incdomT          :      : Significance bit scores[Hit] (ex:22)
   --T                :      : Report bit scores[Sequence] (ex:7)
   --domT             :      : Report bit scores[Hit] (ex:5)
+
   --cut_ga           :      : GA thresholds
   --nobias           :      : Bias composition filter
+  --alignView        :      : Output alignment in result
 
 [General]
 
@@ -1148,6 +1154,7 @@ HMMER hmmscan is used to search sequences against collections of profiles.
       --paramDetail  : str  : display details for input parameter
       --quiet        :      : decrease output
       --verbose      :      : increase output
+      --acc          : int  : Get accession ID, how many from top. The default is 20		
 
 Synchronous job:
 

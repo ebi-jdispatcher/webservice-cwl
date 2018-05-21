@@ -95,7 +95,7 @@ GetOptions(
 	# Tool specific options
 	'sequence=s'   => \$params{'sequence'},		# string Input Sequence 
 	'seqdb=s'   => \$tool_params{'seqdb'},		# string Frequently used, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
-	'alignView=s'   => \$tool_params{'alignView'},# Output alignment in result
+	'alignView=s'   => \$tool_params{'alignView'},# Output alignment in result. The default is true.
 	
 	'E=f' => \$tool_params{'E'}, 					# Report E-values[Model] (ex:1)	
 	'incE=f' => \$tool_params{'incE'},   			# Siginificance E-values[Model] (ex:0.01)
@@ -134,6 +134,10 @@ GetOptions(
 );
 if ( $params{'verbose'} ) { $outputLevel++ }
 if ( $params{'quiet'} )  { $outputLevel-- }
+
+if (!($tool_params{'alignView'})) {
+	$tool_params{'alignView'} = 'true';
+}
 
 if ( lc $tool_params{'alignView'} eq 'true') {
 	delete $tool_params{'alignView'};
@@ -1136,24 +1140,26 @@ HMMER phmmer is used to search sequences against collections of profiles.
 
   seqFile            : file : aligned sequences ("-" for STDIN)
   --email            : str  : e-mail address
+  --seqdb			 : str  : The sequence database field changes which target sequence database is searched. Accepted values are ensemblgenomes,uniprotkb,uniprotrefprot,rp15,rp35,rp55,rp75,ensembl,merops,qfo,swissprot,pdb,meropsscan
 
 [Optional]
 
-  --seqdb			 : str  : The sequence database field changes which target sequence database is searched. Accepted values are ensemblgenomes,uniprotkb,uniprotrefprot,rp15,rp35,rp55,rp75,ensembl,merops,qfo,swissprot,pdb,meropsscan
-  --alignView        : str  : Output alignment in result
   --incE             : real : Siginificance E-values[Model] (ex:0.01)
   --incdomE          : real : Siginificance E-values[Hit] (ex:0.03)
   --E                : int  : Report E-values[Model] (ex:1)
   --domE             : int  : Report E-values[Hit] (ex:1)
+
   --incT             : real : Significance bit scores[Sequence] (ex:25)
   --incdomT          : real : Significance bit scores[Hit] (ex:22)
   --T                : int  : Report bit scores[Sequence] (ex:7)
   --domT             : int  : Report bit scores[Hit] (ex:5)
+
   --popen            :      : Gap Penalties for Open
   --pextend          :      : Gap Penalties for Extend
   --mx               : str  : Substitution scoring matrix
                               [BLOSUM45, BLOSUM62, BLOSUM90, PAM30, PAM70]
   --nobias           : str  : True for turnning off, bias composition filter
+  --alignView        : str  : Output alignment in result
 
 [General]
 
@@ -1173,6 +1179,7 @@ HMMER phmmer is used to search sequences against collections of profiles.
       --paramDetail  : str  : display details for input parameter
       --quiet        :      : decrease output
       --verbose      :      : increase output
+      --acc          : int  : Get accession ID, how many from top. The default is 20
 
 Synchronous job:
 
