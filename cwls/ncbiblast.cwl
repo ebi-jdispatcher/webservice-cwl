@@ -1,156 +1,242 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
+baseCommand: ncbiblast_lwp.pl
+
 inputs:
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/ncbiblast_lwp.pl
-
   email:
-    type: string
+    type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 2
+      position: 1
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
-    
-  
+
   sequence:
-    type: File
+    type: string?
+    inputBinding:
+      position: 2
+      prefix: --sequence
+
+  program:
+    type: string?
     inputBinding:
       position: 3
-      prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/single.seq
-
-
-
-
-  
-  program:
-    type: string        
-    inputBinding:
-      position: 8
       prefix: --program
-#    default: '$defaultValue'
 
   stype:
-    type: string        
+    type: string?
     inputBinding:
-      position: 16
+      position: 4
       prefix: --stype
-#    default: '$defaultValue'
 
   database:
-    type: string
+    type: string?
     inputBinding:
-      position: 24
+      position: 5
       prefix: --database
-#    default: '$defaultValue'
 
   title:
-    type: string  
+    type: string?
     inputBinding:
-      position: 28
+      position: 6
       prefix: --title
-#    default: '$defaultValue'
 
   matrix:
-    type: string  
+    type: string?
     inputBinding:
-      position: 30
+      position: 7
       prefix: --matrix
-#    default: '$defaultValue'
 
   alignments:
-    type: int     
+    type: int?
     inputBinding:
-      position: 31
+      position: 8
       prefix: --alignments
-#    default: '$defaultValue'
 
   scores:
-    type: int     
+    type: int?
     inputBinding:
-      position: 32
+      position: 9
       prefix: --scores
-#    default: '$defaultValue'
 
   exp:
-    type: int  
+    type: int?
     inputBinding:
-      position: 33
+      position: 10
       prefix: --exp
-#    default: '$defaultValue'
 
   dropoff:
-    type: int     
+    type: int?
     inputBinding:
-      position: 34
+      position: 11
       prefix: --dropoff
-#    default: '$defaultValue'
 
   gapopen:
-    type: int     
+    type: int?
     inputBinding:
-      position: 36
+      position: 12
       prefix: --gapopen
-#    default: '$defaultValue'
 
   gapext:
-    type: int     
+    type: int?
     inputBinding:
-      position: 37
+      position: 13
       prefix: --gapext
-#    default: '$defaultValue'
 
   filter:
-    type: string  
+    type: boolean?
     inputBinding:
-      position: 38
+      position: 14
       prefix: --filter
-#    default: '$defaultValue'
 
   seqrange:
-    type: string  
+    type: string?
     inputBinding:
-      position: 39
+      position: 15
       prefix: --seqrange
-#    default: '$defaultValue'
 
   gapalign:
-    type: boolean 
+    type: boolean?
     inputBinding:
-      position: 40
+      position: 16
       prefix: --gapalign
-#    default: '$defaultValue'
 
   compstats:
-    type: string  
+    type: string?
     inputBinding:
-      position: 41
+      position: 17
       prefix: --compstats
-#    default: '$defaultValue'
 
   align:
-    type: int     
+    type: int?
     inputBinding:
-      position: 42
+      position: 18
       prefix: --align
-#    default: '$defaultValue'
+
+  outformat:
+    type: string?
+    inputBinding:
+      position: 19
+      prefix: --outformat
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      position: 20
+      prefix: --polljob
+
+  jobid:
+    type: string?
+    inputBinding:
+      position: 21
+      prefix: --jobid
+
+  input_file:
+    type: File?
+    inputBinding:
+      position: 22
 
 
-outputs: 
-  cwl_out: 
+outputs:
+  all_out:
     type: File[]
     streamable: true
     outputBinding:
-      glob: "*.*"
+      glob: "*"
+
+  out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.out.txt"
+
+  sequence_out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.sequence.txt"
+
+  ids:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.ids.txt"
+
+  xml:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.xml.xml"
+
+  visual-svg:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.visual-svg.svg"
+
+  complete-visual-svg:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.complete-visual-svg.svg"
+
+  visual-png:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.visual-png.png"
+
+  complete-visual-png:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.complete-visual-png.png"
+
+  visual-jpg:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.visual-jpg.jpg"
+
+  complete-visual-jpg:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.complete-visual-jpg.jpg"
+
+  ffdp-query-svg:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.ffdp-query-svg.svg"
+
+  ffdp-query-png:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.ffdp-query-png.png"
+
+  ffdp-query-jpeg:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.ffdp-query-jpeg.jpg"
+
+  ffdp-subject-svg:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.ffdp-subject-svg.svg"
+
+  ffdp-subject-jpg:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.ffdp-subject-jpeg.jpg"
+
+  ffdp-subject-png:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.ffdp-subject-png.png"
