@@ -40,7 +40,7 @@ L<http://www.ebi.ac.uk/Tools/webservices/tutorials/perl>
 
 =head1 LICENSE
 
-Copyright 2012-2014 EMBL - European Bioinformatics Institute
+Copyright 2012-2018 EMBL - European Bioinformatics Institute
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -79,58 +79,64 @@ use Try::Tiny;
 my $baseUrl = 'http://www.ebi.ac.uk/Tools/services/rest/hmmer3_phmmer';
 
 # Set interval for checking status
-my $checkInterval = 10;
+my $checkInterval = 5;
+
+# Set maximum number of 'ERROR' status calls to call job failed.
+my $maxErrorStatusCount = 3;
 
 # Output level
 my $outputLevel = 1;
 
 # Process command-line options
 my $numOpts = scalar(@ARGV);
-my %params = ( 'debugLevel' => 0 );
+
+my %params = ( 
+	'debugLevel' => 0, 
+	'maxJobs'    => 1
+);
 
 # Default parameter values (should get these from the service)
 my %tool_params = ();
 GetOptions(
 
-	# Tool specific options
-	'sequence=s'   => \$params{'sequence'},		# string Input Sequence 
-	'seqdb=s'   => \$tool_params{'seqdb'},		# string Frequently used, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
-	'alignView=s'   => \$tool_params{'alignView'},# Output alignment in result. The default is true.
-	
-	'E=f' => \$tool_params{'E'}, 					# Report E-values[Model] (ex:1)	
-	'incE=f' => \$tool_params{'incE'},   			# Siginificance E-values[Model] (ex:0.01)
-	'domE=f' => \$tool_params{'domE'},            # Report E-values[Hit] (ex:1)
-	'incdomE=f' => \$tool_params{'incdomE'},           # Siginificance E-values[Hit] (ex:0.03)
-	
-	'T=f' => \$tool_params{'T'},                       # Report bit scores[Sequence] (ex:7)
-	'incT=f' => \$tool_params{'incT'},                 # Significance bit scores[Sequence] (ex:25)
-	'domT=f' => \$tool_params{'domT'},            # Report bit scores[Hit] (ex:5)
-	'incdomT=f' => \$tool_params{'incdomT'},			# Significance bit scores[Hit] (ex:22))
-
-	'popen' => \$params{'popen'},               # Gap Penalties for Open
-	'pextend' => \$params{'pextend'},           # Gap Penalties for Extended
-	'mx' => \$params{'mx'},                     # Substitution scoring matrix [BLOSUM45, BLOSUM62, BLOSUM90, PAM30, PAM70]
-	'nobias' => \$params{'nobias'},             # True for turnning off, bias composition filter
+	# Tool specific options	
+	'database|D=s'	=> \$tool_params{'hmmDatabase'},# Ddatabase to search, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
+	'seqdb|D=s'     => \$tool_params{'seqdb'},      # Compatability database option	
+	'E|e=f'         => \$tool_params{'E'},          # Report E-values[Model] (ex:1)
+	'domE|f=f'      => \$tool_params{'domE'},       # Report E-values[Hit] (ex:1)
+	'incE|g=f'      => \$tool_params{'incE'},       # Siginificance E-values[Model] (ex:0.01)
+	'incdomE|h=f'	=> \$tool_params{'incdomE'},    # Siginificance E-values[Hit] (ex:0.03)
+	'T|t=f'         => \$tool_params{'T'},          # Report bit scores[Sequence] (ex:7)
+	'domT|u=f'      => \$tool_params{'domT'},       # Report bit scores[Hit] (ex:5)
+	'incT|v=f'      => \$tool_params{'incT'},       # Significance bit scores[Sequence] (ex:25)
+	'incdomT|w=f'   => \$tool_params{'incdomT'},    # Significance bit scores[Hit] (ex:22))
+	'popen|o=f'     => \$tool_params{'popen'},      # Gap Penalties for Open
+	'pextend|p=f'   => \$tool_params{'pextend'},    # Gap Penalties for Extended
+	'mx|m=s'        => \$tool_params{'mx'},         # Substitution scoring matrix [BLOSUM45, BLOSUM62, BLOSUM90, PAM30, PAM70]
+	'nobias|n=s'    => \$tool_params{'nobias'},     # True for turnning off, bias composition filter
 
 	# Generic options
-	'email=s'       => \$params{'email'},		# User e-mail address
-	'title=s'       => \$params{'title'},		# Job title
-	'outfile=s'     => \$params{'outfile'},		# File name for results
-	'outformat=s'   => \$params{'outformat'},	# Output format for results
-	'jobid=s'       => \$params{'jobid'},		# JobId
-	'help|h'        => \$params{'help'},		# Usage help
-	'async'         => \$params{'async'},		# Asynchronous submission
-	'polljob'       => \$params{'polljob'},		# Get job result
-	'resultTypes'   => \$params{'resultTypes'},	# Get result types
-	'status'        => \$params{'status'},		# Get job status
-	'params'        => \$params{'params'},      # List input parameters
-	'paramDetail=s' => \$params{'paramDetail'}, # Get details for parameter
-	'quiet'         => \$params{'quiet'},		# Decrease output level
-	'verbose'       => \$params{'verbose'},		# Increase output level
-	'debugLevel=i'  => \$params{'debugLevel'},	# Debug output level
-	'baseUrl=s'     => \$baseUrl,				# Base URL for service.
-
-	'acc=i'     => \$params{'acc'}				# Get accession ID, how many from top
+	'email=s'       => \$params{'email'},           # User e-mail address
+	'title=s'       => \$params{'title'},           # Job title
+	'outfile=s'     => \$params{'outfile'},         # File name for results
+	'outformat=s'   => \$params{'outformat'},       # Output format for results
+	'jobid=s'       => \$params{'jobid'},           # JobId
+	'help|h'        => \$params{'help'},            # Usage help
+	'async'         => \$params{'async'},           # Asynchronous submission
+	'polljob'       => \$params{'polljob'},         # Get job result
+	'resultTypes'   => \$params{'resultTypes'},     # Get result types
+	'status'        => \$params{'status'},          # Get job status
+	'params'        => \$params{'params'},          # List input parameters
+	'paramDetail=s' => \$params{'paramDetail'},     # Get details for parameter
+	'quiet'         => \$params{'quiet'},           # Decrease output level
+	'verbose'       => \$params{'verbose'},         # Increase output level
+	'debugLevel=i'  => \$params{'debugLevel'},      # Debug output level
+	'baseUrl=s'     => \$baseUrl,                   # Base URL for service.	
+	'useSeqId'      => \$params{'useSeqId'},        # Seq Id file name
+	'maxJobs=i'     => \$params{'maxJobs'},         # Max. parallel jobs
+	'alignView=s'   => \$tool_params{'alignView'},  # Output alignment in result. The default is true.
+	'multifasta'	=> \$params{'multifasta'},      # Multiple fasta input
+	'acc=i'         => \$params{'acc'}              # Get accession ID, how many from top
 );
 if ( $params{'verbose'} ) { $outputLevel++ }
 if ( $params{'quiet'} )  { $outputLevel-- }
@@ -144,6 +150,18 @@ if ( lc $tool_params{'alignView'} eq 'true') {
 } elsif ( lc $tool_params{'alignView'} eq 'false') {
 } else {		
 	print "The alignView option should be one of the restricted values : true or false. \n";
+	exit(0);
+}
+
+if (!($tool_params{'nobias'})) {
+	$tool_params{'nobias'} = 'true';
+}
+
+if ( lc $tool_params{'nobias'} eq 'true') {
+	delete $tool_params{'nobias'};
+} elsif ( lc $tool_params{'nobias'} eq 'false') {
+} else {		
+	print "The nobias option should be one of the restricted values : true or false. The default is true. \n";
 	exit(0);
 }
 
@@ -216,8 +234,34 @@ elsif ( $params{'polljob'} && defined( $params{'jobid'} ) ) {
 # Submit a job
 else {
 
-	# Load the sequence data and submit.
-	&submit_job( &load_data() );
+	# Multiple input sequence mode, assume fasta format.
+	if ( $params{'multifasta'} ) {
+		&multi_submit_job();
+	}
+	
+	# Entry identifier list file.
+	elsif (( defined( $params{'sequence'} ) && $params{'sequence'} =~ m/^\@/ )
+		|| ( defined( $ARGV[0] ) && $ARGV[0] =~ m/^\@/ ) )
+	{
+		my $list_filename = $params{'sequence'} || $ARGV[0];
+		$list_filename =~ s/^\@//;
+		&list_file_submit_job($list_filename);
+	}
+
+	# Default: single sequence/identifier.
+	else {
+		# Warn for invalid batch only option use.
+		if ( $params{'useSeqId'} ) {
+			print STDERR "Warning: --useSeqId option ignored.\n";
+			delete $params{'useSeqId'};
+		}
+		if ( $params{'maxJobs'} > 1 ) {
+			print STDERR "Warning: --maxJobs option ignored.\n";
+			$params{'maxJobs'} = 1;
+		}
+		# Load the sequence data and submit.
+		&submit_job( &load_data() );
+	}
 }
 
 # seq db index
@@ -821,6 +865,7 @@ sub submit_job {
 
 	# Set input sequence
 	$tool_params{'sequence'} = shift;
+	my $seq_id = shift;
 
 	# Set input seqdb ; ensemblgenomes,uniprotkb,uniprotrefprot,rp15,rp35,rp55,rp75,ensembl,merops,qfo,swissprot,pdb,meropsscan
 	my $param_seqdb = $tool_params{'seqdb'};
@@ -865,14 +910,13 @@ sub submit_job {
 		$db_index = "13";
 	}
 
-
 	# Load parameters
 	&load_params();
 
 	# Submit the job
 	my $jobid = &rest_run( $params{'email'}, $params{'title'}, \%tool_params );
 
-	# Simulate sync/async mode
+	# Asychronus submission.
 	if ( defined( $params{'async'} ) ) {
 		print STDOUT $jobid, "\n";
 		if ( $outputLevel > 0 ) {
@@ -880,14 +924,253 @@ sub submit_job {
 			  "To check status: $scriptName --status --jobid $jobid\n";
 		}
 	}
+
+	# Parallel submission mode.
+	elsif ( $params{'maxJobs'} > 1 ) {
+		if ( $outputLevel > 0 ) {
+			print STDERR "JobId: $jobid\n";
+		}
+		select( undef, undef, undef, 0.25 );    # 0.25 second sleep.
+	}
+
+	# Simulate synchronous submission serial mode.
 	else {
 		if ( $outputLevel > 0 ) {
 			print STDERR "JobId: $jobid\n";
 		}
-		sleep 1;
-		&get_results($jobid);
+		select( undef, undef, undef, 0.5 );     # 0.5 second sleep.
+		# Check status, and wait if not finished
+		&client_poll($jobid);
+
+		# Get results.
+		&get_results($jobid, $seq_id);
 	}
 	print_debug_message( 'submit_job', 'End', 1 );
+	return $jobid;
+}
+
+=head2 multi_submit_job()
+
+Submit multiple jobs assuming input is a collection of fasta formatted sequences.
+
+  &multi_submit_job();
+
+=cut
+
+sub multi_submit_job {
+	print_debug_message( 'multi_submit_job', 'Begin', 1 );
+	my (@filename_list) = ();
+
+	# Query sequence
+	if ( defined( $ARGV[0] ) ) {    # Bare option
+		if ( -f $ARGV[0] || $ARGV[0] eq '-' ) {    # File
+			push( @filename_list, $ARGV[0] );
+		}
+		else {
+			warn 'Warning: Input file "' . $ARGV[0] . '" does not exist';
+		}
+	}
+	if ( $params{'sequence'} ) {                   # Via --sequence
+		if ( -f $params{'sequence'} || $params{'sequence'} eq '-' ) {    # File
+			push( @filename_list, $params{'sequence'} );
+		}
+		else {
+			warn 'Warning: Input file "'
+			  . $params{'sequence'}
+			  . '" does not exist';
+		}
+	}
+
+	# Job identifier tracking for parallel execution.
+	my @jobid_list = ();
+	my $job_number = 0;
+	$/ = '>';
+	foreach my $filename (@filename_list) {
+		my $INFILE;
+		if ( $filename eq '-' ) {    # STDIN.
+			open( $INFILE, '<-' )
+			  or die 'Error: unable to STDIN (' . $! . ')';
+		}
+		else {                       # File.
+			open( $INFILE, '<', $filename )
+			  or die 'Error: unable to open file '
+			  . $filename . ' ('
+			  . $! . ')';
+		}
+		while (<$INFILE>) {
+			my $seq = $_;
+			$seq =~ s/>$//;
+			if ( $seq =~ m/(\S+)/ ) {
+				my $seq_id = $1;
+				print STDERR "Submitting job for: $seq_id\n"
+				  if ( $outputLevel > 0 );
+				$seq = '>' . $seq;
+				&print_debug_message( 'multi_submit_job', $seq, 11 );
+				$job_number++;
+				my $job_id = &submit_job($seq, $seq_id);
+				
+				my $job_info_str = sprintf( '%s %d %d', $job_id, 0, $job_number );
+				
+				push( @jobid_list, $job_info_str );
+			}
+
+			# Parallel mode, wait for job(s) to finish to free slots.
+			while ( $params{'maxJobs'} > 1
+				&& scalar(@jobid_list) >= $params{'maxJobs'} )
+			{
+				&_job_list_poll( \@jobid_list );
+				print_debug_message( 'multi_submit_job',
+					'Remaining jobs: ' . scalar(@jobid_list), 1 );
+			}
+		}
+		close $INFILE;
+	}
+
+	# Parallel mode, wait for remaining jobs to finish.
+	while ( $params{'maxJobs'} > 1 && scalar(@jobid_list) > 0 ) {
+		&_job_list_poll( \@jobid_list );
+		print_debug_message( 'multi_submit_job',
+			'Remaining jobs: ' . scalar(@jobid_list), 1 );
+	}
+	print_debug_message( 'multi_submit_job', 'End', 1 );
+}
+
+
+=head2 _job_list_poll()
+
+Poll the status of a list of jobs and fetch results for finished jobs.
+
+  while(scalar(@jobid_list) > 0) {
+    &_job_list_poll(\@jobid_list);
+  }
+
+=cut
+
+sub _job_list_poll {
+	print_debug_message( '_job_list_poll', 'Begin', 1 );
+	my $jobid_list = shift;
+	print_debug_message( '_job_list_poll', 'Num jobs: ' . scalar(@$jobid_list),
+		11 );
+
+	# Loop though job Id list polling job status.
+	for ( my $jobNum = ( scalar(@$jobid_list) - 1 ) ; $jobNum > -1 ; $jobNum-- )
+	{
+		my ( $jobid, $seq_id, $error_count, $job_number ) =
+		  split( /\s+/, $jobid_list->[$jobNum] );
+		print_debug_message( '_job_list_poll', 'jobNum: ' . $jobNum, 12 );
+		print_debug_message( '_job_list_poll',
+			'Job info: ' . $jobid_list->[$jobNum], 12 );
+
+		# Get job status.
+		my $job_status = &rest_get_status($jobid);
+		print_debug_message( '_job_list_poll', 'Status: ' . $job_status, 12 );
+
+		# Fetch results and remove finished/failed jobs from list.
+		if (
+			!(
+				   $job_status eq 'RUNNING'
+				|| $job_status eq 'PENDING'
+				|| (   $job_status eq 'ERROR'
+					&& $error_count < $maxErrorStatusCount )
+			)
+		  )
+		{
+			if ( $job_status eq 'ERROR' || $job_status eq 'FAILED' ) {
+				print STDERR
+"Warning: job $jobid failed for sequence $job_number: $seq_id\n";
+			}
+			&get_results( $jobid, $seq_id );
+			splice( @$jobid_list, $jobNum, 1 );
+		}
+		else {
+
+			# Update error count, increment for new error or clear old errors.
+			if ( $job_status eq 'ERROR' ) {
+				$error_count++;
+			}
+			elsif ( $error_count > 0 ) {
+				$error_count--;
+			}
+
+			# Update job tracking info.
+			my $job_info_str = sprintf( '%s %s %d %d',
+				$jobid, $seq_id, $error_count, $job_number );
+			$jobid_list->[$jobNum] = $job_info_str;
+		}
+	}
+	print_debug_message( '_job_list_poll', 'Num jobs: ' . scalar(@$jobid_list),
+		11 );
+	print_debug_message( '_job_list_poll', 'End', 1 );
+}
+
+=head2 list_file_submit_job()
+
+Submit multiple jobs using a file containing a list of entry identifiers as 
+input.
+
+  &list_file_submit_job($list_filename)
+
+=cut
+
+sub list_file_submit_job {
+	print_debug_message( 'list_file_submit_job', 'Begin', 1 );
+	my $filename = shift;
+
+	# Open the file of identifiers.
+	my $LISTFILE;
+	if ( $filename eq '-' ) {    # STDIN.
+		open( $LISTFILE, '<-' )
+		  or die 'Error: unable to STDIN (' . $! . ')';
+	}
+	else {                       # File.
+		open( $LISTFILE, '<', $filename )
+		  or die 'Error: unable to open file ' . $filename . ' (' . $! . ')';
+	}
+
+	# Job identifier tracking for parallel execution.
+	my @jobid_list = ();
+	my $job_number = 0;
+
+	# Iterate over identifiers, submitting each job
+	while (<$LISTFILE>) {
+		my $line = $_;
+		chomp($line);
+		if ( $line ne '' ) {
+			&print_debug_message( 'list_file_submit_job', 'line: ' . $line, 2 );
+			if ( $line =~ m/\w:\w/ ) {    # Check this is an identifier
+				my $seq_id = $line;
+				print STDERR "Submitting job for: $seq_id\n"
+				  if ( $outputLevel > 0 );
+				$job_number++;
+				my $job_id = &submit_job($seq_id, $seq_id);
+				my $job_info_str =
+				  sprintf( '%s %s %d %d', $job_id, $seq_id, 0, $job_number );
+				push( @jobid_list, $job_info_str );
+			}
+			else {
+				print STDERR
+"Warning: line \"$line\" is not recognised as an identifier\n";
+			}
+
+			# Parallel mode, wait for job(s) to finish to free slots.
+			while ( $params{'maxJobs'} > 1
+				&& scalar(@jobid_list) >= $params{'maxJobs'} )
+			{
+				&_job_list_poll( \@jobid_list );
+				print_debug_message( 'list_file_submit_job',
+					'Remaining jobs: ' . scalar(@jobid_list), 1 );
+			}
+		}
+	}
+	close $LISTFILE;
+
+	# Parallel mode, wait for remaining jobs to finish.
+	while ( $params{'maxJobs'} > 1 && scalar(@jobid_list) > 0 ) {
+		&_job_list_poll( \@jobid_list );
+		print_debug_message( 'list_file_submit_job',
+			'Remaining jobs: ' . scalar(@jobid_list), 1 );
+	}
+	print_debug_message( 'list_file_submit_job', 'End', 1 );
 }
 
 =head2 load_data()
@@ -992,21 +1275,32 @@ Get the results for a job identifier.
 
 sub get_results {
 	print_debug_message( 'get_results', 'Begin', 1 );
-	my $jobid = shift;
+	my $jobid  = shift;
+	my $seq_id = shift;
 	print_debug_message( 'get_results', 'jobid: ' . $jobid, 1 );
+	print_debug_message( 'get_results', 'seq_id: ' . $seq_id, 1 ) if($seq_id);
+	my $output_basename = $jobid;
 
 	# Verbose
 	if ( $outputLevel > 1 ) {
 		print 'Getting results for job ', $jobid, "\n";
 	}
 
+	# Default output file names use JobId, however the name can be specified...
+	if ( defined( $params{'outfile'} ) ) {
+		$output_basename = $params{'outfile'};
+	}
+
+	# Or use sequence identifer.
+	elsif ( defined( $params{'useSeqId'} && defined($seq_id) && $seq_id ne '') ) {
+		$output_basename = $seq_id;
+
+		# Make safe to use as a file name.
+		$output_basename =~ s/\W/_/g;
+	}
+
 	# Check status, and wait if not finished
 	client_poll($jobid);
-
-	# Use JobId if output file name is not defined
-	unless ( defined( $params{'outfile'} ) ) {
-		$params{'outfile'} = $jobid;
-	}
 
 	# Get list of data types
 	my (@resultTypes) = rest_get_result_types($jobid);
@@ -1027,7 +1321,7 @@ sub get_results {
 			}
 			else {
 				write_file(
-					$params{'outfile'} . '.'
+					$output_basename . '.'
 					  . $selResultType->{'identifier'} . '.'
 					  . $selResultType->{'fileSuffix'},
 					$result
@@ -1045,12 +1339,12 @@ sub get_results {
 				print STDERR 'Getting ', $resultType->{'identifier'}, "\n";
 			}
 			my $result = rest_get_result( $jobid, $resultType->{'identifier'} );
-			if ( $params{'outfile'} eq '-' ) {
+			if ( defined( $params{'outfile'} ) && $params{'outfile'} eq '-' ) {			
 				write_file( $params{'outfile'}, $result );
 			}
 			else {
 				write_file(
-					$params{'outfile'} . '.'
+					$output_basename . '.'
 					  . $resultType->{'identifier'} . '.'
 					  . $resultType->{'fileSuffix'},
 					$result
@@ -1138,34 +1432,35 @@ HMMER phmmer is used to search sequences against collections of profiles.
 
 [Required]
 
-  seqFile            : file : aligned sequences ("-" for STDIN)
   --email            : str  : e-mail address
-  --seqdb			 : str  : The sequence database field changes which target sequence database is searched. Accepted values are ensemblgenomes,uniprotkb,uniprotrefprot,rp15,rp35,rp55,rp75,ensembl,merops,qfo,swissprot,pdb,meropsscan
+  -D, --database     : str  : The sequence database field changes which target sequence database is searched. Accepted values are ensemblgenomes,uniprotkb,uniprotrefprot,rp15,rp35,rp55,rp75,ensembl,merops,qfo,swissprot,pdb,meropsscan
+  -D, --seqdb	     : str  : Compatability database option
+  seqFile            : file : query sequence ("-" for STDIN, \@filename for
+                              identifier list file)
 
 [Optional]
 
-  --incE             : real : Siginificance E-values[Model] (ex:0.01)
-  --incdomE          : real : Siginificance E-values[Hit] (ex:0.03)
-  --E                : int  : Report E-values[Model] (ex:1)
-  --domE             : int  : Report E-values[Hit] (ex:1)
-
-  --incT             : real : Significance bit scores[Sequence] (ex:25)
-  --incdomT          : real : Significance bit scores[Hit] (ex:22)
-  --T                : int  : Report bit scores[Sequence] (ex:7)
-  --domT             : int  : Report bit scores[Hit] (ex:5)
-
-  --popen            :      : Gap Penalties for Open
-  --pextend          :      : Gap Penalties for Extend
-  --mx               : str  : Substitution scoring matrix
+  -e, --E            : real : Report E-values[Model] (ex:1)
+  -f, --domE         : real : Report E-values[Hit] (ex:1)
+  -g, --incE         : real : Siginificance E-values[Model] (ex:0.01)
+  -h, --incdomE      : real : Siginificance E-values[Hit] (ex:0.03)
+  -t, --T            : real : Report bit scores[Sequence] (ex:7)
+  -u, --domT         : real : Report bit scores[Hit] (ex:5)
+  -v, --incT         : real : Significance bit scores[Sequence] (ex:25)
+  -w, --incdomT      : real : Significance bit scores[Hit] (ex:22)
+  -n, --nobias       : str  : True for turnning off, bias composition filter
+  -o, --popen        : real : Gap Penalties for Open
+  -p, --pextend      : real : Gap Penalties for Extend
+  -m, --mx           : str  : Substitution scoring matrix
                               [BLOSUM45, BLOSUM62, BLOSUM90, PAM30, PAM70]
-  --nobias           : str  : True for turnning off, bias composition filter
-  --alignView        : str  : Output alignment in result
+  -A, --alignView    : str  : Output alignment in result
+  --acc              : int  : Get accession ID, how many from top. The default is 20
+  --multifasta       :      : treat input as a set of fasta formatted sequences
 
 [General]
 
   -h, --help         :      : prints this help text
       --async        :      : forces to make an asynchronous query
-      --email        : str  : e-mail address
       --title        : str  : title for job
       --status       :      : get job status
       --resultTypes  :      : get available result types for job
@@ -1174,24 +1469,27 @@ HMMER phmmer is used to search sequences against collections of profiles.
                               was submitted.
       --outfile      : str  : file name for results (default is jobid;
                               "-" for STDOUT)
+      --useSeqId     :      : use sequence identifiers for output filenames. 
+                              Only available in multifasta or list file modes.
+      --maxJobs      : int  : maximum number of concurrent jobs. Only 
+                              available in multifasta or list file modes.
       --outformat    : str  : result format to retrieve
       --params       :      : list input parameters
       --paramDetail  : str  : display details for input parameter
       --quiet        :      : decrease output
       --verbose      :      : increase output
-      --acc          : int  : Get accession ID, how many from top. The default is 20
 
 Synchronous job:
 
   The results/errors are returned as soon as the job is finished.
-  Usage: perl $scriptName --email <your\@email> [options...] <seqFile>
+  Usage: $scriptName --email <your\@email> [options...] seqFile
   Returns: results as an attachment
 
 Asynchronous job:
 
   Use this if you want to retrieve the results at a later time. The results
   are stored for up to 24 hours.
-  Usage: perl $scriptName --async --email <your\@email> [options...] <seqFile>
+  Usage: perl $scriptName --async --email <your\@email> [options...] seqFile
   Returns: jobid
 
   Use the jobid to query for the status of the job. If the job is finished,
@@ -1202,12 +1500,12 @@ Asynchronous job:
 
 Further information:
 
-  http://www.ebi.ac.uk/Tools/webservices/services/pfa/hmmer_hmmscan_rest
-  http://www.ebi.ac.uk/Tools/webservices/tutorials/perl
+  https://www.ebi.ac.uk/seqdb/confluence/display/THD/Hmmer3+phmmer
+  https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Job+Dispatcher+Sequence+Analysis+Tools+Home
 
 Support/Feedback:
 
-  http://www.ebi.ac.uk/support/
+  https://www.ebi.ac.uk/support/
 EOF
 }
 
