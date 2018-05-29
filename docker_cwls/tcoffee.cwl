@@ -1,7 +1,7 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: tcoffee_lwp.pl 
+baseCommand: tcoffee_lwp.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/ebitools-container
@@ -12,41 +12,36 @@ inputs:
     type: string
     doc: Submitter's email.
     inputBinding:
-      position: 2
       prefix: --email
     default: 'joonlee@ebi.ac.uk'
-    
+
   sequence:
     type: string
     inputBinding:
-      position: 3
       prefix: --sequence
     default: sp:wap_rat,sp:wap_mouse
-  
+
   title:
-    type: string 
+    type: string
     inputBinding:
-      position: 4
       prefix: --title
 #    default: '$defaultValue'
 
   matrix:
-    type: string 
+    type: string
     inputBinding:
-      position: 5
       prefix: --matrix
 #    default: '$defaultValue'
 
   order:
-    type: string 
+    type: string
     inputBinding:
-      position: 6
       prefix: --order
 #    default: '$defaultValue'
 
 
-outputs: 
-  cwl_out: 
+outputs:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:
