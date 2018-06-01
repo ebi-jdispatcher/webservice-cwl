@@ -100,7 +100,7 @@ my %tool_params = ();
 GetOptions(
 
 	# Tool specific options	
-	'database|D=s'	=> \$tool_params{'hmmDatabase'},# Ddatabase to search, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
+	'database|D=s'	=> \$tool_params{'seqdb'},		# Ddatabase to search, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
 	'seqdb|D=s'     => \$tool_params{'seqdb'},      # Compatability database option	
 	'E|e=f'         => \$tool_params{'E'},          # Report E-values[Model] (ex:1)
 	'domE|f=f'      => \$tool_params{'domE'},       # Report E-values[Hit] (ex:1)
