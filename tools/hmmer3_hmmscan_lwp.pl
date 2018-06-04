@@ -382,9 +382,9 @@ Perform a REST request (HTTP GET).
 =cut
 
 sub rest_request_for_accid {
-	print_debug_message( 'rest_request', 'Begin', 11 );
+	print_debug_message( 'rest_request_for_accid', 'Begin', 11 );
 	my $requestUrl = shift;
-	print_debug_message( 'rest_request', 'URL: ' . $requestUrl, 11 );
+	print_debug_message( 'rest_request_for_accid', 'URL: ' . $requestUrl, 11 );
 
 	# Get an LWP UserAgent.
 	$ua = &rest_user_agent() unless defined($ua);
@@ -398,10 +398,10 @@ sub rest_request_for_accid {
 	my $response = $ua->get($requestUrl,
 		'Accept-Encoding' => $can_accept, # HTTP compression.
 	);
-	print_debug_message( 'rest_request', 'HTTP status: ' . $response->code,	11 );
-	print_debug_message( 'rest_request', 'response length: ' . length($response->content()), 11 );
-	print_debug_message( 'rest_request', 'request:' ."\n" . $response->request()->as_string(), 32 );
-	print_debug_message( 'rest_request', 'response: ' . "\n" . $response->as_string(), 32 );
+	print_debug_message( 'rest_request_for_accid', 'HTTP status: ' . $response->code,	11 );
+	print_debug_message( 'rest_request_for_accid', 'response length: ' . length($response->content()), 11 );
+	print_debug_message( 'rest_request_for_accid', 'request:' ."\n" . $response->request()->as_string(), 32 );
+	print_debug_message( 'rest_request_for_accid', 'response: ' . "\n" . $response->as_string(), 32 );
 	# Unpack possibly compressed response.
 	my $retVal;
 	if ( defined($can_accept) && $can_accept ne '') {
@@ -411,8 +411,8 @@ sub rest_request_for_accid {
 	$retVal = $response->content() unless defined($retVal);
 	# Check for an error.
 	&rest_error($response, $retVal);
-	print_debug_message( 'rest_request', 'retVal: ' . $retVal, 12 );
-	print_debug_message( 'rest_request', 'End', 11 );
+	print_debug_message( 'rest_request_for_accid', 'retVal: ' . $retVal, 12 );
+	print_debug_message( 'rest_request_for_accid', 'End', 11 );
 		
 	my @lines = split /\n/, $retVal;
 	
@@ -1276,9 +1276,6 @@ sub get_results {
 		# Make safe to use as a file name.
 		$output_basename =~ s/\W/_/g;
 	}
-
-	# Check status, and wait if not finished
-	client_poll($jobid);
 	
 	# Get list of data types
 	my (@resultTypes) = rest_get_result_types($jobid);

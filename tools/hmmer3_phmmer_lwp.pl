@@ -1299,9 +1299,6 @@ sub get_results {
 		$output_basename =~ s/\W/_/g;
 	}
 
-	# Check status, and wait if not finished
-	client_poll($jobid);
-
 	# Get list of data types
 	my (@resultTypes) = rest_get_result_types($jobid);
 
