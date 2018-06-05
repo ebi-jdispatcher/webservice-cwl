@@ -100,8 +100,8 @@ my %tool_params = ();
 GetOptions(
 
 	# Tool specific options	
-	'database|D=s'	=> \$tool_params{'seqdb'},		# Ddatabase to search, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
-	'seqdb|D=s'     => \$tool_params{'seqdb'},      # Compatability database option	
+	'database|D=s'	=> \$tool_params{'database'},	# Ddatabase to search, Reference Proteomes:uniprotrefprot, UniProtKB:uniprotkb, SwissProt:swissprot, PDB:pdb
+	'seqdb|D=s'     => \$tool_params{'database'},   # Compatability database option	
 	'E|e=f'         => \$tool_params{'E'},          # Report E-values[Model] (ex:1)
 	'domE|f=f'      => \$tool_params{'domE'},       # Report E-values[Hit] (ex:1)
 	'incE|g=f'      => \$tool_params{'incE'},       # Siginificance E-values[Model] (ex:0.01)
@@ -868,7 +868,7 @@ sub submit_job {
 	my $seq_id = shift;
 
 	# Set input seqdb ; ensemblgenomes,uniprotkb,uniprotrefprot,rp15,rp35,rp55,rp75,ensembl,merops,qfo,swissprot,pdb,meropsscan
-	my $param_seqdb = $tool_params{'seqdb'};
+	my $param_seqdb = $tool_params{'database'};
 
 	if ($param_seqdb eq 'ensemblgenomes'  ) {
 		$db_index = "1";

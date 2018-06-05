@@ -100,8 +100,8 @@ my %tool_params = ();
 GetOptions(
 
 	# Tool specific options		
-	'database|D=s'  => \$tool_params{'hmmdb'},# Ddatabase to search, Pfam Tigrfam gene3d pirsf superfamily are available
-	'hmmdb|D=s'     => \$tool_params{'hmmdb'},# Compatability database option
+	'database|D=s'  => \$tool_params{'database'},# Ddatabase to search, Pfam Tigrfam gene3d pirsf superfamily are available
+	'hmmdb|D=s'     => \$tool_params{'database'},# Compatability database option
 	'E|e=f'         => \$tool_params{'E'},          # Report E-values[Model] (ex:1)
 	'domE|f=f'      => \$tool_params{'domE'},       # Report E-values[Hit] (ex:1)
 	'incE|g=f'      => \$tool_params{'incE'},       # Siginificance E-values[Model] (ex:0.01)
@@ -862,7 +862,7 @@ sub submit_job {
 	print_debug_message( 'submit_job', 'seq_id: ' . $seq_id, 1 ) if($seq_id);
 
 	# Set input hmmdb ;gene3d, pfam, tigrfam, superfamily, pirsf
-	my $param_hmmdb = $tool_params{'hmmdb'};
+	my $param_hmmdb = $tool_params{'database'};
 
 	if ($param_hmmdb eq 'treefam'  ) {
 		$db_index = "2";
@@ -871,14 +871,14 @@ sub submit_job {
 		$db_index = "3";
 	}	
 	if ($param_hmmdb eq 'pfam' || $param_hmmdb eq 'Pfam' ) {
-		$tool_params{'hmmdb'} = 'pfam';
+		$tool_params{'database'} = 'pfam';
 		$db_index = "4";
 	}	
 	if ($param_hmmdb eq 'superfamily'  ) {
 		$db_index = "5";
 	}	
 	if ($param_hmmdb eq 'tigrfam' || $param_hmmdb eq 'Tigrfam') {
-		$tool_params{'hmmdb'} = 'tigrfam';
+		$tool_params{'database'} = 'tigrfam';
 		$db_index = "6";
 	}		
 	if ($param_hmmdb eq 'pirsf'  ) {
