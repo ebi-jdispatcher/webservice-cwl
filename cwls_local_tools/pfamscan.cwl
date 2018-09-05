@@ -1,76 +1,79 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: kalign_lwp.pl
-hints:
-  DockerRequirement:
-    dockerPull: ebiwp/ebitools-container
-
+baseCommand: perl 
 inputs:
+
+  command: 
+    type: File
+    inputBinding:
+      position: 0
+       
+    default:
+      class: File
+      location: ../tools/pfamscan_lwp.pl
 
   email:
     type: string
     doc: Submitter's email.
     inputBinding:
+      position: 2
       prefix: --email
     default: 'joonlee@ebi.ac.uk'
-
+    
   sequence:
-    type: string
+    type: File
     inputBinding:
+      position: 3
       prefix: --sequence
-    default: sp:wap_rat,sp:wap_mouse
+    default:
+      class: File
+      location: ../sequence/single.seq
+    
+  
 
 
 
 
-
-
-  stype:
-    type: string
-    inputBinding:
-      prefix: --stype
-#    default: '$defaultValue'
-
+  
   title:
-    type: string
+    type: string  
     inputBinding:
+      position: 4
       prefix: --title
 #    default: '$defaultValue'
 
-  format-param:
-    type: string
+  database:
+    type: string  
     inputBinding:
-      prefix: --format
-#    default: 'fasta'
-
-  gapopen:
-    type: float
-    inputBinding:
-      prefix: --gapopen
+      position: 5
+      prefix: --database
 #    default: '$defaultValue'
 
-  gapext:
-    type: float
+  evalue:
+    type: double  
     inputBinding:
-      prefix: --gapext
+      position: 6
+      prefix: --evalue
 #    default: '$defaultValue'
 
-  termgap:
-    type: float
+  asp:
+    type: boolean 
     inputBinding:
-      prefix: --termgap
+      position: 7
+      prefix: --asp
 #    default: '$defaultValue'
 
-  bonus:
-    type: float
+  format:
+    type: string  
     inputBinding:
-      prefix: --bonus
+      position: 8
+      prefix: 
 #    default: '$defaultValue'
 
 
-outputs:
-  all-out:
+outputs: 
+  cwl_out: 
     type: File[]
     streamable: true
     outputBinding:

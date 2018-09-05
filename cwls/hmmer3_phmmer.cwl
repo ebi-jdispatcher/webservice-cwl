@@ -1,17 +1,12 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
-inputs:
+baseCommand: hmmer3_phmmer_lwp.pl
+hints:
+  DockerRequirement:
+    dockerPull: adhoc_ebitools
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/hmmer3_phmmer_lwp.pl
+inputs:
 
   email:
     type: string
@@ -126,8 +121,9 @@ inputs:
       position: 33
       prefix: --acc
 
-outputs: 
-  cwl_out: 
+
+outputs:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:

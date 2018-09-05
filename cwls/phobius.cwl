@@ -1,53 +1,101 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
+baseCommand: phobius_lwp.pl
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/ebitools-container
+
 inputs:
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/phobius_lwp.pl
-
   email:
-    type: string
+    type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 2
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
-    
-  sequence:
-    type: File
-    inputBinding:
-      position: 3
-      prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/single.seq
 
-  
+  sequence:
+    type: string?
+    inputBinding:
+      prefix: --sequence
+
   title:
     type: string?
     inputBinding:
-      position: 4
       prefix: --title
-#    default: 'Title'
 
-  phobius_format:
+  format-results:
+    type:
+        - "null"
+        - type: enum
+          symbols:
+            - short
+            - long
+            - grp
+            - raw
+          inputBinding:
+            prefix: --format
+
+  outformat:
     type: string?
     inputBinding:
-      position: 5
-      prefix: --format
-#    default: 'grp'
+      prefix: --outformat
 
-outputs: 
-  cwl_out: 
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  input-file:
+    type: File?
+    inputBinding:
+      position: 1
+
+
+outputs:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:
-      glob: "*.*"
+      glob: "*"
+
+  out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.out.txt"
+
+  sequence-out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.sequence.txt"
+
+  visual-png:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.visual-png.png"
+
+  plp:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.plp.txt"
+
+  gnuplot:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.gnuplot.txt"
+
+  error:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.error.txt"

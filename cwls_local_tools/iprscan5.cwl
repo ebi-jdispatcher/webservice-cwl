@@ -1,65 +1,70 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: pfamscan_lwp.pl
-hints:
-  DockerRequirement:
-    dockerPull: ebiwp/ebitools-container
-
+baseCommand: perl 
 inputs:
+
+  command: 
+    type: File
+    inputBinding:
+      position: 0
+       
+    default:
+      class: File
+      location: ../tools/iprscan5_lwp.pl
 
   email:
     type: string
     doc: Submitter's email.
     inputBinding:
+      position: 2
       prefix: --email
     default: 'joonlee@ebi.ac.uk'
-
+    
   sequence:
-    type: string
+    type: File
     inputBinding:
+      position: 3
       prefix: --sequence
-    default: uniprot:wap_rat
+    default:
+      class: File
+      location: ../sequence/single.seq
 
 
 
 
-
-
-
+  
   title:
-    type: string
+    type: string        
     inputBinding:
+      position: 4
       prefix: --title
 #    default: '$defaultValue'
 
-  database:
+  goterms:
+    type: boolean       
+    inputBinding:
+      position: 5
+      prefix: --goterms
+#    default: '$defaultValue'
+
+  pathways:
+    type: boolean       
+    inputBinding:
+      position: 6
+      prefix: --pathways
+#    default: '$defaultValue'
+
+  appl:
     type: string
     inputBinding:
-      prefix: --database
-#    default: '$defaultValue'
-
-  evalue:
-    type: double
-    inputBinding:
-      prefix: --evalue
-#    default: '$defaultValue'
-
-  asp:
-    type: boolean
-    inputBinding:
-      prefix: --asp
-#    default: '$defaultValue'
-
-  format:
-    type: string
-    inputBinding:
-      prefix:
+      position: 7
+      prefix: --appl
 #    default: '$defaultValue'
 
 
-outputs:
-  all-out:
+outputs: 
+  cwl_out: 
     type: File[]
     streamable: true
     outputBinding:

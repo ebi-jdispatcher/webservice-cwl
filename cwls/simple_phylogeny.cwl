@@ -1,85 +1,101 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
+baseCommand: simple_phylogeny_lwp.pl
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/ebitools-container
+
 inputs:
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/simple_phylogeny_lwp.pl
-
   email:
-    type: string
+    type: string?
     doc: Submitter's email.
     inputBinding:
-      position: 2
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
-    
+
   sequence:
-    type: File
+    type: string?
     inputBinding:
-      position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/aligned.seq
 
-
-
-
-  
   title:
-    type: string  
+    type: string?
     inputBinding:
-      position: 4
       prefix: --title
-#    default: '$defaultValue'
 
   tree:
-    type: string  
+    type: string?
     inputBinding:
-      position: 5
       prefix: --tree
-#    default: '$defaultValue'
 
   kimura:
-    type: boolean 
+    type: boolean?
     inputBinding:
-      position: 6
       prefix: --kimura
-#    default: '$defaultValue'
 
   tossgaps:
-    type: boolean 
+    type: boolean?
     inputBinding:
-      position: 7
       prefix: --tossgaps
-#    default: '$defaultValue'
 
   clustering:
-    type: string  
-    inputBinding:
-      position: 8
-      prefix: --clustering
-#    default: '$defaultValue'
+    type:
+        - "null"
+        - type: enum
+          symbols:
+            - Neighbour-joining
+            - UPGMA
+          inputBinding:
+            prefix: --clustering
 
   pim:
-    type: boolean 
+    type: boolean?
     inputBinding:
-      position: 9
       prefix: --pim
-#    default: '$defaultValue'
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  input-file:
+    type: File?
+    inputBinding:
+      position: 1
 
 
-outputs: 
-  cwl_out: 
+outputs:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:
-      glob: "*.*"
+      glob: "*"
+
+  out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.out.txt"
+
+  sequence-out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.sequence.txt"
+
+  tree-out:
+    type: File?
+    streamable: true
+    outputBinding:
+      glob: "*.tree.ph"

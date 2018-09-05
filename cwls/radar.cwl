@@ -1,50 +1,40 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
-inputs:
+baseCommand: radar_lwp.pl
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/ebitools-container
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/radar_lwp.pl
+inputs:
 
   email:
     type: string
     doc: Submitter's email.
     inputBinding:
-      position: 2
       prefix: --email
     default: 'joonlee@ebi.ac.uk'
-    
+
   sequence:
-    type: File
+    type: string
     inputBinding:
-      position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/single.seq
-  
+    default: uniprot:wap_rat
 
 
 
 
-  
+
+
   title:
-    type: string 
+    type: string
     inputBinding:
-      position: 4
       prefix: --title
 #    default: '$defaultValue'
 
 
-outputs: 
-  cwl_out: 
+outputs:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:

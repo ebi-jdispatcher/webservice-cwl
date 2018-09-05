@@ -1,45 +1,42 @@
 # European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
+baseCommand: dbfetch_lwp.pl
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/ebitools-container
+
 inputs:
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0       
-    default:
-      class: File
-      location: ../tools/dbfetch_lwp.pl
-
   method:
-    type: string
+    type:
+        type: enum
+        symbols:
+          - fetchData
+          - fetchBatch
     doc: Type of command-line interface.
     inputBinding:
-      position: 4
-#    default: 'fetchData'
+      position: 0
 
   dbName:
-    type: string
+    type: string?
     doc: Database to be searched.
     inputBinding:
-      position: 5
-#    default: 'uniprot'
+      position: 1
 
   idList:
-    type: string
+    type: string[]
     doc: fetching idList
     inputBinding:
-      position: 6
-#    default: 'WAP_RAT'
+      itemSeparator: ","
+      position: 2
 
   outFormat:
-    type: string
+    type: string?
     doc: Format of the output
     inputBinding:
-      position: 7
-#    default: 'fasta'
+      position: 3
 
 outputs:
-  cwl_out:
+  out:
     type: stdout
