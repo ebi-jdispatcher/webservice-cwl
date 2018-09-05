@@ -4,7 +4,7 @@ class: CommandLineTool
 baseCommand: hmmer3_phmmer_lwp.pl
 hints:
   DockerRequirement:
-    dockerPull: adhoc_ebitools
+    dockerPull: ebiwp/webservice-clients
 
 inputs:
 

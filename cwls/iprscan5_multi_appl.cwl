@@ -4,7 +4,7 @@ class: CommandLineTool
 baseCommand: iprscan5_lwp.pl
 hints:
   DockerRequirement:
-    dockerPull: ebiwp/ebitools-container
+    dockerPull: ebiwp/webservice-clients
 
 inputs:
 

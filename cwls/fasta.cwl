@@ -4,7 +4,8 @@ class: CommandLineTool
 baseCommand: fasta_lwp.pl
 hints:
   DockerRequirement:
-    dockerPull: ebiwp/ebitools-container
+    dockerPull: ebiwp/webservice-clients
+
 inputs:
 
   email:
