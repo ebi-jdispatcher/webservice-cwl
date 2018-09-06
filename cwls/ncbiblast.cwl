@@ -8,12 +8,50 @@ hints:
 
 inputs:
 
+  # Web Service Clients: Common Entries
   email:
-    type: string?
-    doc: Submitter's email.
+    type: string
+    doc: "Submitter's email"
     inputBinding:
       prefix: --email
 
+  title:
+    type: string?
+    inputBinding:
+      prefix: --title
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetails
+
+  # Web Service Clients: Different Entries
   sequence:
     type: string?
     inputBinding:
@@ -33,11 +71,6 @@ inputs:
     type: string?
     inputBinding:
       prefix: --database
-
-  title:
-    type: string?
-    inputBinding:
-      prefix: --title
 
   matrix:
     type: string?
@@ -98,21 +131,6 @@ inputs:
     type: int?
     inputBinding:
       prefix: --align
-
-  outformat:
-    type: string?
-    inputBinding:
-      prefix: --outformat
-
-  polljob:
-    type: boolean?
-    inputBinding:
-      prefix: --polljob
-
-  jobid:
-    type: string?
-    inputBinding:
-      prefix: --jobid
 
   input-file:
     type: File?

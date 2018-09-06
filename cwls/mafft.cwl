@@ -8,72 +8,95 @@ hints:
 
 inputs:
 
+  # Web Service Clients: Common Entries
   email:
     type: string
-    doc: Submitter's email.
+    doc: "Submitter's email"
     inputBinding:
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
 
+  title:
+    type: string?
+    inputBinding:
+      prefix: --title
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetail
+
+  # Web Service Clients: Different Entries
   sequence:
-    type: string
+    type: string?
     inputBinding:
       prefix: --sequence
     default: sp:wap_rat,sp:wap_mouse
 
-  title:
-    type: string
-    inputBinding:
-      prefix: --title
-#    default: '$defaultValue'
-
   format-param:
-    type: string
+    type: string?
     inputBinding:
       prefix: --format
-#    default: '$defaultValue'
 
   matrix:
-    type: string
+    type: string?
     inputBinding:
       prefix: --matrix
-#    default: '$defaultValue'
 
   gapopen:
-    type: float
+    type: float?
     inputBinding:
       prefix: --gapopen
-#    default: '$defaultValue'
 
   gapext:
-    type: float
+    type: float?
     inputBinding:
       prefix: --gapext
-#    default: '$defaultValue'
 
   order:
-    type: string
+    type: string?
     inputBinding:
       prefix: --order
-#    default: '$defaultValue'
 
   nbtree:
     type: int
     inputBinding:
       prefix: --nbtree
-#    default: '$defaultValue'
 
   maxiterate:
-    type: int
+    type: int?
     inputBinding:
       prefix: --maxiterate
-#    default: '$defaultValue'
 
   ffts:
-    type: string
+    type: string?
     inputBinding:
       prefix: --ffts
-#    default: '$defaultValue'
 
 outputs:
   all-out:

@@ -8,21 +8,54 @@ hints:
 
 inputs:
 
+  # Web Service Clients: Common Entries
   email:
-    type: string?
-    doc: Submitter's email.
+    type: string
+    doc: "Submitter's email"
     inputBinding:
       prefix: --email
-
-  sequence:
-    type: string?
-    inputBinding:
-      prefix: --sequence
 
   title:
     type: string?
     inputBinding:
       prefix: --title
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetail
+
+  # Web Service Clients: Different Entries
+  sequence:
+    type: string?
+    inputBinding:
+      prefix: --sequence
 
   format-alignment:
     type:
@@ -49,21 +82,6 @@ inputs:
     type: string?
     inputBinding:
       prefix: --order
-
-  outformat:
-    type: string?
-    inputBinding:
-      prefix: --outformat
-
-  polljob:
-    type: boolean?
-    inputBinding:
-      prefix: --polljob
-
-  jobid:
-    type: string?
-    inputBinding:
-      prefix: --jobid
 
   input-file:
     type: File?

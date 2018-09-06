@@ -8,154 +8,160 @@ hints:
 
 inputs:
 
+  # Web Service Clients: Common Entries
   email:
     type: string
-    doc: Submitter's email.
+    doc: "Submitter's email"
     inputBinding:
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
 
+  title:
+    type: string?
+    inputBinding:
+      prefix: --title
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetail
+
+  # Web Service Clients: Different Entries
   sequence:
-    type: string
+    type: string?
     inputBinding:
       prefix: --sequence
     default: uniprot:wap_rat
 
-
-
-
-
   program:
-    type: string
+    type: string?
     inputBinding:
       prefix: --program
-#    default: '$defaultValue'
 
   stype:
-    type: string
+    type: string?
     inputBinding:
       prefix: --stype
-#    default: '$defaultValue'
 
   database:
-    type: string
+    type: string?
     inputBinding:
       prefix: --database
-#    default: '$defaultValue'
-
-  title:
-    type: string
-    inputBinding:
-      prefix: --title
-#    default: '$defaultValue'
 
   matrix:
-    type: string
+    type: string?
     inputBinding:
       prefix: --matrix
-#    default: '$defaultValue'
 
   match-scores:
-    type: string
+    type: string?
     inputBinding:
       prefix: --match_scores
-#    default: '$defaultValue'
 
   gapopen:
-    type: int
+    type: int?
     inputBinding:
       prefix: --gapopen
-#    default: '$defaultValue'
 
   gapext:
-    type: int
+    type: int?
     inputBinding:
       prefix: --gapext
-#    default: '$defaultValue'
 
   hsps:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --hsps
-#    default: '$defaultValue'
 
   expupperlim:
-    type: double
+    type: double?
     inputBinding:
       prefix: --expupperlim
-#    default: '$defaultValue'
 
   explowlim:
-    type: double
+    type: double?
     inputBinding:
       prefix: --explowlim
-#    default: '$defaultValue'
 
   strand:
-    type: string
+    type: string?
     inputBinding:
       prefix: --strand
-#    default: '$defaultValue'
 
   hist:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --hist
-#    default: '$defaultValue'
 
   scores:
-    type: int
+    type: int?
     inputBinding:
       prefix: --scores
-#    default: '$defaultValue'
 
   alignments:
-    type: int
+    type: int?
     inputBinding:
       prefix: --alignments
-#    default: '$defaultValue'
 
   scoreformat:
-    type: string
+    type: string?
     inputBinding:
       prefix: --scoreformat
-#    default: '$defaultValue'
 
   stats:
-    type: string
+    type: string?
     inputBinding:
       prefix: --stats
-#    default: '$defaultValue'
 
   annotfeats:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --annotfeats
-#    default: '$defaultValue'
 
   dbrange:
-    type: string
+    type: string?
     inputBinding:
       prefix: --dbrange
-#    default: '$defaultValue'
 
   seqrange:
-    type: string
+    type: string?
     inputBinding:
       prefix: --seqrange
-#    default: '$defaultValue'
 
   filter:
-    type: string
+    type: string?
     inputBinding:
       prefix: --filter
-#    default: '$defaultValue'
 
   ktup:
-    type: int
+    type: int?
     inputBinding:
       prefix: --ktup
-#    default: '$defaultValue'
 
 
 outputs:

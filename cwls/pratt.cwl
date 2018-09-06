@@ -8,152 +8,160 @@ hints:
 
 inputs:
 
+  # Web Service Clients: Common Entries
   email:
     type: string
-    doc: Submitter's email.
+    doc: "Submitter's email"
     inputBinding:
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
 
+  title:
+    type: string?
+    inputBinding:
+      prefix: --title
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetail
+
+  # Web Service Clients: Different Entries
   sequence:
-    type: string
+    type: string?
     inputBinding:
       prefix: --sequence
     default: ">UniProt/Swiss-Prot|P26898|IL2RA_SHEEP\nSP:IL2RA_SHEEP\n>UniProt/Swiss-Prot|Q95118|IL2RG_BOVIN\nSP:IL2RA_BOVIN"
 
-  title:
-    type: string
-    inputBinding:
-      prefix: --title
-#    default: '$defaultValue'
-
   minPerc:
-    type: int
+    type: int?
     inputBinding:
       prefix: --minPerc
-#    default: '$defaultValue'
 
   patternPosition:
-    type: string
+    type: string?
     inputBinding:
       prefix: --patternPosition
-#    default: '$defaultValue'
 
   maxPatternLength:
-    type: int
+    type: int?
     inputBinding:
       prefix: --maxPatternLength
-#    default: '$defaultValue'
 
   maxNumPatternSymbols:
-    type: int
+    type: int?
     inputBinding:
       prefix: --maxNumPatternSymbols
-#    default: '$defaultValue'
 
   maxNumWildcard:
-    type: int
+    type: int?
     inputBinding:
       prefix: --maxNumWildcard
-#    default: '$defaultValue'
 
   maxNumFlexSpaces:
-    type: int
+    type: int?
     inputBinding:
       prefix: --maxNumFlexSpaces
-#    default: '$defaultValue'
 
   maxFlexibility:
-    type: int
+    type: int?
     inputBinding:
       prefix: --maxFlexibility
-#    default: '$defaultValue'
 
   maxFlexProduct:
-    type: int
+    type: int?
     inputBinding:
       prefix: --maxFlexProduct
-#    default: '$defaultValue'
 
   patternSymbolFile:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --patternSymbolFile
-#    default: '$defaultValue'
 
   numPatternSymbols:
-    type: int
+    type: int?
     inputBinding:
       prefix: --numPatternSymbols
-#    default: '$defaultValue'
 
   patternScoring:
-    type: string
+    type: string?
     inputBinding:
       prefix: --patternScoring
-#    default: '$defaultValue'
 
   patternGraph:
-    type: string
+    type: string?
     inputBinding:
       prefix: --patternGraph
-#    default: '$defaultValue'
 
   searchGreediness:
-    type: int
+    type: int?
     inputBinding:
       prefix: --searchGreediness
-#    default: '$defaultValue'
 
   patternRefinement:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --patternRefinement
-#    default: '$defaultValue'
 
   genAmbigSymbols:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --genAmbigSymbols
-#    default: '$defaultValue'
 
   patternFormat:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --patternFormat
-#    default: '$defaultValue'
 
   maxNumPatterns:
-    type: int
+    type: int?
     inputBinding:
       prefix: --maxNumPatterns
-#    default: '$defaultValue'
 
   maxNumAlignments:
-    type: int
+    type: int?
     inputBinding:
       prefix: --maxNumAlignments
-#    default: '$defaultValue'
 
   printPatterns:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --printPatterns
-#    default: '$defaultValue'
 
   printingRatio:
-    type: int
+    type: int?
     inputBinding:
       prefix: --printingRatio
-#    default: '$defaultValue'
 
   printVertically:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --printVertically
-#    default: '$defaultValue'
-
-
 
 
 outputs:

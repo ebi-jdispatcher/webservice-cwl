@@ -8,35 +8,60 @@ hints:
 
 inputs:
 
+  # Web Service Clients: Common Entries
   email:
     type: string
-    doc: Submitter's email.
+    doc: "Submitter's email"
     inputBinding:
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
 
+  title:
+    type: string?
+    inputBinding:
+      prefix: --title
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetail
+
+  # Web Service Clients: Different Entries
   sequence:
-    type: string
+    type: string?
     inputBinding:
       prefix: --sequence
     default: sp:wap_rat,sp:wap_mouse
 
-
-
-
-
-
   stype:
-    type: string
+    type: string?
     inputBinding:
       prefix: --stype
-#    default: '$defaultValue'
-
-  title:
-    type: string
-    inputBinding:
-      prefix: --title
-#    default: '$defaultValue'
 
   format-param:
     type: string
@@ -45,28 +70,24 @@ inputs:
 #    default: 'fasta'
 
   gapopen:
-    type: float
+    type: float?
     inputBinding:
       prefix: --gapopen
-#    default: '$defaultValue'
 
   gapext:
-    type: float
+    type: float?
     inputBinding:
       prefix: --gapext
-#    default: '$defaultValue'
 
   termgap:
-    type: float
+    type: float?
     inputBinding:
       prefix: --termgap
-#    default: '$defaultValue'
 
   bonus:
-    type: float
+    type: float?
     inputBinding:
       prefix: --bonus
-#    default: '$defaultValue'
 
 
 outputs:

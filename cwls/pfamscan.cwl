@@ -8,54 +8,75 @@ hints:
 
 inputs:
 
+  # Web Service Clients: Common Entries
   email:
     type: string
-    doc: Submitter's email.
+    doc: "Submitter's email"
     inputBinding:
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
 
+  title:
+    type: string?
+    inputBinding:
+      prefix: --title
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetail
+
+  # Web Service Clients: Different Entries
   sequence:
-    type: string
+    type: string?
     inputBinding:
       prefix: --sequence
     default: uniprot:wap_rat
 
-
-
-
-
-
-
-  title:
-    type: string
-    inputBinding:
-      prefix: --title
-#    default: '$defaultValue'
-
   database:
-    type: string
+    type: string?
     inputBinding:
       prefix: --database
-#    default: '$defaultValue'
 
   evalue:
-    type: double
+    type: double?
     inputBinding:
       prefix: --evalue
-#    default: '$defaultValue'
 
   asp:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --asp
-#    default: '$defaultValue'
 
   format:
-    type: string
+    type: string?
     inputBinding:
       prefix:
-#    default: '$defaultValue'
 
 
 outputs:
