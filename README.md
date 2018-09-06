@@ -18,20 +18,18 @@ You will need cwl-runner ([cwltool](https://github.com/common-workflow-language/
 
 ### Running CWL for EBI tools (requires Docker)
 
-You can find CWL definitions in [cwl](cwl) accompanied with predefined parameters defined in [ymls](ymls).  
+You can find CWL definitions in [cwls](cwls) accompanied with predefined parameters defined in [ymls](ymls).  
 Remember, before running cwl, you need to defined your own values for the parameters, including a required email address.
 
 ```
 cwltool ./cwls/tcoffee.cwl ./ymls/tcoffee.yml
 ```
 
-
 ### Running CWL for EBI tools using local Perl clients (does not require Docker)
 
 _**Note:** this option will be deprecated soon!_  
-You can find CWL definitions in [cwl_local_tools](cwl_local_tools) accompanied with predefined parameters defined in [ymls](ymls).  
+You can find CWL definitions in [cwls_local_tools](cwls_local_tools) accompanied with predefined parameters defined in [ymls](ymls).  
 Remember, before running cwl, you need to defined your own values for the parameters, including a required email address.
-
 
 ```
 cwltool ./cwls_local_tools/tcoffee.cwl ./ymls/tcoffee.yml
