@@ -3,4 +3,3 @@ minlen: 200
 minoe: 0.6
 program: newcpgreport
 window: 100
-version: 6.6.0

@@ -14,4 +14,4 @@ mx: BLOSUM62
 pextend: 0.4
 alignView: 'true'
 seqdb: swissprot
-acc: 5
+acc: 30

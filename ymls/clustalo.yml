@@ -5,7 +5,6 @@ mbed: true
 hmmiterations: -1
 program: clustalo
 dismatout: true
-version: 1.2.3
 guidetreeout: true
 iterations: 0
 outfmt: clustal
