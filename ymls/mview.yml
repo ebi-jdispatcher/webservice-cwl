@@ -3,7 +3,6 @@ css: true
 stype: protein
 program: mview
 ruler: true
-version: 1.54
 concolormap: none
 congaps: true
 consensus: true

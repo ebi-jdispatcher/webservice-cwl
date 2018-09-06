@@ -2,6 +2,5 @@ database: pfam-a
 format: json
 evalue: 10
 program: pfamscan
-version: 1.5
 asp: false
 title: PfamScan

@@ -7,4 +7,3 @@ inputformat: unknown
 seqrange: START-END
 program: seqret
 reverse: false
-version: 6.5.7

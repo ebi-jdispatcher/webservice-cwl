@@ -6,7 +6,6 @@ maxNumFlexSpaces: 2
 maxNumAlignments: 50
 program: pratt
 patternRefinement: false
-version: 2.3
 minPerc: 100
 patternPosition: 'off'
 genAmbigSymbols: false

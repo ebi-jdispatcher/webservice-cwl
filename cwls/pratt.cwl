@@ -1,201 +1,198 @@
-# European Bioinformatics Institute (EMBL-EBI), Web Production
+#!/usr/bin/env cwl-runner
+
+# Copyright (C) 2018 EMBL - European Bioinformatics Institute
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#      http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
+baseCommand: pratt_lwp.pl
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/webservice-clients
+
 inputs:
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/pratt_lwp.pl
-
+  # Web Service Clients: Common Entries
   email:
     type: string
-    doc: Submitter's email.
+    doc: "Submitter's email"
     inputBinding:
-      position: 2
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
-    
-  sequence:
-    type: File
-    inputBinding:
-      position: 3
-      prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/aligned.seq
-    
-  
 
-
-
-
-  
   title:
-    type: string       
+    type: string?
     inputBinding:
-      position: 4
       prefix: --title
-#    default: '$defaultValue'
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetail
+
+  # Web Service Clients: Different Entries
+  sequence:
+    type: string?
+    inputBinding:
+      prefix: --sequence
+    default: ">UniProt/Swiss-Prot|P26898|IL2RA_SHEEP\nSP:IL2RA_SHEEP\n>UniProt/Swiss-Prot|Q95118|IL2RG_BOVIN\nSP:IL2RA_BOVIN"
 
   minPerc:
-    type: int          
+    type: int?
     inputBinding:
-      position: 5
       prefix: --minPerc
-#    default: '$defaultValue'
 
   patternPosition:
-    type: string       
+    type: string?
     inputBinding:
-      position: 6
       prefix: --patternPosition
-#    default: '$defaultValue'
 
   maxPatternLength:
-    type: int          
+    type: int?
     inputBinding:
-      position: 7
       prefix: --maxPatternLength
-#    default: '$defaultValue'
 
   maxNumPatternSymbols:
-    type: int          
+    type: int?
     inputBinding:
-      position: 8
       prefix: --maxNumPatternSymbols
-#    default: '$defaultValue'
 
   maxNumWildcard:
-    type: int          
+    type: int?
     inputBinding:
-      position: 9
       prefix: --maxNumWildcard
-#    default: '$defaultValue'
 
   maxNumFlexSpaces:
-    type: int          
+    type: int?
     inputBinding:
-      position: 10
       prefix: --maxNumFlexSpaces
-#    default: '$defaultValue'
 
   maxFlexibility:
-    type: int          
+    type: int?
     inputBinding:
-      position: 11
       prefix: --maxFlexibility
-#    default: '$defaultValue'
 
   maxFlexProduct:
-    type: int          
+    type: int?
     inputBinding:
-      position: 12
       prefix: --maxFlexProduct
-#    default: '$defaultValue'
 
   patternSymbolFile:
-    type: boolean      
+    type: boolean?
     inputBinding:
-      position: 13
       prefix: --patternSymbolFile
-#    default: '$defaultValue'
 
   numPatternSymbols:
-    type: int          
+    type: int?
     inputBinding:
-      position: 14
       prefix: --numPatternSymbols
-#    default: '$defaultValue'
 
   patternScoring:
-    type: string       
+    type: string?
     inputBinding:
-      position: 15
       prefix: --patternScoring
-#    default: '$defaultValue'
 
   patternGraph:
-    type: string       
+    type: string?
     inputBinding:
-      position: 16
       prefix: --patternGraph
-#    default: '$defaultValue'
 
   searchGreediness:
-    type: int          
+    type: int?
     inputBinding:
-      position: 17
       prefix: --searchGreediness
-#    default: '$defaultValue'
 
   patternRefinement:
-    type: boolean      
+    type: boolean?
     inputBinding:
-      position: 18
       prefix: --patternRefinement
-#    default: '$defaultValue'
 
   genAmbigSymbols:
-    type: boolean      
+    type: boolean?
     inputBinding:
-      position: 19
       prefix: --genAmbigSymbols
-#    default: '$defaultValue'
 
   patternFormat:
-    type: boolean      
+    type: boolean?
     inputBinding:
-      position: 20
       prefix: --patternFormat
-#    default: '$defaultValue'
 
   maxNumPatterns:
-    type: int          
+    type: int?
     inputBinding:
-      position: 21
       prefix: --maxNumPatterns
-#    default: '$defaultValue'
 
   maxNumAlignments:
-    type: int          
+    type: int?
     inputBinding:
-      position: 22
       prefix: --maxNumAlignments
-#    default: '$defaultValue'
 
   printPatterns:
-    type: boolean      
+    type: boolean?
     inputBinding:
-      position: 23
       prefix: --printPatterns
-#    default: '$defaultValue'
 
   printingRatio:
-    type: int          
+    type: int?
     inputBinding:
-      position: 24
       prefix: --printingRatio
-#    default: '$defaultValue'
 
   printVertically:
-    type: boolean      
+    type: boolean?
     inputBinding:
-      position: 25
       prefix: --printVertically
-#    default: '$defaultValue'
 
 
-
-
-outputs: 
-  cwl_out: 
+outputs:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:
       glob: "*.*"
+
+
+$schemas:
+  - http://schema.org/docs/schema_org_rdfa.html
+
+$namespaces:
+  s: http://schema.org/
+
+s:license:
+  - https://www.apache.org/licenses/LICENSE-2.0
+  - https://spdx.org/licenses/Apache-2.0
+
+s:copyrightHolder: "European Bioinformatics Institute (EMBL-EBI), Web Production"

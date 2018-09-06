@@ -1,197 +1,198 @@
-# European Bioinformatics Institute (EMBL-EBI), Web Production
+#!/usr/bin/env cwl-runner
+
+# Copyright (C) 2018 EMBL - European Bioinformatics Institute
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#      http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
+baseCommand: fasta_lwp.pl
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/webservice-clients
+
 inputs:
 
-  command: 
-    type: File
-    inputBinding:
-      position: 0
-       
-    default:
-      class: File
-      location: ../tools/fasta_lwp.pl
-
+  # Web Service Clients: Common Entries
   email:
     type: string
-    doc: Submitter's email.
+    doc: "Submitter's email"
     inputBinding:
-      position: 2
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
-    
-  sequence:
-    type: File
-    inputBinding:
-      position: 3
-      prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/single.seq
-
-
-
-
-  
-  program:
-    type: string        
-    inputBinding:
-      position: 8
-      prefix: --program
-#    default: '$defaultValue'
-
-  stype:
-    type: string        
-    inputBinding:
-      position: 16
-      prefix: --stype
-#    default: '$defaultValue'
-
-  database:
-    type: string
-    inputBinding:
-      position: 24
-      prefix: --database
-#    default: '$defaultValue'
 
   title:
-    type: string  
+    type: string?
     inputBinding:
-      position: 28
       prefix: --title
-#    default: '$defaultValue'
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetail
+
+  # Web Service Clients: Different Entries
+  sequence:
+    type: string?
+    inputBinding:
+      prefix: --sequence
+    default: uniprot:wap_rat
+
+  program:
+    type: string?
+    inputBinding:
+      prefix: --program
+
+  stype:
+    type: string?
+    inputBinding:
+      prefix: --stype
+
+  database:
+    type: string?
+    inputBinding:
+      prefix: --database
 
   matrix:
-    type: string  
+    type: string?
     inputBinding:
-      position: 29
       prefix: --matrix
-#    default: '$defaultValue'
 
-  match_scores:
-    type: string  
+  match-scores:
+    type: string?
     inputBinding:
-      position: 30
       prefix: --match_scores
-#    default: '$defaultValue'
 
   gapopen:
-    type: int     
+    type: int?
     inputBinding:
-      position: 31
       prefix: --gapopen
-#    default: '$defaultValue'
 
   gapext:
-    type: int     
+    type: int?
     inputBinding:
-      position: 32
       prefix: --gapext
-#    default: '$defaultValue'
 
   hsps:
-    type: boolean 
+    type: boolean?
     inputBinding:
-      position: 33
       prefix: --hsps
-#    default: '$defaultValue'
 
   expupperlim:
-    type: double  
+    type: double?
     inputBinding:
-      position: 34
       prefix: --expupperlim
-#    default: '$defaultValue'
 
   explowlim:
-    type: double  
+    type: double?
     inputBinding:
-      position: 35
       prefix: --explowlim
-#    default: '$defaultValue'
 
   strand:
-    type: string  
+    type: string?
     inputBinding:
-      position: 36
       prefix: --strand
-#    default: '$defaultValue'
 
   hist:
-    type: boolean 
+    type: boolean?
     inputBinding:
-      position: 37
       prefix: --hist
-#    default: '$defaultValue'
 
   scores:
-    type: int     
+    type: int?
     inputBinding:
-      position: 38
       prefix: --scores
-#    default: '$defaultValue'
 
   alignments:
-    type: int     
+    type: int?
     inputBinding:
-      position: 39
       prefix: --alignments
-#    default: '$defaultValue'
 
   scoreformat:
-    type: string  
+    type: string?
     inputBinding:
-      position: 40
       prefix: --scoreformat
-#    default: '$defaultValue'
 
   stats:
-    type: string  
+    type: string?
     inputBinding:
-      position: 41
       prefix: --stats
-#    default: '$defaultValue'
 
   annotfeats:
-    type: boolean 
+    type: boolean?
     inputBinding:
-      position: 42
       prefix: --annotfeats
-#    default: '$defaultValue'
 
   dbrange:
-    type: string  
+    type: string?
     inputBinding:
-      position: 44
       prefix: --dbrange
-#    default: '$defaultValue'
 
   seqrange:
-    type: string  
+    type: string?
     inputBinding:
-      position: 45
       prefix: --seqrange
-#    default: '$defaultValue'
 
   filter:
-    type: string  
+    type: string?
     inputBinding:
-      position: 46
       prefix: --filter
-#    default: '$defaultValue'
 
   ktup:
-    type: int     
+    type: int?
     inputBinding:
-      position: 48
       prefix: --ktup
-#    default: '$defaultValue'
 
 
-outputs: 
-  cwl_out: 
+outputs:
+  all-out:
     type: File[]
     streamable: true
     outputBinding:
       glob: "*.*"
+
+
+$schemas:
+  - http://schema.org/docs/schema_org_rdfa.html
+
+$namespaces:
+  s: http://schema.org/
+
+s:license:
+  - https://www.apache.org/licenses/LICENSE-2.0
+  - https://spdx.org/licenses/Apache-2.0
+
+s:copyrightHolder: "European Bioinformatics Institute (EMBL-EBI), Web Production"

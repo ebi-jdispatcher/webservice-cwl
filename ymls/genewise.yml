@@ -5,7 +5,6 @@ genes: true
 gff: true
 splice: flat
 program: genewise
-version: 2.4.1
 random: syn
 para: true
 cdna: true
