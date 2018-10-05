@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: mafft_lwp.pl
+baseCommand: mafft.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

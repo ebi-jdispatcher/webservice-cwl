@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: phobius_lwp.pl
+baseCommand: phobius.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

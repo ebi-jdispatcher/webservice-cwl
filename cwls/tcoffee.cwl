@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: tcoffee_lwp.pl
+baseCommand: tcoffee.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

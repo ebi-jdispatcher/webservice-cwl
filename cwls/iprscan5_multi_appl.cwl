@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: iprscan5_lwp.pl
+baseCommand: iprscan5.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

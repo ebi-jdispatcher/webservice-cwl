@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: radar_lwp.pl
+baseCommand: radar.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

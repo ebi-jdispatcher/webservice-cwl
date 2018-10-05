@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: hmmer3_phmmer_lwp.pl
+baseCommand: hmmer3_phmmer.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

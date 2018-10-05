@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: muscle_lwp.pl
+baseCommand: muscle.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

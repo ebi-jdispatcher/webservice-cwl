@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: emboss_needle_lwp.pl
+baseCommand: emboss_needle.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: psiblast_lwp.pl
+baseCommand: psiblast.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

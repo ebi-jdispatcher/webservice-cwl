@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: pratt_lwp.pl
+baseCommand: pratt.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

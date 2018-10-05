@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: dbfetch_lwp.pl
+baseCommand: dbfetch.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

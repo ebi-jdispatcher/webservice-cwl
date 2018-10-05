@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: pfamscan_lwp.pl
+baseCommand: pfamscan.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

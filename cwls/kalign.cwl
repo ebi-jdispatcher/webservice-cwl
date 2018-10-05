@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: kalign_lwp.pl
+baseCommand: kalign.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: simple_phylogeny_lwp.pl
+baseCommand: simple_phylogeny.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients

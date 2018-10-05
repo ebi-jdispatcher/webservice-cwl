@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: fasta_lwp.pl
+baseCommand: fasta.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients
