@@ -15,6 +15,10 @@
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: sh
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/webservice-clients
+
 inputs:
   command:
     type: File
@@ -41,7 +45,7 @@ inputs:
       position: 3
     default:
       class: File
-      location: ./dbfetch_lwp.pl
+      location: dbfetch_lwp.pl
   method:
     type: string
     inputBinding:
