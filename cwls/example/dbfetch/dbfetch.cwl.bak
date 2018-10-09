@@ -1,0 +1,57 @@
+cwlVersion: v1.0
+class: CommandLineTool
+baseCommand: sh
+inputs:
+  command:
+    type: File
+    inputBinding:
+      position: 0
+    default:
+      class: File
+      location: 'dbfetch.sh'
+  accessions:
+    type: File
+    inputBinding:
+      position: 1
+#    default:
+#      class: File
+#      location: 'id.txt'
+  numberAccessions:
+    type: string
+    inputBinding:
+      position: 2
+    default: '5'
+  perl:
+    type: File
+    inputBinding:
+      position: 3
+    default:
+      class: File
+      location: ./dbfetch_lwp.pl
+  method:
+    type: string
+    inputBinding:
+      position: 4
+    default: 'fetchBatch'
+  database:
+    type: string
+    doc: Database to be searched.
+    inputBinding:
+      position: 5
+    default: 'uniprot'
+  outformat:
+    type: string
+    doc: Format of the output
+    inputBinding:
+      position: 6
+    default: 'fasta'
+  outstyle:
+    type: string
+    doc: Style of the output
+    inputBinding:
+      position: 7
+    default: 'raw'
+
+outputs:
+  aligned_sequences:
+    type: stdout
