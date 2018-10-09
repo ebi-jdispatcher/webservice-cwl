@@ -14,15 +14,12 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl
+baseCommand: simple_phylogeny_lwp.pl
+hints:
+  DockerRequirement:
+    dockerPull: ebiwp/webservice-clients
+
 inputs:
-  command:
-    type: File
-    inputBinding:
-      position: 0
-    default:
-      class: File
-      location: 'simple_phylogeny_lwp.pl'
   email:
     type: string
     inputBinding:

@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: clustalo.pl
+baseCommand: clustalo_lwp.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients
