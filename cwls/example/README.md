@@ -24,8 +24,3 @@ cwltool ./cwls/exmaple/workflow/sample.cwl
 ```
 
 ### Running CWL for EBI tools using local Perl clients (does not require Docker)
-
-## Contact and Support
-
-If you have any problems, suggestions or comments for our services please
-contact us via [EBI Support](http://www.ebi.ac.uk/support/index.php?query=WebServices).
