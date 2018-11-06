@@ -45,4 +45,4 @@ steps:
     run: '../simple_phylogeny/simple_phylogeny.cwl'
     in:
       alignment: clustalo_step/clustalo_out
-    out: [tree] 
+    out: [tree]

@@ -15,9 +15,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: sh
-hints:
-  DockerRequirement:
-    dockerPull: ebiwp/webservice-clients
 
 inputs:
   command:
@@ -38,7 +35,7 @@ inputs:
     type: string
     inputBinding:
       position: 2
-    default: '5'
+    default: '15'
   perl:
     type: File
     inputBinding:

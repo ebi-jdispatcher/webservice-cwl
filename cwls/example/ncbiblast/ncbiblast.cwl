@@ -14,7 +14,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: ncbiblast_lwp.pl
+baseCommand: ncbiblast.pl
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients
