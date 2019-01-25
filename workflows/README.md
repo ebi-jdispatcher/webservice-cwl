@@ -20,8 +20,19 @@ You will need cwl-runner ([cwltool](https://github.com/common-workflow-language/
 You can find CWL definitions in [cwls](cwls) accompanied with predefined parameters defined in [ymls](ymls).  
 Remember, before running cwl, you need to defined your own values for the parameters, including a required email address.
 
+*Run BLAST, Dbfetch, Clustal Omega and then Simple Phylogeny*
 ```
-cwltool workflow.cwl
+cwltool workflow-blast-clustalo-phylogeny.cwl inputs-blast-clustalo-phylogeny.yml
+```
+
+*Run BLAST and EBI Search (ebeye)*
+```
+cwltool workflow-blast-ebeye.cwl inputs-blast-ebeye.yml
+```
+
+*Run BLAST and Phobius*
+```
+cwltool workflow-blast-phobius.cwl inputs-blast-phobius.yml
 ```
 
 ### Running CWL for EBI tools using local Perl clients (does not require Docker)

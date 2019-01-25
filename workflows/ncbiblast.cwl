@@ -19,48 +19,56 @@ hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients
 
+
 inputs:
   email:
     type: string
     doc: Submitter's email.
     inputBinding:
       prefix: --email
-    default: 'youremail@ebi.ac.uk'
+    default: 'email@ebi.ac.uk'
+
   program:
     type: string
     inputBinding:
       prefix: --program
     default: 'blastp'
+
   database:
     type: string
     inputBinding:
       prefix: --database
     default: 'uniprotkb_swissprot'
+
   type:
     type: string
     inputBinding:
       prefix: --stype
     default: 'protein'
+
   sequence:
     type: string
     inputBinding:
       prefix: --sequence
-    default: 'uniprot:ph4h_human'
+
   alignments:
     type: int
     inputBinding:
       prefix: --alignments
-    default: 10
+    default: 50
+
   scores:
     type: int
     inputBinding:
       prefix: --scores
-    default: 10
+    default: 50
+
   outformat:
     type: string
     inputBinding:
       prefix: --outformat
     default: 'ids'
+
   outfile:
     type: string
     inputBinding:

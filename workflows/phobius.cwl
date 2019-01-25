@@ -12,9 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: perl
+
 
 inputs:
 
@@ -25,34 +27,99 @@ inputs:
 
     default:
       class: File
-      location: ../../webservice-clients/perl/clustalo.pl
+      location: ../../webservice-clients/perl/phobius.pl
 
+  # Web Service Clients: Common Entries
 
   email:
     type: string
+    doc: "Submitter's email"
     inputBinding:
       prefix: --email
     default: 'email@ebi.ac.uk'
 
-  sequences:
-    type: File
+
+
+  title:
+    type: string?
     inputBinding:
+      prefix: --title
+
+
+  jobid:
+    type: string?
+    inputBinding:
+      prefix: --jobid
+
+
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      prefix: --polljob
+
+
+
+  pollfreq:
+    type: int?
+    inputBinding:
+      prefix: --pollFreq
+
+
+  params:
+    type: boolean?
+    inputBinding:
+      prefix: --params
+      position: 1
+
+
+  paramdetails:
+    type: string?
+    inputBinding:
+      prefix: --paramDetail
+
+
+  # Web Service Clients: Different Entries
+
+  sequence:
+    type: File?
+    inputBinding:
+      position: 3
       prefix: --sequence
+    default:
+      class: File
+      location: ../sequence/single.seq
+
+  format-results:
+    type:
+        - "null"
+        - type: enum
+          symbols:
+            - short
+            - long
+            - grp
+            - raw
+          inputBinding:
+            prefix: --format
+
+  input-file:
+    type: File?
+
 
   outfile:
     type: string
     inputBinding:
       prefix: --outfile
-    default: 'clustalo_out'
+    default: 'phobius_results'
 
   outformat:
     type: string
     inputBinding:
       prefix: --outformat
-    default: 'aln-clustal_num'
+    default: 'out'
 
 outputs:
-  clustalo_out:
+  out:
     type: File
     outputBinding:
-      glob: "*clustalo_out.aln-clustal_num*"
+      glob: "*phobius_results.out*"

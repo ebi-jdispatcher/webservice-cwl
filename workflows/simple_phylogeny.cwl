@@ -14,30 +14,37 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: simple_phylogeny.pl
-hints:
-  DockerRequirement:
-    dockerPull: ebiwp/webservice-clients
+baseCommand: perl
 
 inputs:
+
+  command:
+    type: File
+    inputBinding:
+      position: 0
+
+    default:
+      class: File
+      location: ../../webservice-clients/perl/simple_phylogeny.pl
+
   email:
     type: string
     inputBinding:
       prefix: --email
-    default: 'youremail@ebi.ac.uk'
+    default: 'email@ebi.ac.uk'
+
   alignment:
     type: File
     inputBinding:
       prefix: --sequence
       position: 1
-    default:
-      class: File
-      location: 'test.seq'
+
   outformat:
     type: string
     inputBinding:
       prefix: --outformat
     default: 'tree'
+
   outfile:
     type: string
     inputBinding:
@@ -48,4 +55,4 @@ outputs:
   tree:
     type: File
     outputBinding:
-      glob: "hits.tree.ph"
+      glob: "*hits.tree.*"

@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: sh
@@ -27,54 +25,63 @@ inputs:
       position: 0
     default:
       class: File
-      location: 'dbfetch.sh'
+      location: 'ebeye.sh'
 
-  accessions:
-    type: File?
-    inputBinding:
-      position: 1
-
-  numberAccessions:
-    type: string?
-    inputBinding:
-      position: 2
-    default: '15'
-
+# use positions to make the request properly, each part needs to be in the correct order for ebi search to work correctly use -- help for ebeye perl client to know what order you need
+# current state is to correctly run getReferenced
   perl:
     type: File
     inputBinding:
-      position: 3
+      position: 1
     default:
       class: File
-      location: ../../webservice-clients/perl/dbfetch.pl
+      location: ../../webservice-clients/perl/ebeye_lwp.pl
 
   method:
     type: string
     inputBinding:
-      position: 4
-    default: 'fetchBatch'
+      position: 2
+    default: 'getDomainHierarchy'
 
-  database:
-    type: string
-    doc: Database to be searched.
+  domain:
+    type: string?
     inputBinding:
-      position: 5
+      position: 3
     default: 'uniprot'
 
-  outformat:
-    type: string
-    doc: Format of the output
+  query:
+    type: string?
+    inputBinding:
+
+  entryid:
+    type: string?
+    inputBinding:
+
+  entryids:
+    type: string?
+    inputBinding:
+      position: 4
+
+  fields:
+    type: string?
     inputBinding:
       position: 6
-    default: 'fasta'
 
-  outstyle:
-    type: string
-    doc: Style of the output
+  referencedDomain:
+    type: string?
     inputBinding:
-      position: 7
-    default: 'raw'
+      position: 5
+
+  targetedDomain:
+    type: string?
+    inputBinding:
+
+
+  term:
+    type: string?
+    inputBinding:
+
 
 outputs:
-  aligned_sequences:
+  ebeye_out:
     type: stdout

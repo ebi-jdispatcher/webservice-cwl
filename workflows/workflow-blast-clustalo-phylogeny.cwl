@@ -16,7 +16,11 @@ cwlVersion: v1.0
 class: Workflow
 
 inputs:
-  []
+  sequence: string
+  email: string
+  program: string
+  database: string
+  type: string
 
 outputs:
   workflow_output:
@@ -26,7 +30,12 @@ outputs:
 steps:
   ncbiblast_step:
     run: 'ncbiblast.cwl'
-    in: []
+    in:
+      sequence: sequence
+      email: email
+      program: program
+      database: database
+      type: type
     out: [ids]
 
   dbfetch:
@@ -39,6 +48,7 @@ steps:
     run: 'clustalo.cwl'
     in:
       sequences: dbfetch/aligned_sequences
+      email: email
     out: [clustalo_out]
 
   phylogeny_step:

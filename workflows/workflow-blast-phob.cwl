@@ -13,46 +13,36 @@
 # limitations under the License.
 
 cwlVersion: v1.0
-class: CommandLineTool
-baseCommand: perl
+class: Workflow
 
 inputs:
-
-  command:
-    type: File
-    inputBinding:
-      position: 0
-
-    default:
-      class: File
-      location: ../../webservice-clients/perl/clustalo.pl
-
-
-  email:
-    type: string
-    inputBinding:
-      prefix: --email
-    default: 'email@ebi.ac.uk'
-
-  sequences:
-    type: File
-    inputBinding:
-      prefix: --sequence
-
-  outfile:
-    type: string
-    inputBinding:
-      prefix: --outfile
-    default: 'clustalo_out'
-
-  outformat:
-    type: string
-    inputBinding:
-      prefix: --outformat
-    default: 'aln-clustal_num'
+  email: string
+  sequence: string
+  program: string
+  database: string
+  type: string
+  outformat: string
 
 outputs:
-  clustalo_out:
+  workflow_output:
     type: File
-    outputBinding:
-      glob: "*clustalo_out.aln-clustal_num*"
+    outputSource: phobius_step/out
+
+steps:
+  ncbiblast_step:
+    run: 'ncbiblast.cwl'
+    in:
+      sequence: sequence
+      email: email
+      program: program
+      database: database
+      type: type
+      outformat: outformat
+    out: [protein_sequence]
+
+  phobius_step:
+    run: 'phobius.cwl'
+    in:
+      sequence: ncbiblast_step/protein_sequence
+      email: email
+    out: [out]
