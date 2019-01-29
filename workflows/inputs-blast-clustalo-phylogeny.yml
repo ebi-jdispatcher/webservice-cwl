@@ -1,11 +1,10 @@
-# Use for workflow-blast-clustalo-phylogeny.cwl
 # Blast inputs
 sequence: sp:phyb_arath
 email: test@ebi.ac.uk
 program: blastp
 database: uniprotkb_swissprot
 type: protein
-# dbfetch inputs
+# Dbfetch inputs
 method: fetchBatch
-# clustalo inputs
+# Clustalo inputs
 stype: protein

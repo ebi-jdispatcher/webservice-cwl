@@ -1,4 +1,4 @@
-# Use for -blast- phobius workflow
+# Blast inputs
 sequence: sp:phyb_arath
 email: test@ebi.ac.uk
 program: blastp

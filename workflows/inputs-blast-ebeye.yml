@@ -1,11 +1,10 @@
-# Use for -blast-ebeye.cwl
-# blast inputs
+# Blast inputs
 email: test@ebi.ac.uk
 sequence: uniprot:mgst1_human
 program: blastp
 database: uniprotkb_swissprot
 type: protein
-# ebeye search inputs
+# EBI search inputs
 method: getReferencedEntries
 domain: uniprot
 referencedDomain: pdb
