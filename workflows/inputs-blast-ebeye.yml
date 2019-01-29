@@ -1,6 +1,6 @@
 # Use for -blast-ebeye.cwl
 # blast inputs
-email: sfenton@ebi.ac.uk
+email: test@ebi.ac.uk
 sequence: uniprot:mgst1_human
 program: blastp
 database: uniprotkb_swissprot

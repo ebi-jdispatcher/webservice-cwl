@@ -21,6 +21,8 @@ inputs:
   program: string
   database: string
   type: string
+  method: string
+  stype: string
 
 outputs:
   workflow_output:
@@ -31,24 +33,26 @@ steps:
   ncbiblast_step:
     run: 'ncbiblast.cwl'
     in:
-      sequence: sequence
+      sequence_string: sequence
       email: email
       program: program
       database: database
       type: type
-    out: [ids]
+    out: [blast_ids]
 
   dbfetch:
-    run: 'dbfetch.cwl'
+    run: 'dbfetch-file.cwl'
     in:
-      accessions: ncbiblast_step/ids
-    out: [aligned_sequences]
+      accessions: ncbiblast_step/blast_ids
+      method: method
+    out: [sequences]
 
   clustalo_step:
     run: 'clustalo.cwl'
     in:
-      sequences: dbfetch/aligned_sequences
+      sequences: dbfetch/sequences
       email: email
+      stype: stype
     out: [clustalo_out]
 
   phylogeny_step:

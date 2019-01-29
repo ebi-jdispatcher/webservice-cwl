@@ -18,6 +18,8 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: sh
 
+# depending on whether you are using a File or string input you need to change position values, currently set for string input. For file input give accessions position 1, numberAccessions 2, perl position 3 etc
+# additionally you need change to use dbfetch-file.sh rather than dbfetch-string.sh
 
 inputs:
 
@@ -27,23 +29,22 @@ inputs:
       position: 0
     default:
       class: File
-      location: 'dbfetch.sh'
+      location: 'dbfetch-string.sh'
 
   accessions:
-    type: File?
+    type: string?
     inputBinding:
-      position: 1
+      position: 3
 
   numberAccessions:
     type: string?
     inputBinding:
-      position: 2
     default: '15'
 
   perl:
     type: File
     inputBinding:
-      position: 3
+      position: 1
     default:
       class: File
       location: ../../webservice-clients/perl/dbfetch.pl
@@ -51,30 +52,29 @@ inputs:
   method:
     type: string
     inputBinding:
-      position: 4
+      position: 2
     default: 'fetchBatch'
 
   database:
     type: string
     doc: Database to be searched.
     inputBinding:
-      position: 5
     default: 'uniprot'
 
   outformat:
     type: string
     doc: Format of the output
     inputBinding:
-      position: 6
+      position: 4
     default: 'fasta'
 
   outstyle:
     type: string
     doc: Style of the output
     inputBinding:
-      position: 7
+      position: 5
     default: 'raw'
 
 outputs:
-  aligned_sequences:
+  sequences:
     type: stdout

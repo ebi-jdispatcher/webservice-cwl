@@ -14,67 +14,128 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: ncbiblast.pl
-hints:
-  DockerRequirement:
-    dockerPull: ebiwp/webservice-clients
+baseCommand: perl
 
 
 inputs:
+
+  command:
+    type: File
+    inputBinding:
+      position: 0
+
+    default:
+      class: File
+      location: ../../webservice-clients/perl/ncbiblast.pl
+
   email:
     type: string
-    doc: Submitter's email.
     inputBinding:
       prefix: --email
-    default: 'email@ebi.ac.uk'
 
-  program:
-    type: string
-    inputBinding:
-      prefix: --program
-    default: 'blastp'
-
-  database:
-    type: string
-    inputBinding:
-      prefix: --database
-    default: 'uniprotkb_swissprot'
-
-  type:
-    type: string
-    inputBinding:
-      prefix: --stype
-    default: 'protein'
-
-  sequence:
-    type: string
+  sequence_string:
+    type: string?
     inputBinding:
       prefix: --sequence
 
+  sequence_file:
+    type: File?
+    inputBinding:
+      prefix: --sequence
+
+  program:
+    type: string?
+    inputBinding:
+      prefix: --program
+
+  type:
+    type: string?
+    inputBinding:
+      prefix: --stype
+
+  database:
+    type: string?
+    inputBinding:
+      prefix: --database
+
+  matrix:
+    type: string?
+    inputBinding:
+      prefix: --matrix
+
   alignments:
-    type: int
+    type: int?
     inputBinding:
       prefix: --alignments
-    default: 50
 
   scores:
-    type: int
+    type: int?
     inputBinding:
       prefix: --scores
-    default: 50
 
-  outformat:
-    type: string
+  exp:
+    type: int?
     inputBinding:
-      prefix: --outformat
-    default: 'ids'
+      prefix: --exp
+
+  dropoff:
+    type: int?
+    inputBinding:
+      prefix: --dropoff
+
+  gapopen:
+    type: int?
+    inputBinding:
+      prefix: --gapopen
+
+  gapext:
+    type: int?
+    inputBinding:
+      prefix: --gapext
+
+  filter:
+    type: boolean?
+    inputBinding:
+      prefix: --filter
+
+  seqrange:
+    type: string?
+    inputBinding:
+      prefix: --seqrange
+
+  gapalign:
+    type: boolean?
+    inputBinding:
+      prefix: --gapalign
+
+  compstats:
+    type: string?
+    inputBinding:
+      prefix: --compstats
+
+  align:
+    type: int?
+    inputBinding:
+      prefix: --align
 
   outfile:
-    type: string
+    type: string?
     inputBinding:
       prefix: --outfile
-    default: '-'
+
+
+  outformat:
+    type: string?
+    inputBinding:
+      prefix: --outformat
 
 outputs:
-  ids:
-    type: stdout
+  blast_ids:
+    type: File?
+    outputBinding:
+      glob: "*.ids.*"
+
+  blast_sequence:
+    type: File?
+    outputBinding:
+      glob: "*.sequence.txt"

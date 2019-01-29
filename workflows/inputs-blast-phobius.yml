@@ -1,6 +1,6 @@
 # Use for -blast- phobius workflow
 sequence: sp:phyb_arath
-email: sfenton@ebi.ac.uk
+email: test@ebi.ac.uk
 program: blastp
 database: uniprotkb_swissprot
 type: protein

@@ -119,7 +119,7 @@ inputs:
     default: 'out'
 
 outputs:
-  out:
+  phobius_out:
     type: File
     outputBinding:
       glob: "*phobius_results.out*"

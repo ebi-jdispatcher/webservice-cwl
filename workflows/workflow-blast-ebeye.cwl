@@ -36,16 +36,17 @@ steps:
     run: 'ncbiblast.cwl'
     in:
       email: email
-      sequence: sequence
+      sequence_string: sequence
       program: program
       database: database
       type: type
-    out: [ids]
+    out: [blast_ids]
 
+# converts blast output into usable input format for EBI search
   conversion_step:
     run: 'conversion.cwl'
     in:
-      idFile: ncbiblast_step/ids
+      idFile: ncbiblast_step/blast_ids
     out: [idstring]
 
   ebeye_step:

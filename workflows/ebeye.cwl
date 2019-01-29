@@ -27,21 +27,25 @@ inputs:
       class: File
       location: 'ebeye.sh'
 
-# use positions to make the request properly, each part needs to be in the correct order for ebi search to work correctly use -- help for ebeye perl client to know what order you need
-# current state is to correctly run getReferenced
+# position values need to be added or removed for each term based on search method you want to use. Use -- help for ebeye perl client to know what order you need (position value needs to be in the correct order)
+# default state is to run getReferencedEnteries
+# ebeye_lwp.pl, getReferencedEnteries, domain, entryids, referencedDomain, fields
+# position 1, 2 , 3 , 4 , 5, 6
+
+
   perl:
     type: File
     inputBinding:
       position: 1
     default:
       class: File
-      location: ../../webservice-clients/perl/ebeye_lwp.pl
+      location: ../../webservice-clients/perl/lwp/ebeye_lwp.pl
 
   method:
     type: string
     inputBinding:
       position: 2
-    default: 'getDomainHierarchy'
+    default: 'getReferencedEnteries'
 
   domain:
     type: string?
@@ -61,16 +65,19 @@ inputs:
     type: string?
     inputBinding:
       position: 4
+    default: 'mgst1_human'
 
   fields:
     type: string?
     inputBinding:
       position: 6
+    default: 'id,acc'
 
   referencedDomain:
     type: string?
     inputBinding:
       position: 5
+    default: 'pdb'
 
   targetedDomain:
     type: string?
@@ -80,7 +87,6 @@ inputs:
   term:
     type: string?
     inputBinding:
-
 
 outputs:
   ebeye_out:

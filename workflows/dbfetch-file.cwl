@@ -12,9 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl
+baseCommand: sh
+
+# depending on whether you are using a File or string input you need to change position values, currently set for string input. For file input give accessions position 1, numberAccessions 2, perl position 3 etc
+# additionally you need change to use dbfetch-file.sh rather than dbfetch-string.sh
 
 inputs:
 
@@ -22,42 +27,56 @@ inputs:
     type: File
     inputBinding:
       position: 0
-
     default:
       class: File
-      location: ../../webservice-clients/perl/clustalo.pl
+      location: 'dbfetch-file.sh'
 
-
-  email:
-    type: string
+  accessions:
+    type: File?
     inputBinding:
-      prefix: --email
-    default: 'email@ebi.ac.uk'
+      position: 1
 
-  sequences:
+  numberAccessions:
+    type: string?
+    inputBinding:
+      position: 2
+    default: '15'
+
+  perl:
     type: File
     inputBinding:
-      prefix: --sequence
+      position: 3
+    default:
+      class: File
+      location: ../../webservice-clients/perl/dbfetch.pl
 
-  stype:
+  method:
     type: string
     inputBinding:
-      prefix: --stype
+      position: 4
+    default: 'fetchBatch'
 
-  outfile:
+  database:
     type: string
+    doc: Database to be searched.
     inputBinding:
-      prefix: --outfile
-    default: 'clustalo_out'
+      position: 5
+    default: 'uniprot'
 
   outformat:
     type: string
+    doc: Format of the output
     inputBinding:
-      prefix: --outformat
-    default: 'aln-clustal_num'
+      position: 6
+    default: 'fasta'
+
+  outstyle:
+    type: string
+    doc: Style of the output
+    inputBinding:
+      position: 7
+    default: 'raw'
 
 outputs:
-  clustalo_out:
-    type: File
-    outputBinding:
-      glob: "*clustalo_out.aln-clustal_num*"
+  sequences:
+    type: stdout
