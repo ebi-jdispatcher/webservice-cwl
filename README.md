@@ -2,10 +2,9 @@
 CWL implementation for consuming [EMBL-EBI Bioinformatics Web Services tools' clients](https://github.com/ebi-wp/webservice-clients).
 
 ## Directories
-- **cwls** : cwl files for the EBI Web Service clients (using webservice-clients Docker container)
-- **cwls_local_tools** : cwl files for the EBI Web Service clients (using bundled Perl clients - **To be deprecated soon!**)
+- **cwls** : cwl files for the EBI Web Service clients (using bundled Perl clients)
+- **cwls-docker** : cwl files for the EBI Web Service clients (using webservice-clients Docker container)
 - **sequence** : example sequence files for testing purpose only. It is predefined in the each cwl. You could use with your sequence.
-- **tools** : a copy of EMBL-EBI Web Services tools' clients. Last versions available in [webservice-clients](https://github.com/ebi-wp/webservice-clients).
 - **ymls** : yml files, defined parameters' values.
 
 
@@ -22,17 +21,16 @@ You can find CWL definitions in [cwls](cwls) accompanied with predefined paramet
 Remember, before running cwl, you need to defined your own values for the parameters, including a required email address.
 
 ```
-cwltool ./cwls/tcoffee.cwl ./ymls/tcoffee.yml
+cwltool ./cwls-docker/tcoffee.cwl ./ymls/tcoffee.yml
 ```
 
 ### Running CWL for EBI tools using local Perl clients (does not require Docker)
 
-_**Note:** this option will be deprecated soon!_  
 You can find CWL definitions in [cwls_local_tools](cwls_local_tools) accompanied with predefined parameters defined in [ymls](ymls).  
 Remember, before running cwl, you need to defined your own values for the parameters, including a required email address.
 
 ```
-cwltool ./cwls_local_tools/tcoffee.cwl ./ymls/tcoffee.yml
+cwltool ./cwls/tcoffee.cwl ./ymls/tcoffee.yml
 ```
 
 ## Contact and Support

@@ -1,158 +1,145 @@
-#!/usr/bin/env cwl-runner
-
-# Copyright (C) 2018 EMBL - European Bioinformatics Institute
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#      http://www.apache.org/licenses/LICENSE-2.0
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
+# European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: ncbiblast.pl
-hints:
-  DockerRequirement:
-    dockerPull: ebiwp/webservice-clients
+baseCommand: ncbiblast_lwp.pl
 
 inputs:
 
-  # Web Service Clients: Common Entries
   email:
-    type: string
-    doc: "Submitter's email"
+    type: string?
+    doc: Submitter's email.
     inputBinding:
+      position: 1
       prefix: --email
 
-  title:
-    type: string?
-    inputBinding:
-      prefix: --title
-
-  jobid:
-    type: string?
-    inputBinding:
-      prefix: --jobid
-
-  polljob:
-    type: boolean?
-    inputBinding:
-      prefix: --polljob
-
-  outformat:
-    type: string?
-    inputBinding:
-      prefix: --outformat
-
-  pollfreq:
-    type: int?
-    inputBinding:
-      prefix: --pollFreq
-
-  params:
-    type: boolean?
-    inputBinding:
-      prefix: --params
-      position: 1
-
-  paramdetails:
-    type: string?
-    inputBinding:
-      prefix: --paramDetails
-
-  # Web Service Clients: Different Entries
   sequence:
     type: string?
     inputBinding:
+      position: 2
       prefix: --sequence
 
   program:
     type: string?
     inputBinding:
+      position: 3
       prefix: --program
 
   stype:
     type: string?
     inputBinding:
+      position: 4
       prefix: --stype
 
   database:
     type: string?
     inputBinding:
+      position: 5
       prefix: --database
+
+  title:
+    type: string?
+    inputBinding:
+      position: 6
+      prefix: --title
 
   matrix:
     type: string?
     inputBinding:
+      position: 7
       prefix: --matrix
 
   alignments:
     type: int?
     inputBinding:
+      position: 8
       prefix: --alignments
 
   scores:
     type: int?
     inputBinding:
+      position: 9
       prefix: --scores
 
   exp:
     type: int?
     inputBinding:
+      position: 10
       prefix: --exp
 
   dropoff:
     type: int?
     inputBinding:
+      position: 11
       prefix: --dropoff
 
   gapopen:
     type: int?
     inputBinding:
+      position: 12
       prefix: --gapopen
 
   gapext:
     type: int?
     inputBinding:
+      position: 13
       prefix: --gapext
 
   filter:
     type: boolean?
     inputBinding:
+      position: 14
       prefix: --filter
 
   seqrange:
     type: string?
     inputBinding:
+      position: 15
       prefix: --seqrange
 
   gapalign:
     type: boolean?
     inputBinding:
+      position: 16
       prefix: --gapalign
 
   compstats:
     type: string?
     inputBinding:
+      position: 17
       prefix: --compstats
 
   align:
     type: int?
     inputBinding:
+      position: 18
       prefix: --align
 
-  input-file:
+  outformat:
+    type: string?
+    inputBinding:
+      position: 19
+      prefix: --outformat
+
+  polljob:
+    type: boolean?
+    inputBinding:
+      position: 20
+      prefix: --polljob
+
+  jobid:
+    type: string?
+    inputBinding:
+      position: 21
+      prefix: --jobid
+
+  input_file:
     type: File?
     inputBinding:
-      position: 1
+      position: 22
 
 
 outputs:
-  all-out:
+  all_out:
     type: File[]
     streamable: true
     outputBinding:
@@ -164,7 +151,7 @@ outputs:
     outputBinding:
       glob: "*.out.txt"
 
-  sequence-out:
+  sequence_out:
     type: File?
     streamable: true
     outputBinding:
@@ -253,16 +240,3 @@ outputs:
     streamable: true
     outputBinding:
       glob: "*.ffdp-subject-png.png"
-
-
-$schemas:
-  - http://schema.org/docs/schema_org_rdfa.html
-
-$namespaces:
-  s: http://schema.org/
-
-s:license:
-  - https://www.apache.org/licenses/LICENSE-2.0
-  - https://spdx.org/licenses/Apache-2.0
-
-s:copyrightHolder: "European Bioinformatics Institute (EMBL-EBI), Web Production"

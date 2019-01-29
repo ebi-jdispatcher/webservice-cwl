@@ -1,193 +1,127 @@
-#!/usr/bin/env cwl-runner
-
-# Copyright (C) 2018 EMBL - European Bioinformatics Institute
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#      http://www.apache.org/licenses/LICENSE-2.0
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
+# European Bioinformatics Institute (EMBL-EBI), Web Production
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: clustalo.pl
-hints:
-  DockerRequirement:
-    dockerPull: ebiwp/webservice-clients
-
+baseCommand: perl 
 inputs:
 
-  # Web Service Clients: Common Entries
+  command: 
+    type: File
+    inputBinding:
+      position: 0
+       
+    default:
+      class: File
+      location: ../tools/clustalo_lwp.pl
+
   email:
     type: string
-    doc: "Submitter's email"
+    doc: Submitter's email.
     inputBinding:
+      position: 2
       prefix: --email
-
-  title:
-    type: string?
-    inputBinding:
-      prefix: --title
-
-  jobid:
-    type: string?
-    inputBinding:
-      prefix: --jobid
-
-  polljob:
-    type: boolean?
-    inputBinding:
-      prefix: --polljob
-
-  outformat:
-    type: string?
-    inputBinding:
-      prefix: --outformat
-
-  pollfreq:
-    type: int?
-    inputBinding:
-      prefix: --pollFreq
-
-  params:
-    type: boolean?
-    inputBinding:
-      prefix: --params
-      position: 1
-
-  paramdetails:
-    type: string?
-    inputBinding:
-      prefix: --paramDetail
-
-  # Web Service Clients: Different Entries
+    default: 'joonlee@ebi.ac.uk'
+    
   sequence:
-    type: string?
+    type: File
     inputBinding:
+      position: 3
       prefix: --sequence
+    default:
+      class: File
+      location: ../sequence/multi.seq
 
-  stype:
-    type: string?
+
+
+
+  
+  title:
+    type: string  
     inputBinding:
-      prefix: --stype
+      position: 4
+      prefix: --title
+#    default: '$defaultValue'
 
   guidetreeout:
-    type: boolean?
+    type: boolean 
     inputBinding:
+      position: 5
       prefix: --guidetreeout
+#    default: '$defaultValue'
 
   dismatout:
-    type: boolean?
+    type: boolean 
     inputBinding:
+      position: 6
       prefix: --dismatout
+#    default: '$defaultValue'
 
   dealign:
-    type: boolean?
+    type: boolean 
     inputBinding:
+      position: 7
       prefix: --dealign
+#    default: '$defaultValue'
 
   mbed:
-    type: boolean?
+    type: boolean 
     inputBinding:
+      position: 8
       prefix: --mbed
+#    default: '$defaultValue'
 
   mbediteration:
-    type: boolean?
+    type: boolean 
     inputBinding:
+      position: 9
       prefix: --mbediteration
+#    default: '$defaultValue'
 
   iterations:
-    type: int?
+    type: int     
     inputBinding:
+      position: 10
       prefix: --iterations
+#    default: '$defaultValue'
 
   gtiterations:
-    type: int?
+    type: int     
     inputBinding:
+      position: 11
       prefix: --gtiterations
+#    default: '$defaultValue'
 
   hmmiterations:
-    type: int?
+    type: int     
     inputBinding:
+      position: 12
       prefix: --hmmiterations
+#    default: '$defaultValue'
 
-  format-alignment:
-    type:
-        - "null"
-        - type: enum
-          symbols:
-            - clustal
-            - clustal_num
-            - fa
-            - msf
-            - nexus
-            - phylip
-            - selex
-            - stockholm
-            - vienna
-          inputBinding:
-            prefix: --outfmt
+  outfmt:
+    type: string  
+    inputBinding:
+      position: 13
+      prefix: --outfmt
+#    default: '$defaultValue'
+
   order:
-    type: string
+    type: string  
     inputBinding:
+      position: 14
       prefix: --order
+#    default: '$defaultValue'
 
-  input-file:
-    type: File?
+  stype:
+    type: string  
     inputBinding:
-      position: 1
+      position: 15
+      prefix: --stype
+#    default: '$defaultValue'
 
 
-outputs:
-  all-out:
+outputs: 
+  cwl_out: 
     type: File[]
     streamable: true
     outputBinding:
-      glob: "*"
-
-  out:
-    type: File?
-    streamable: true
-    outputBinding:
-      glob: "*.out.txt"
-
-  sequence-out:
-    type: File?
-    streamable: true
-    outputBinding:
-      glob: "*.sequence.txt"
-
-  aln:
-    type: File?
-    streamable: true
-    outputBinding:
-      glob: "*.aln-*.*"
-
-  phylotree:
-    type: File?
-    streamable: true
-    outputBinding:
-      glob: "*.phylotree.ph"
-
-  pim:
-    type: File?
-    streamable: true
-    outputBinding:
-      glob: "*.pim.pim"
-
-
-$schemas:
-  - http://schema.org/docs/schema_org_rdfa.html
-
-$namespaces:
-  s: http://schema.org/
-
-s:license:
-  - https://www.apache.org/licenses/LICENSE-2.0
-  - https://spdx.org/licenses/Apache-2.0
-
-s:copyrightHolder: "European Bioinformatics Institute (EMBL-EBI), Web Production"
+      glob: "*.*"
