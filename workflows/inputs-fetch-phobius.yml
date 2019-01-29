@@ -1,0 +1,4 @@
+accessions: sp:phyb_arath
+method: fetchData
+outformat: fasta
+email: test@ebi.ac.uk

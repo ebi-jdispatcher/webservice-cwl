@@ -16,33 +16,31 @@ cwlVersion: v1.0
 class: Workflow
 
 inputs:
-  email: string
-  sequence: string
-  program: string
-  database: string
-  type: string
+  accessions: string
+  method: string
   outformat: string
+  email: string
+
 
 outputs:
   workflow_output:
     type: File
-    outputSource: phobius_step/out
+    outputSource: phobius_step/phobius_out
+
 
 steps:
-  ncbiblast_step:
-    run: 'ncbiblast.cwl'
+  dbfetch_step:
+    run: 'dbfetch-string.cwl'
     in:
-      sequence: sequence
-      email: email
-      program: program
-      database: database
-      type: type
+      accessions: accessions
+      method: method
       outformat: outformat
-    out: [protein_sequence]
+
+    out: [sequences]
 
   phobius_step:
     run: 'phobius.cwl'
     in:
-      sequence: ncbiblast_step/protein_sequence
+      sequence: dbfetch_step/sequences
       email: email
-    out: [out]
+    out: [phobius_out]

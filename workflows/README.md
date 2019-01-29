@@ -35,4 +35,15 @@ cwltool workflow-blast-ebeye.cwl inputs-blast-ebeye.yml
 cwltool workflow-blast-phobius.cwl inputs-blast-phobius.yml
 ```
 
+*Run Dbfetch and Phobius*
+```
+cwltool workflow-fetch-phobius.cwl inputs-fetch-phobius.yml
+```
+
+*Run Transeq, BLAST + InterProScan5, Clustal Omega*
+```
+cwltool workflow-transeq-blast-clustalo.cwl inputs-transeq-blast-clustalo.yml
+```
+
+
 ### Running CWL for EBI tools using local Perl clients (does not require Docker)

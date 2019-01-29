@@ -1,0 +1,15 @@
+# emboss_transeq inputs
+email: 'test@ebi.ac.uk'
+sequence:
+  class: File
+  location: ../sequence/dna_sequence.fasta
+# blast inputs
+program: blastp
+database: uniprotkb_swissprot
+type: protein
+outformat: ids
+#dbfetch inputs
+method: fetchBatch
+numberAccessions: '10'
+#clustalo inputs
+stype: protein
