@@ -9,6 +9,8 @@ Official instructions on how to install cwltool are provided in https://github.c
 ## Running CWL for EBI tools (requires local copy of the clients)
 
 *Note:* Before running cwltool, you may want to edit the values for the parameters, including adding a required email address.
+Running these CWL files **expects** [webservice-clients](https://github.com/ebi-wp/webservice-clients) directory to be
+found alongside the `webservice-cwl` directory.
 
 *Run NCBI BLAST+, Dbfetch, Clustal Omega and then Simple Phylogeny*
 ```

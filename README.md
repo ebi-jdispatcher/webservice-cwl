@@ -7,7 +7,7 @@ These CWL files are generated from the EBI Job Dispatcher Web Services (XML) des
 - **cwls** : cwl files for the EBI Web Service clients (using Python clients 
 from [webservice-clients](https://github.com/ebi-wp/webservice-clients))
 - **cwls-docker** : cwl files for the EBI Web Service clients 
-(using [webservice-clients](https://github.com/ebi-wp/webservice-clients) Docker container)
+(using Python clients from [webservice-clients](https://github.com/ebi-wp/webservice-clients) Docker image)
 - **jsons** : example json files for defining input values for parameters
 - **sequence** : example sequence files for testing
 - **workflows** : a set of workflows to highlight the use of the clients
