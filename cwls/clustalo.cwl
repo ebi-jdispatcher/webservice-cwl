@@ -1,127 +1,276 @@
-# European Bioinformatics Institute (EMBL-EBI), Web Production
+#!/usr/bin/env cwl-runner
+
+# Copyright (C) 2019 EMBL - European Bioinformatics Institute
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#      http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: perl 
-inputs:
+label: "Clustal Omega"
+id: "clustalo"
+baseCommand: python
 
-  command: 
+inputs:
+  # Web Service Clients: Common Entries
+  command:
     type: File
     inputBinding:
       position: 0
-       
     default:
       class: File
-      location: ../tools/clustalo_lwp.pl
+      location: ../../webservice-clients/python/clustalo.py
 
   email:
-    type: string
-    doc: Submitter's email.
+    type: string?
+    doc: "E-mail address"
     inputBinding:
-      position: 2
       prefix: --email
-    default: 'joonlee@ebi.ac.uk'
-    
-  sequence:
-    type: File
-    inputBinding:
-      position: 3
-      prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/multi.seq
+      position: 2
 
-
-
-
-  
   title:
-    type: string  
+    type: string?
+    doc: "Job title"
     inputBinding:
-      position: 4
       prefix: --title
-#    default: '$defaultValue'
+      position: 3
+
+  jobid:
+    type: string?
+    doc: "Job identifier"
+    inputBinding:
+      prefix: --jobid
+      position: 1
+
+  polljob:
+    type: boolean?
+    doc: "Get job result"
+    inputBinding:
+      prefix: --polljob
+      position: 2
+
+  outfile:
+    type: string?
+    doc: "File name for results"
+    inputBinding:
+      prefix: --outfile
+      position: 4
+
+  outformat:
+    type: string?
+    doc: "Output format for results"
+    inputBinding:
+      prefix: --outformat
+      position: 5
+
+  pollfreq:
+    type: int?
+    doc: "Poll frequency in seconds (default 3s)"
+    inputBinding:
+      prefix: --pollFreq
+      position: 6
+
+  params:
+    type: boolean?
+    doc: "List input parameters"
+    inputBinding:
+      prefix: --params
+      position: 1
+
+  paramdetails:
+    type: string?
+    doc: "Get details for parameter"
+    inputBinding:
+      prefix: --paramDetail
+      position: 1
+
+  resultTypes:
+    type: string?
+    doc: "Get result types"
+    inputBinding:
+      prefix: --resultTypes
+      position: 1
+
+  asyncjob:
+    type: boolean?
+    doc: "Asynchronous mode"
+    inputBinding:
+      prefix: --asyncjob
+      position: 2
+
+  status:
+    type: boolean?
+    doc: "Get job status"
+    inputBinding:
+      prefix: --status
+      position: 2
+
+  version:
+    type: boolean?
+    doc: "Prints out the version of the Client and exit"
+    inputBinding:
+      prefix: --version
+      position: 1
+
+  baseUrl:
+    type: string?
+    doc: "Base URL for service"
+    inputBinding:
+      prefix: --baseUrl
+      position: 7
+
+
+
+  # Web Service Clients: Different Entries
+  sequence:
+    type: string?
+    label: "Input sequence"
+    doc: "Sequence filename or ID"
+    inputBinding:
+      prefix: --sequence
+      position: 8
 
   guidetreeout:
-    type: boolean 
+    type: string?
+    label: Output guide tree
+    doc: "Output guide tree."
     inputBinding:
-      position: 5
       prefix: --guidetreeout
-#    default: '$defaultValue'
+      position: 9
+    default: "true"
 
   dismatout:
-    type: boolean 
+    type: string?
+    label: Output distance matrix
+    doc: "Output distance matrix. This is only calculated if the mBed-like clustering guide tree is set to false."
     inputBinding:
-      position: 6
       prefix: --dismatout
-#    default: '$defaultValue'
+      position: 10
+    default: "true"
 
   dealign:
-    type: boolean 
+    type: string?
+    label: Dealign input sequences
+    doc: "Remove any existing alignment (gaps) from input sequences."
     inputBinding:
-      position: 7
       prefix: --dealign
-#    default: '$defaultValue'
+      position: 11
+    default: "false"
 
   mbed:
-    type: boolean 
+    type: string?
+    label: mBed-like clustering guide tree
+    doc: "This option uses a sample of the input sequences and then represents all sequences as vectors to these sequences, enabling much more rapid generation of the guide tree, especially when the number of sequences is large."
     inputBinding:
-      position: 8
       prefix: --mbed
-#    default: '$defaultValue'
+      position: 12
+    default: "true"
 
   mbediteration:
-    type: boolean 
+    type: string?
+    label: mBed-like clustering iteration
+    doc: "Use mBed-like clustering during subsequent iterations."
     inputBinding:
-      position: 9
       prefix: --mbediteration
-#    default: '$defaultValue'
+      position: 13
+    default: "true"
 
   iterations:
-    type: int     
+    type: string?
+    label: Number of iterations
+    doc: "Number of (combined guide-tree/HMM) iterations."
     inputBinding:
-      position: 10
       prefix: --iterations
-#    default: '$defaultValue'
+      position: 14
+    default: "0"
 
   gtiterations:
-    type: int     
+    type: string?
+    label: Maximum guide tree iterations
+    doc: "Having set the number of combined iterations, this parameter can be changed to limit the number of guide tree iterations within the combined iterations."
     inputBinding:
-      position: 11
       prefix: --gtiterations
-#    default: '$defaultValue'
+      position: 15
+    default: "-1"
 
   hmmiterations:
-    type: int     
+    type: string?
+    label: Maximum HMM iterations
+    doc: "Having set the number of combined iterations, this parameter can be changed to limit the number of HMM iterations within the combined iterations."
     inputBinding:
-      position: 12
       prefix: --hmmiterations
-#    default: '$defaultValue'
+      position: 16
+    default: "-1"
 
   outfmt:
-    type: string  
+    type: string?
+    label: Output alignment format
+    doc: "Format for generated multiple sequence alignment."
     inputBinding:
-      position: 13
       prefix: --outfmt
-#    default: '$defaultValue'
+      position: 17
+    default: "clustal_num"
 
   order:
-    type: string  
+    type: string?
+    label: Output order
+    doc: "The order in which the sequences appear in the final alignment"
     inputBinding:
-      position: 14
       prefix: --order
-#    default: '$defaultValue'
+      position: 18
+    default: "aligned"
 
   stype:
-    type: string  
+    type: string?
+    label: Sequence Type
+    doc: "Defines the type of the sequences to be aligned"
     inputBinding:
-      position: 15
       prefix: --stype
-#    default: '$defaultValue'
+      position: 19
 
 
-outputs: 
-  cwl_out: 
+outputs:
+  all:
     type: File[]
     streamable: true
     outputBinding:
-      glob: "*.*"
+      glob: "*"
+
+
+$schemas:
+  - http://schema.org/docs/schema_org_rdfa.html
+
+$namespaces:
+  s: http://schema.org/
+  edam: http://edamontology.org/
+
+s:author:
+  - class: s:Person
+    s:identifier: https://orcid.org/0000-0001-8728-9449
+    s:email: mailto:www-prod@ebi.ac.uk
+    s:name: Fábio Madeira (Web Production)
+    s:worksFor:
+    - class: s:Organization
+      s:name: EMBL - European Bioinformatics Institute
+      s:location: Hinxton, Cambridgeshire, CB10 1SD, UK
+      s:department:
+      - class: s:Organization
+        s:name: Web Production
+
+# s:citation: https://dx.doi.org/10.6084/m9.figshare.3115156.v2
+# s:codeRepository: https://github.com/common-workflow-language/common-workflow-language
+s:dateCreated: "2018-08-03"
+
+# s:license:
+s:license:
+  - https://www.apache.org/licenses/LICENSE-2.0
+  - https://spdx.org/licenses/Apache-2.0
+
+s:copyrightHolder: "EMBL - European Bioinformatics Institute"

@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-# Copyright (C) 2018 EMBL - European Bioinformatics Institute
+# Copyright (C) 2019 EMBL - European Bioinformatics Institute
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,163 +14,294 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: hmmer3_phmmer.pl
+label: "HMMER 3 phmmer"
+id: "hmmer3_phmmer"
+baseCommand: hmmer3_phmmer.py
+
 hints:
   DockerRequirement:
     dockerPull: ebiwp/webservice-clients
 
 inputs:
-
   # Web Service Clients: Common Entries
   email:
-    type: string
-    doc: "Submitter's email"
+    type: string?
+    doc: "E-mail address"
     inputBinding:
       prefix: --email
+      position: 2
 
   title:
     type: string?
+    doc: "Job title"
     inputBinding:
       prefix: --title
+      position: 3
 
   jobid:
     type: string?
+    doc: "Job identifier"
     inputBinding:
       prefix: --jobid
+      position: 1
 
   polljob:
     type: boolean?
+    doc: "Get job result"
     inputBinding:
       prefix: --polljob
+      position: 2
+
+  outfile:
+    type: string?
+    doc: "File name for results"
+    inputBinding:
+      prefix: --outfile
+      position: 4
 
   outformat:
     type: string?
+    doc: "Output format for results"
     inputBinding:
       prefix: --outformat
+      position: 5
 
   pollfreq:
     type: int?
+    doc: "Poll frequency in seconds (default 3s)"
     inputBinding:
       prefix: --pollFreq
+      position: 6
 
   params:
     type: boolean?
+    doc: "List input parameters"
     inputBinding:
       prefix: --params
       position: 1
 
   paramdetails:
     type: string?
+    doc: "Get details for parameter"
     inputBinding:
       prefix: --paramDetail
+      position: 1
+
+  resultTypes:
+    type: string?
+    doc: "Get result types"
+    inputBinding:
+      prefix: --resultTypes
+      position: 1
+
+  asyncjob:
+    type: boolean?
+    doc: "Asynchronous mode"
+    inputBinding:
+      prefix: --asyncjob
+      position: 2
+
+  status:
+    type: boolean?
+    doc: "Get job status"
+    inputBinding:
+      prefix: --status
+      position: 2
+
+  version:
+    type: boolean?
+    doc: "Prints out the version of the Client and exit"
+    inputBinding:
+      prefix: --version
+      position: 1
+
+  baseUrl:
+    type: string?
+    doc: "Base URL for service"
+    inputBinding:
+      prefix: --baseUrl
+      position: 7
+
+
+  multifasta:
+    type: boolean?
+    doc: "Treat input as a set of fasta formatted sequences"
+    inputBinding:
+      prefix: --multifasta
+      position: 8
+
+  useSeqId:
+    type: boolean?
+    doc: "Use sequence identifiers for output filenames. Only available in multi-fasta and multi-identifier modes"
+    inputBinding:
+      prefix: --useSeqId
+      position: 9
+
+  maxJobs:
+    type: int?
+    doc: "Maximum number of concurrent jobs. Only available in multifasta or list file modes (default 20 jobs)"
+    inputBinding:
+      prefix: --maxJobs
+      position: 10
 
   # Web Service Clients: Different Entries
   sequence:
-    type: File?
+    type: string?
+    label: "Input sequence"
+    doc: "Sequence filename or ID"
     inputBinding:
-      position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/single.seq
-
-  alignView:
-    type: string?
-    inputBinding:
       position: 8
-      prefix: --alignView
-
-  seqdb:
-    type: string?
-    inputBinding:
-      position: 16
-      prefix: --seqdb
-
-  dE:
-    type: double?
-    inputBinding:
-      position: 23
-      prefix: --E
-
-  domE:
-    type: double?
-    inputBinding:
-      position: 24
-      prefix: --domE
 
   incE:
-    type: double?
+    type: string?
+    label: Significance E-values[Sequence]
+    doc: "Significance E-values[Sequence]"
     inputBinding:
-      position: 21
       prefix: --incE
+      position: 9
 
   incdomE:
-    type: double?
+    type: string?
+    label: Significance E-values[Hit]
+    doc: "Significance E-values[Hit]"
     inputBinding:
-      position: 22
       prefix: --incdomE
+      position: 10
 
-#  incT:
-#    type: double?
-#    inputBinding:
-#      position: 25
-#      prefix: --incT
+  E:
+    type: string?
+    label: Report E-values[Sequence]
+    doc: "Report E-values[Sequence]"
+    inputBinding:
+      prefix: --E
+      position: 11
 
-#  incdomT:
-#    type: double?
-#    inputBinding:
-#      position: 26
-#      prefix: --incdomT
+  domE:
+    type: string?
+    label: Report E-values[Hit]
+    doc: "Report E-values[Hit]"
+    inputBinding:
+      prefix: --domE
+      position: 12
 
-#  dT:
-#    type: double?
-#    inputBinding:
-#      position: 27
-#      prefix: --T
+  incT:
+    type: string?
+    label: Significance bit scores[Sequence]
+    doc: "Significance bit scores[Sequence]"
+    inputBinding:
+      prefix: --incT
+      position: 13
 
-#  domT:
-#    type: double?
-#    inputBinding:
-#      position: 28
-#      prefix: --domT
+  incdomT:
+    type: string?
+    label: Significance bit scores[Hit]
+    doc: "Significance bit scores[Hit]"
+    inputBinding:
+      prefix: --incdomT
+      position: 14
+
+  T:
+    type: string?
+    label: Report bit scores[Sequence]
+    doc: "Report bit scores[Sequence]"
+    inputBinding:
+      prefix: --T
+      position: 15
+
+  domT:
+    type: string?
+    label: Report bit scores[Hit]
+    doc: "Report bit scores[Hit]"
+    inputBinding:
+      prefix: --domT
+      position: 16
 
   popen:
-    type: double?
+    type: string?
+    label: Gap Penalties[open]
+    doc: "Gap Penalties[open]"
     inputBinding:
-      position: 29
       prefix: --popen
+      position: 17
 
   pextend:
-    type: double?
+    type: string?
+    label: Gap Penalties[extend]
+    doc: "Gap Penalties[extend]"
     inputBinding:
-      position: 30
       prefix: --pextend
+      position: 18
 
   mx:
     type: string?
+    label: Gap Penalties[Substitution scoring matrix]
+    doc: "Gap Penalties[Substitution scoring matrix]"
     inputBinding:
-      position: 31
       prefix: --mx
+      position: 19
+    default: "BLOSUM62"
 
   nobias:
     type: string?
+    label: Filters
+    doc: "Filters"
     inputBinding:
-      position: 32
       prefix: --nobias
+      position: 20
+    default: "true"
 
-  acc:
-    type: double?
+  compressedout:
+    type: string?
+    label: Compressed Output
+    doc: "By default it runs hmm2c plus post-processing (default output), whereas with compressedout, it gets compressed output only."
     inputBinding:
-      position: 33
-      prefix: --acc
+      prefix: --compressedout
+      position: 21
+
+  alignView:
+    type: string?
+    label: Output Alignment
+    doc: "Output alignment in result"
+    inputBinding:
+      prefix: --alignView
+      position: 22
+    default: "true"
+
+  database:
+    type: string?
+    label: Sequence Database
+    doc: "Sequence Database"
+    inputBinding:
+      prefix: --database
+      position: 23
+    default: "uniprotkb"
+
+  evalue:
+    type: string?
+    label: Expectation Value Threshold
+    doc: "Expectation value cut-off for reporting target profiles in the per-target output. 
+			"
+    inputBinding:
+      prefix: --evalue
+      position: 24
+
+  nhits:
+    type: string?
+    label: Number of Hits Displayed
+    doc: "Number of hits to be displayed.
+			"
+    inputBinding:
+      prefix: --nhits
+      position: 25
 
 
 outputs:
-  all-out:
+  all:
     type: File[]
     streamable: true
     outputBinding:
-      glob: "*.*"
+      glob: "*"
 
 
 $schemas:
@@ -178,9 +309,28 @@ $schemas:
 
 $namespaces:
   s: http://schema.org/
+  edam: http://edamontology.org/
 
+s:author:
+  - class: s:Person
+    s:identifier: https://orcid.org/0000-0001-8728-9449
+    s:email: mailto:www-prod@ebi.ac.uk
+    s:name: Fábio Madeira (Web Production)
+    s:worksFor:
+    - class: s:Organization
+      s:name: EMBL - European Bioinformatics Institute
+      s:location: Hinxton, Cambridgeshire, CB10 1SD, UK
+      s:department:
+      - class: s:Organization
+        s:name: Web Production
+
+# s:citation: https://dx.doi.org/10.6084/m9.figshare.3115156.v2
+# s:codeRepository: https://github.com/common-workflow-language/common-workflow-language
+s:dateCreated: "2018-08-03"
+
+# s:license:
 s:license:
   - https://www.apache.org/licenses/LICENSE-2.0
   - https://spdx.org/licenses/Apache-2.0
 
-s:copyrightHolder: "European Bioinformatics Institute (EMBL-EBI), Web Production"
+s:copyrightHolder: "EMBL - European Bioinformatics Institute"
