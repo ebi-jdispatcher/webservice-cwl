@@ -1,3 +1,4 @@
+# Dbfetch inputs
 accessions: sp:phyb_arath
 method: fetchData
 outformat: fasta

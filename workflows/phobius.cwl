@@ -36,7 +36,7 @@ inputs:
     doc: "Submitter's email"
     inputBinding:
       prefix: --email
-    default: 'email@ebi.ac.uk'
+    default: 'test@ebi.ac.uk'
 
 
 

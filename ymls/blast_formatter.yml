@@ -1,3 +1,0 @@
-tabfields: qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore score btop
-outputformat: 7
-program: blast_formatter

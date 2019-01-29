@@ -1,39 +1,56 @@
 # Common Workflow Language implementation for EBI Web Services
 CWL implementation for consuming [EMBL-EBI Bioinformatics Web Services tools' clients](https://github.com/ebi-wp/webservice-clients).
+These CWL files are generated from the EBI Job Dispatcher Web Services (XML) description with
+[https://github.com/ebi-wp/webservice-cwl-generator](https://github.com/ebi-wp/webservice-cwl-generator)
 
-## Directories
-- **cwls** : cwl files for the EBI Web Service clients (using webservice-clients Docker container)
-- **cwls_local_tools** : cwl files for the EBI Web Service clients (using bundled Perl clients - **To be deprecated soon!**)
-- **sequence** : example sequence files for testing purpose only. It is predefined in the each cwl. You could use with your sequence.
-- **tools** : a copy of EMBL-EBI Web Services tools' clients. Last versions available in [webservice-clients](https://github.com/ebi-wp/webservice-clients).
-- **ymls** : yml files, defined parameters' values.
+## Contents
+- **cwls** : cwl files for the EBI Web Service clients (using Python clients 
+from [webservice-clients](https://github.com/ebi-wp/webservice-clients))
+- **cwls-docker** : cwl files for the EBI Web Service clients 
+(using Python clients from [webservice-clients](https://github.com/ebi-wp/webservice-clients) Docker image)
+- **jsons** : example json files for defining input values for parameters
+- **sequence** : example sequence files for testing
+- **workflows** : a set of workflows to highlight the use of the clients
+- **ymls** : example yml files for defining input values for parameters
 
 
 ## Getting Started
 ### How to install cwltool
-You will need cwl-runner ([cwltool](https://github.com/common-workflow-language/cwltool)) to run CWL descriptions. Official instructions on how to install cwltool are provided in https://github.com/common-workflow-language/cwltool
+You will need cwl-runner ([cwltool](https://github.com/common-workflow-language/cwltool)) to run CWL descriptions. 
+Official instructions on how to install cwltool are provided in https://github.com/common-workflow-language/cwltool
 
-### How to install Docker
+### How to install Docker (optional)
 [Docker](https://www.docker.com/) installation instructions are provided in https://docs.docker.com/install/
 
-### Running CWL for EBI tools (requires Docker)
+### Running CWL for EBI tools using local Python clients (does not require Docker)
 
-You can find CWL definitions in [cwls](cwls) accompanied with predefined parameters defined in [ymls](ymls).  
-Remember, before running cwl, you need to defined your own values for the parameters, including a required email address.
+You can find CWL definitions in [cwls](cwls) accompanied with predefined parameters defined in [ymls](ymls). 
+Running these CWL files **expects** [webservice-clients](https://github.com/ebi-wp/webservice-clients) directory to be
+found alongside the `webservice-cwl` directory. 
+  
+*Note:* Before running cwltool, you need to defined your own values for the `sequence` (or `asequence` plus `bsequence`) 
+parameters, including a required email address.
 
 ```
 cwltool ./cwls/tcoffee.cwl ./ymls/tcoffee.yml
 ```
 
-### Running CWL for EBI tools using local Perl clients (does not require Docker)
+### Running CWL for EBI tools (requires Docker)
 
-_**Note:** this option will be deprecated soon!_  
-You can find CWL definitions in [cwls_local_tools](cwls_local_tools) accompanied with predefined parameters defined in [ymls](ymls).  
-Remember, before running cwl, you need to defined your own values for the parameters, including a required email address.
+You can find CWL definitions in [cwls-docker](cwls-docker) accompanied with predefined parameters defined in [ymls](ymls). 
+Running these CWL files **does not** require [webservice-clients](https://github.com/ebi-wp/webservice-clients) to be 
+found alongside the `webservice-cwl` directory, as the Docker image has got all the necessary clients pre-installed. 
+
+*Note:* Before running cwltool, you need to defined your own values for the `sequence` (or `asequence` plus `bsequence`) 
+parameters, including a required email address.
 
 ```
-cwltool ./cwls_local_tools/tcoffee.cwl ./ymls/tcoffee.yml
+cwltool ./cwls-docker/tcoffee.cwl ./ymls/tcoffee.yml
 ```
+
+## Documentation
+
+More documentation about [EMBL-EBI Bioinformatics Web Services](https://www.ebi.ac.uk/seqdb/confluence/display/WEBSERVICES/EMBL-EBI+Web+Services)
 
 ## Contact and Support
 

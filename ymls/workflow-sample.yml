@@ -1,7 +1,0 @@
-email: youremail@ebi.ac.uk
-blast-program: blastp
-blast-database: uniprotkb_swissprot
-blast-type: protein
-blast-sequence: uniprot:mgst1_human
-blast-outformat: ids
-blast-outfile: -

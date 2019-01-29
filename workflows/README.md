@@ -1,36 +1,28 @@
-# The workflow example of CWL, consuming EBI Web Services
-Example of CWL implementation for consuming [EMBL-EBI Bioinformatics Web Services tools' clients](https://github.com/ebi-wp/webservice-clients).
-(using ebiwp/webservice-clients Docker container)
+# Examples of CWL workflows using EBI Web Services and Sample Clients
+Example of CWL implementation for consuming 
+[EMBL-EBI Bioinformatics Web Services tools' clients](https://github.com/ebi-wp/webservice-clients).
 
-## Files
-- **clustalo.cwl** : A cwl file for consuming the EBI Web Service clients's Clustal Omega
-- **dbfetch.cwl** : A cwl file for consuming the EBI Web Service clients's dbfetch
-- **ncbiblast.cwl** : A cwl file for consuming the EBI Web Service clients's NCBI BLAST+
-- **simple_phylogeny.cwl** : A cwl file for consuming the EBI Web Service clients's Simple Phylogeny
-- **workflow.cwl** : A workflow cwl file for consuming all above
+## How to install cwltool
+You will need cwl-runner ([cwltool](https://github.com/common-workflow-language/cwltool)) to run CWL descriptions. 
+Official instructions on how to install cwltool are provided in https://github.com/common-workflow-language/cwltool
 
-## Getting Started
-### How to install cwltool
-You will need cwl-runner ([cwltool](https://github.com/common-workflow-language/cwltool)) to run CWL descriptions. Official instructions on how to install cwltool are provided in https://github.com/common-workflow-language/cwltool
+## Running CWL for EBI tools (requires local copy of the clients)
 
-### How to install Docker
-[Docker](https://www.docker.com/) installation instructions are provided in https://docs.docker.com/install/
+*Note:* Before running cwltool, you may want to edit the values for the parameters, including adding a required email address.
+Running these CWL files **expects** [webservice-clients](https://github.com/ebi-wp/webservice-clients) directory to be
+found alongside the `webservice-cwl` directory.
 
-### Running CWL for EBI tools (requires Docker)
-You can find CWL definitions in [cwls](cwls) accompanied with predefined parameters defined in [ymls](ymls).  
-Remember, before running cwl, you need to defined your own values for the parameters, including a required email address.
-
-*Run BLAST, Dbfetch, Clustal Omega and then Simple Phylogeny*
+*Run NCBI BLAST+, Dbfetch, Clustal Omega and then Simple Phylogeny*
 ```
 cwltool workflow-blast-clustalo-phylogeny.cwl inputs-blast-clustalo-phylogeny.yml
 ```
 
-*Run BLAST and EBI Search (ebeye)*
+*Run NCBI BLAST+ and EBI Search (a.k.a. ebeye)*
 ```
 cwltool workflow-blast-ebeye.cwl inputs-blast-ebeye.yml
 ```
 
-*Run BLAST and Phobius*
+*Run NCBI BLAST+ and Phobius*
 ```
 cwltool workflow-blast-phobius.cwl inputs-blast-phobius.yml
 ```
@@ -40,10 +32,7 @@ cwltool workflow-blast-phobius.cwl inputs-blast-phobius.yml
 cwltool workflow-fetch-phobius.cwl inputs-fetch-phobius.yml
 ```
 
-*Run Transeq, BLAST + InterProScan5, Clustal Omega*
+*Run EMBOSS transeq, NCBI BLAST+, InterProScan5 and Clustal Omega*
 ```
 cwltool workflow-transeq-blast-clustalo.cwl inputs-transeq-blast-clustalo.yml
 ```
-
-
-### Running CWL for EBI tools using local Perl clients (does not require Docker)

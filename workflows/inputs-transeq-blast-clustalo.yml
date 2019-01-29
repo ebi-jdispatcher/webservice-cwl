@@ -1,15 +1,15 @@
-# emboss_transeq inputs
+# Emboss_transeq inputs
 email: 'test@ebi.ac.uk'
 sequence:
   class: File
   location: ../sequence/dna_sequence.fasta
-# blast inputs
+# Blast inputs
 program: blastp
 database: uniprotkb_swissprot
 type: protein
 outformat: ids
-#dbfetch inputs
+# Dbfetch inputs
 method: fetchBatch
 numberAccessions: '10'
-#clustalo inputs
+# Clustalo inputs
 stype: protein
