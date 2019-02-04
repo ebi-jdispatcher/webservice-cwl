@@ -62,3 +62,44 @@ Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/gith
 ```
 cwltool workflow-transeq-blast-clustalo.cwl inputs-transeq-blast-clustalo.yml
 ```
+
+### Run FASTA and Pratt
+
+Input protein sequence file -> fasta, output: ids -> dbfetch, output: protein sequence -> pratt, output: patterns in unaligned sequences
+
+Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/github.com/ebi-wp/webservice-cwl/blob/master/workflows/workflow-fasta-pratt.cwl) or test it yourself:
+
+```
+cwltool workflow-fasta-pratt.cwl inputs-fasta-pratt.yml
+```
+
+### Run Dbfetch and HMMER3 hmmscan
+
+Input sequence string -> dbfetch, output: protein sequence -> hmmer3_hmmscan, output: ids
+
+Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/github.com/ebi-wp/webservice-cwl/blob/master/workflows/workflow-fetch-hmmscan.cwl) or test it yourself:
+
+```
+cwltool workflow-fetch-hmmscan.cwl inputs-fetch-hmmscan.yml
+```
+
+### Run EMBOSS pepinfo, backtranseq and cpgplot
+
+Input protein sequence file -> emboss_backtranseq, output: corresponding DNA sequence -> emboss_cpgplot, output: cpg island plot
+Additional output: protein sequence -> emboss_pepinfo, output: amino acid properties
+
+Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/github.com/ebi-wp/webservice-cwl/blob/master/workflows/workflow-pepinfo-backtranseq-cpgplot.cwl) or test it yourself:
+
+```
+cwltool workflow-pepinfo-backtranseq-cpgplot.cwl inputs-pepinfo-backtranseq-cpgplot.yml
+```
+
+### Run HMMER3 phmmer and NCBI BLAST+
+
+Input protein sequence file -> hmmer3_phmmer, output: ids -> dbfetch, output: protein sequence -> blast (multifasta to search all sequences), output: ids
+
+Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/github.com/ebi-wp/webservice-cwl/blob/master/workflows/workflow-pepinfo-phmmer-blast.cwl) or test it yourself:
+
+```
+cwltool workflow-phmmer-blast.cwl inputs-phmmer-blast.yml
+```

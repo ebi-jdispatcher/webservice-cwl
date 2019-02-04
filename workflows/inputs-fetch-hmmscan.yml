@@ -1,0 +1,8 @@
+# dbfetch inputs
+email: 'test@ebi.ac.uk'
+accessions: sp:GSTM1_MOUSE
+method: fetchData
+outformat: fasta
+
+# hmmscan inputs
+database: Pfam

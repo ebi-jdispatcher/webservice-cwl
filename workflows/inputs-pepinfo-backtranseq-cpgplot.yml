@@ -1,0 +1,4 @@
+email: test@ebi.ac.uk
+sequence:
+  class: File
+  location: ../sequence/prot_sequence.fasta

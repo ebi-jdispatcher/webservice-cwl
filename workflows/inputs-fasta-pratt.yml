@@ -1,0 +1,12 @@
+# fasta inputs
+email: test@ebi.ac.uk
+sequence:
+  class: File
+  location: ../sequence/prot_sequence.fasta
+program: fasta
+database: uniprotkb_swissprot
+stype: protein
+
+# dbfetch Inputs
+method: fetchBatch
+numberAccessions: '10'
