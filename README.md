@@ -48,9 +48,9 @@ parameters, including a required email address.
 cwltool ./cwls-docker/tcoffee.cwl ./ymls/tcoffee.yml
 ```
 
-## Chain the tools into workflows
+## Chaining the tools into workflows
 
-You can view examples of workflows chaining multiple tools together and example ymls inputs in the [workflows](workflows) folder.
+You can view examples of workflows chaining multiple tools together and example input ymls in the [workflows](workflows) folder.
 
 ## Documentation
 
