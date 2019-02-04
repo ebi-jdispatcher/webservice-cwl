@@ -98,7 +98,7 @@ cwltool workflow-pepinfo-backtranseq-cpgplot.cwl inputs-pepinfo-backtranseq-cpgp
 
 Input protein sequence file -> hmmer3_phmmer, output: ids -> dbfetch, output: protein sequence -> blast (multifasta to search all sequences), output: ids
 
-Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/github.com/ebi-wp/webservice-cwl/blob/master/workflows/workflow-pepinfo-phmmer-blast.cwl) or test it yourself:
+Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/github.com/ebi-wp/webservice-cwl/blob/master/workflows/workflow-phmmer-blast.cwl) or test it yourself:
 
 ```
 cwltool workflow-phmmer-blast.cwl inputs-phmmer-blast.yml
