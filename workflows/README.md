@@ -1,10 +1,6 @@
 # Examples of CWL workflows using EBI Web Services and Sample Clients
-Example of CWL implementation for consuming
-[EMBL-EBI Bioinformatics Web Services tools' clients](https://github.com/ebi-wp/webservice-clients).
 
-## How to install cwltool
-You will need cwl-runner ([cwltool](https://github.com/common-workflow-language/cwltool)) to run CWL descriptions.
-Official instructions on how to install cwltool are provided in https://github.com/common-workflow-language/cwltool
+Examples of CWL workflows chaining multiple tools together.
 
 ## Running CWL for EBI tools (requires local copy of the clients)
 
