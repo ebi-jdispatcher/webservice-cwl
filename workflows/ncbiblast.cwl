@@ -118,11 +118,26 @@ inputs:
     inputBinding:
       prefix: --align
 
+# general options
+  multifasta:
+    type: string?
+    inputBinding:
+      prefix: --multifasta
+
+  useSeqId:
+    type: string?
+    inputBinding:
+      prefix: --useSeqId
+
+  maxJobs:
+    type: string?
+    inputBinding:
+      prefix: --maxJobs
+
   outfile:
     type: string?
     inputBinding:
       prefix: --outfile
-
 
   outformat:
     type: string?
@@ -139,3 +154,10 @@ outputs:
     type: File?
     outputBinding:
       glob: "*.sequence.txt"
+
+  blast_array_accs:
+    type:
+      type: array
+      items: File
+    outputBinding:
+      glob: "*.accs.*"

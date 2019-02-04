@@ -1,3 +1,4 @@
+# Use for -blast-ebeye.cwl
 # Blast inputs
 email: test@ebi.ac.uk
 sequence: uniprot:mgst1_human
