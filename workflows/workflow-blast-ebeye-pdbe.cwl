@@ -31,6 +31,12 @@ outputs:
     type: File
     outputSource: ebeye_step/ebeye_out
 
+  pdbe_output:
+    type:
+      type: array
+      items: File
+    outputSource: pdbe_step/pdbe_info
+
 steps:
   ncbiblast_step:
     run: 'ncbiblast.cwl'
@@ -58,3 +64,10 @@ steps:
       referencedDomain: referencedDomain
       fields: fields
     out: [ebeye_out]
+    
+# search the ids in the pdbe database to learn more about them
+  pdbe_step:
+    run: 'pdbe.cwl'
+    in:
+      ids: ebeye_step/ebeye_out
+    out: [pdbe_info]

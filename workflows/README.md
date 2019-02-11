@@ -18,14 +18,14 @@ Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/gith
 cwltool workflow-blast-clustalo-phylogeny.cwl inputs-blast-clustalo-phylogeny.yml
 ```
 
-### Run NCBI BLAST+ and EBI Search (a.k.a. ebeye)
+### Run NCBI BLAST+, EBI Search (a.k.a. ebeye) and PDBe (API)
 
-Input sequence string -> blast search, output: ids -> EBI search, output: structural homologs to original sequence
+Input sequence string -> blast search, output: ids -> EBI search, output: structural homologs to original sequence -> PDBe API, output: summary information about the structure
 
-Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/github.com/ebi-wp/webservice-cwl/blob/master/workflows/workflow-blast-ebeye.cwl) or test it yourself:
+Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/github.com/ebi-wp/webservice-cwl/blob/master/workflows/workflow-blast-ebeye-pdbe.cwl) or test it yourself:
 
 ```
-cwltool workflow-blast-ebeye.cwl inputs-blast-ebeye.yml
+cwltool workflow-blast-ebeye-pdbe.cwl inputs-blast-ebeye-pdbe.yml
 ```
 
 ### Run NCBI BLAST+ and Phobius
