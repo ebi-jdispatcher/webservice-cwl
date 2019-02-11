@@ -86,9 +86,7 @@ inputs:
     inputBinding:
       position: 3
       prefix: --sequence
-    default:
-      class: File
-      location: ../sequence/single.seq
+
 
   format-results:
     type:

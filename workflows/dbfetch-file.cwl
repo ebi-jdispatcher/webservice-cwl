@@ -27,7 +27,7 @@ inputs:
       position: 0
     default:
       class: File
-      location: 'dbfetch-file.sh'
+      location: 'dbfetch.sh'
 
   accessions:
     type: File?

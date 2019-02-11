@@ -27,12 +27,12 @@ inputs:
       position: 0
     default:
       class: File
-      location: 'dbfetch-string.sh'
+      location: 'dbfetch.sh'
 
   accessions:
     type: string?
     inputBinding:
-      position: 3
+      position: 1
 
   numberAccessions:
     type: string?
@@ -42,7 +42,7 @@ inputs:
   perl:
     type: File
     inputBinding:
-      position: 1
+      position: 2
     default:
       class: File
       location: ../../webservice-clients/perl/dbfetch.pl
@@ -50,7 +50,7 @@ inputs:
   method:
     type: string
     inputBinding:
-      position: 2
+      position: 3
     default: 'fetchBatch'
 
   database:

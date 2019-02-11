@@ -27,10 +27,10 @@ inputs:
       class: File
       location: 'ebeye.sh'
 
-# position values need to be added or removed for each term based on search method you want to use. Use -- help for ebeye perl client to know what order you need (position value needs to be in the correct order)
-# default state is to run getReferencedEnteries
+# position values need to be added or removed for each term based on search method you want to use. Use -- help for ebeye perl client to know what order you need (inputs need to be in the correct order)
+# default state is to run getReferencedEntries
 # ebeye_lwp.pl, getReferencedEnteries, domain, entryids, referencedDomain, fields
-# position 1, 2 , 3 , 4 , 5, 6
+# position 1, 2, 3, 4, 5, 6
 
 
   perl:
@@ -57,21 +57,17 @@ inputs:
     type: string?
     inputBinding:
 
-  entryid:
+  fields:
     type: string?
     inputBinding:
+      position: 6
+    default: 'id,acc'
 
   entryids:
     type: string?
     inputBinding:
       position: 4
     default: 'mgst1_human'
-
-  fields:
-    type: string?
-    inputBinding:
-      position: 6
-    default: 'id,acc'
 
   referencedDomain:
     type: string?
@@ -83,10 +79,10 @@ inputs:
     type: string?
     inputBinding:
 
-
   term:
     type: string?
     inputBinding:
+
 
 outputs:
   ebeye_out:
