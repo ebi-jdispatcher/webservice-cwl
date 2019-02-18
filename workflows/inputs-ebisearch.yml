@@ -1,0 +1,5 @@
+method: getResults
+domain: uniprot
+query: whey-acidic-protein
+fields: id,NCBI_TAXID_OX
+outformat: csv

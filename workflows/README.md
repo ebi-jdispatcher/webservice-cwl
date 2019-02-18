@@ -99,3 +99,15 @@ Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/gith
 ```
 cwltool workflow-phmmer-blast.cwl inputs-phmmer-blast.yml
 ```
+
+
+### Run EBI Search for Taxonomy IDs
+
+Input protein name query -> ebisearch [Perl client], output: taxonomy ids  
+Input protein name query -> ebisearch [API], output: taxonomy ids
+
+Explore this workflow with [CWL viewer](https://view.commonwl.org/workflows/github.com/ebi-wp/webservice-cwl/blob/master/workflows/workflow-ebisearch.cwl) or test it yourself:
+
+```
+cwltool workflow-ebisearch.cwl inputs-ebisearch.yml
+```
