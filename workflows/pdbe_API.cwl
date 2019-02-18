@@ -12,12 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: sh
-
 
 inputs:
 
@@ -27,52 +24,18 @@ inputs:
       position: 0
     default:
       class: File
-      location: 'dbfetch.sh'
+      location: 'pdbe_API.sh'
 
-  accessions:
-    type: string?
+  ids:
+    type: File
     inputBinding:
       position: 1
 
-  numberAccessions:
-    type: string?
-    inputBinding:
-    default: '15'
-
-  perl:
-    type: File
-    inputBinding:
-      position: 2
-    default:
-      class: File
-      location: ../../webservice-clients/perl/dbfetch.pl
-
-  method:
-    type: string
-    inputBinding:
-      position: 3
-    default: 'fetchBatch'
-
-  database:
-    type: string
-    doc: Database to be searched.
-    inputBinding:
-    default: 'uniprot'
-
-  outformat:
-    type: string
-    doc: Format of the output
-    inputBinding:
-      position: 4
-    default: 'fasta'
-
-  outstyle:
-    type: string
-    doc: Style of the output
-    inputBinding:
-      position: 5
-    default: 'raw'
 
 outputs:
-  sequences:
-    type: stdout
+  pdbe_info:
+    type:
+      type: array
+      items: File
+    outputBinding:
+      glob: "*.txt"

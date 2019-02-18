@@ -48,9 +48,9 @@ steps:
     out: [phmmer_ids]
 
   dbfetch_step:
-    run: 'dbfetch-file.cwl'
+    run: 'dbfetch.cwl'
     in:
-      accessions: phmmer_step/phmmer_ids
+      accessions-file: phmmer_step/phmmer_ids
       method: method
       outformat: outformat
       database: db

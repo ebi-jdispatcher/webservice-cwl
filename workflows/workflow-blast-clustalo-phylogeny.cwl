@@ -41,9 +41,9 @@ steps:
     out: [blast_ids]
 
   dbfetch:
-    run: 'dbfetch-file.cwl'
+    run: 'dbfetch.cwl'
     in:
-      accessions: ncbiblast_step/blast_ids
+      accessions-file: ncbiblast_step/blast_ids
       method: method
     out: [sequences]
 

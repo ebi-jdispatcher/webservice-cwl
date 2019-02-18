@@ -41,9 +41,9 @@ steps:
     out: [fasta_ids]
 
   dbfetch_step:
-    run: 'dbfetch-file.cwl'
+    run: 'dbfetch.cwl'
     in:
-      accessions: fasta_step/fasta_ids
+      accessions-file: fasta_step/fasta_ids
       numberAccessions: numberAccessions
       method: method
     out: [sequences]

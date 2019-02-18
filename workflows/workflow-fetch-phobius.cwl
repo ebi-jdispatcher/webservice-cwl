@@ -30,9 +30,9 @@ outputs:
 
 steps:
   dbfetch_step:
-    run: 'dbfetch-string.cwl'
+    run: 'dbfetch.cwl'
     in:
-      accessions: accessions
+      accessions-string: accessions
       method: method
       outformat: outformat
 

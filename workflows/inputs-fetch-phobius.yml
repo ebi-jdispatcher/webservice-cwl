@@ -1,4 +1,5 @@
-# Dbfetch inputs
+# Use for dbfetch-phobius workflow
+# dbfetch inputs
 accessions: sp:phyb_arath
 method: fetchData
 outformat: fasta

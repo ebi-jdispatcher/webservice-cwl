@@ -1,3 +1,4 @@
+# Use for emboss_pepinfo-emboss_backtranseq-emboss_cpgplot workflow 
 email: test@ebi.ac.uk
 sequence:
   class: File

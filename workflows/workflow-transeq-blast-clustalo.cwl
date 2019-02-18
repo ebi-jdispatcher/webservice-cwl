@@ -65,9 +65,9 @@ steps:
     out: [iprscan5_out]
 
   dbfetch_step:
-    run: 'dbfetch-file.cwl'
+    run: 'dbfetch.cwl'
     in:
-      accessions: ncbiblast_step/blast_ids
+      accessions-file: ncbiblast_step/blast_ids
       numberAccessions: numberAccessions
       method: method
     out: [sequences]

@@ -62,10 +62,10 @@ inputs:
     type: string?
     inputBinding:
       prefix: --outformat
-    default: 'out'
+    default: 'json'
 
 outputs:
   iprscan5_out:
     type: File
     outputBinding:
-      glob: "*.out.*"
+      glob: "*.json.*"

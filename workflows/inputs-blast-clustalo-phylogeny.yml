@@ -1,4 +1,4 @@
-# Use for workflow-blast-clustalo-phylogeny.cwl
+# Use for blast-clustalo-phylogeny workflow 
 # Blast inputs
 sequence: sp:phyb_arath
 email: test@ebi.ac.uk

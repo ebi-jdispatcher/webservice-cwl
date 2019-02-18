@@ -64,10 +64,10 @@ steps:
       referencedDomain: referencedDomain
       fields: fields
     out: [ebeye_out]
-    
+
 # search the ids in the pdbe database to learn more about them
   pdbe_step:
-    run: 'pdbe.cwl'
+    run: 'pdbe_API.cwl'
     in:
       ids: ebeye_step/ebeye_out
     out: [pdbe_info]

@@ -9,10 +9,13 @@ inputs:
     type: File
     inputBinding:
       loadContents: true
-
+# This file is used as part of the Blast-ebeye-pdbe workflow
+# This file is currently set to convert uniprotkb_swissprot IDs obtaied by NCBI BLAST into a usable format for EBI Search
+# Therefore this file needs to be altered if you are using a differnet database
 expression: |
-  ${ return { "idstring": inputs.idFile.contents.replace(/SP:/g, "").replace(/(\r\n|\n|\r)/g,",").replace(/,$/, "").trim()}; }
-# .replace needs to be altered depending on database searched. For example PDB would be .replace(/PDB:/g,"").replace(/_./g, "").replace(/(\r\n|\n|\r)/g,",").replace(/,$/, "").trim()}; }
+  ${ return { "idstring": inputs.idFile.contents.replace(/.+:/g, "").replace(/(\r\n|\n|\r)/g,",").replace(/,$/, "").trim()}; }
+# For example, if you had obtained PDB IDs you need:
+#  ${ return { "idstring": inputs.idFile.contents.replace(/.+:/g, "").replace(/_./g, "").replace(/(\r\n|\n|\r)/g,",").replace(/,$/, "").trim()}; }
 
 outputs:
   idstring: string

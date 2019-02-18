@@ -1,3 +1,4 @@
+# Use for dbfetch-hmmscan workflow
 # dbfetch inputs
 email: 'test@ebi.ac.uk'
 accessions: sp:GSTM1_MOUSE

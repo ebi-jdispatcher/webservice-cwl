@@ -1,13 +1,16 @@
+# Use for phmmer-blast workflow 
 # phmmer inputs
 email: test@ebi.ac.uk
 sequence:
   class: File
   location: ../sequence/prot_sequence.fasta
 database: swissprot
+
 # dbFetch inputs
 method: fetchBatch
 outformat: fasta
 db: uniprotkb_swissprot
+
 # blast inputs
 program: blastp
 type: protein

@@ -29,21 +29,26 @@ inputs:
       class: File
       location: 'dbfetch.sh'
 
-  accessions:
+  accessions-string:
+    type: string?
+    inputBinding:
+      position: 4
+
+  accessions-file:
     type: File?
     inputBinding:
-      position: 1
+      position: 4
 
   numberAccessions:
     type: string?
     inputBinding:
-      position: 2
-    default: '20'
+      position: 5
+    default: '15'
 
   perl:
     type: File
     inputBinding:
-      position: 3
+      position: 1
     default:
       class: File
       location: ../../webservice-clients/perl/dbfetch.pl
@@ -51,15 +56,15 @@ inputs:
   method:
     type: string
     inputBinding:
-      position: 4
+      position: 2
     default: 'fetchBatch'
 
   database:
     type: string
     doc: Database to be searched.
     inputBinding:
-      position: 5
-    default: 'uniprotkb_swissprot'
+      position: 3
+    default: 'uniprot'
 
   outformat:
     type: string
