@@ -56,6 +56,7 @@ steps:
       database: db
     out: [sequences]
 
+# Uses multifasta option to run each sequence separately  
   ncbiblast_step:
     run: 'ncbiblast.cwl'
     in:

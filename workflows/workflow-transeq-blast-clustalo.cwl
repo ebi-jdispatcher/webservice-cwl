@@ -44,8 +44,6 @@ steps:
       sequence: sequence
     out: [transeq_out]
 
-# Uses local version of ncbiblast tool to ensure successful use of file input
-
   ncbiblast_step:
     run: 'ncbiblast.cwl'
     in:
