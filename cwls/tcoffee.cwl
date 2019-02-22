@@ -129,7 +129,15 @@ inputs:
 
 
   # Web Service Clients: Different Entries
-  sequence:
+  sequence_file:
+    type: File?
+    label: "Input sequence"
+    doc: "Sequence filename or ID"
+    inputBinding:
+      prefix: --sequence
+      position: 8
+
+  sequence_string:
     type: string?
     label: "Input sequence"
     doc: "Sequence filename or ID"

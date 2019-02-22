@@ -2,3 +2,7 @@ stype: protein
 length: true
 program: seqcksum
 cksmethod: shae
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta

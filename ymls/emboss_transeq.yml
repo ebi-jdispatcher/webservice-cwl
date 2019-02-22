@@ -1,6 +1,10 @@
 regions: START-END
 trim: false
-codontable: 0
+codontable: '0'
 program: transeq
 reverse: false
-frame: 1
+frame: '1'
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/dna_sequence.fasta

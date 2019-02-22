@@ -1,13 +1,17 @@
-gtiterations: -1
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequences.fasta
+stype: protein
+gtiterations: '-1'
 mbediteration: true
 dealign: false
 mbed: true
-hmmiterations: -1
+hmmiterations: '-1'
 program: clustalo
 dismatout: true
 guidetreeout: true
-iterations: 0
+iterations: '0'
 outfmt: clustal
 order: aligned
-stype: protein
 title: Clustal Omega

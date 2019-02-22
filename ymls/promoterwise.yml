@@ -1,2 +1,5 @@
 hitoutput: pseudoblast
 program: promoterwise
+asequence: sp:wap_rat
+bsequence: sp:wap_mouse
+email: test@ebi.ac.uk

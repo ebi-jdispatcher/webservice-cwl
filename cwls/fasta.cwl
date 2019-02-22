@@ -149,7 +149,15 @@ inputs:
       position: 10
 
   # Web Service Clients: Different Entries
-  sequence:
+  sequence_file:
+    type: File?
+    label: "Input sequence"
+    doc: "Sequence filename or ID"
+    inputBinding:
+      prefix: --sequence
+      position: 8
+
+  sequence_string:
     type: string?
     label: "Input sequence"
     doc: "Sequence filename or ID"
@@ -176,8 +184,8 @@ inputs:
   matrix:
     type: string?
     label: Matrix
-    doc: "(Protein searches) The substitution matrix used for scoring alignments when searching the database. 
-			Target identity is the average alignment identity the matrix would produce in the absence of homology and can be used to compare different matrix types. 
+    doc: "(Protein searches) The substitution matrix used for scoring alignments when searching the database.
+			Target identity is the average alignment identity the matrix would produce in the absence of homology and can be used to compare different matrix types.
 			Alignment boundaries are more accurate when the alignment identity matches the target identity percentage."
     inputBinding:
       prefix: --matrix
@@ -288,10 +296,10 @@ inputs:
 
   annotfeats:
     type: string?
-    label: Annotation Features 
-    doc: "Turn on/off annotation features. 
+    label: Annotation Features
+    doc: "Turn on/off annotation features.
 				Annotation features shows features from UniProtKB, such as variants, active sites, phospho-sites and binding sites that have
-				been found in the aligned region of the database hit. To see the annotation features in the results after this has been enabled, 
+				been found in the aligned region of the database hit. To see the annotation features in the results after this has been enabled,
 				select sequences of interest and click to 'Show' Alignments. This option also enables a new result tab (Domain Diagrams) that highlights
 				domain regions.
 			"

@@ -1,19 +1,24 @@
 congroupmap: none
-css: true
+css: 'true'
 stype: protein
 program: mview
-ruler: true
+ruler: 'true'
 concolormap: none
-congaps: true
-consensus: true
+congaps: 'true'
+consensus: 'true'
 groupmap: none
 informat: automatic
 concoloring: any
 htmlmarkup: data
 outputformat: new
-width: 80
+width: '80'
 pcid: aligned
 coloring: identity
-alignment: true
+alignment: 'true'
 colormap: none
 title: Mview
+email: test@ebi.ac.uk
+stype: protein
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequences.fasta

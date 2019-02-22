@@ -1,16 +1,20 @@
-alignments: 500
-gapext: 1
-scores: 500
-gapopen: 11
-expthr: 10.0
-dropoff: 15
+alignments: '500'
+gapext: '1'
+scores: '500'
+gapopen: '11'
+expthr: '10.0'
+dropoff: '15'
 program: psiblast
 matrix: BLOSUM62
 filter: F
-finaldropoff: 25
+finaldropoff: '25'
 seqrange: START-END
 umode: blastpgp
-psithr: 1.0e-3
-alignView: 0
+psithr: '1.0e-3'
+alignView: '0'
 database: uniprotkb_swissprot
 title: Psi-blast
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta
+email: test@ebi.ac.uk

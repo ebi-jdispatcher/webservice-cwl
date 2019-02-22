@@ -2,3 +2,7 @@ species: swp23s
 positiveresidues: lys-arg
 outputtype: default
 program: saps
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta

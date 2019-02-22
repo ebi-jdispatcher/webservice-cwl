@@ -1,2 +1,3 @@
 stype: protein
-sequence: sp:wap_rat
+sequence_string: sp:wap_rat,sp:wap_mouse
+email: test@ebi.ac.uk

@@ -1,12 +1,16 @@
 ffts: none
-nbtree: 2
-maxiterate: 2
-gapext: 0.123
-gapopen: 1.53
-stype: automatic
+nbtree: '2'
+maxiterate: '2'
+gapext: '0.123'
+gapopen: '1.53'
 format_param: fasta
 treeout: true
 program: mafft
 matrix: bl62
 order: aligned
 title: Mafft
+email: test@ebi.ac.uk
+stype: protein
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequences.fasta

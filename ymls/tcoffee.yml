@@ -2,3 +2,8 @@ program: t_coffee
 matrix: none
 order: aligned
 title: Tcoffee
+email: test@ebi.ac.uk
+stype: protein
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequences.fasta

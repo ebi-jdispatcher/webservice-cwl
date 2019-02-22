@@ -1,17 +1,11 @@
 program: HMMER3
 title: Hmmer3 phmmer
-dE: 1
-domE: 3
-incE: 0.01
-incdomE: 0.03
-popen: 0.02
-nobias: 'true'
-#dT: 7.0
-#incT: 25
-#domT: 5.0
-#incdomT: 22
 mx: BLOSUM62
-pextend: 0.4
+pextend: '0.4'
 alignView: 'true'
-seqdb: swissprot
-acc: 30
+acc: '30'
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta
+database: swissprot

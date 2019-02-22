@@ -1,4 +1,7 @@
-gapext: 0.5
-gapopen: 10
-format: pair
+gapext: '0.5'
+gapopen: '10'
 program: water
+stype: protein
+asequence: sp:wap_rat
+bsequence: sp:wap_mouse
+email: test@ebi.ac.uk

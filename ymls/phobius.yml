@@ -1,3 +1,8 @@
 phobius_format: grp
 program: phobius
 title: Phobius
+email: test@ebi.ac.uk
+stype: protein
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta

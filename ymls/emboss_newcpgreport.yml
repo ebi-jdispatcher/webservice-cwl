@@ -1,5 +1,9 @@
-minpc: 50.
-minlen: 200
-minoe: 0.6
+minpc: '50'
+minlen: '200'
+minoe: '0.6'
 program: newcpgreport
-window: 100
+window: '100'
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/dna_sequence.fasta

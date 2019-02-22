@@ -1,3 +1,7 @@
-shift: 100
+shift: '100'
 program: isochore
-window: 1000
+window: '1000'
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/dna_sequence.fasta

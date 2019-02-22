@@ -1,7 +1,11 @@
-kimura: false
-pim: false
-tossgaps: false
+kimura: 'false'
+pim: 'false'
+tossgaps: 'false'
 tree: phylip
 clustering: Neighbour-joining
 program: clustalw2
 title: Simple Phylogeny
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequences.aln

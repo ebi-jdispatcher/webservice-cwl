@@ -1,11 +1,13 @@
 endweight: false
-gapext: 0.5
-gapopen: 10
-format: pair
-endopen: 10
+gapext: '0.5'
+gapopen: '10'
+endopen: '0'
 program: needle
-endextend: 0.5
+endextend: '0.5'
 matrix: EBLOSUM62
 format_param: pair
-stype: protein
 title: EMBOSS Needle
+stype: protein
+asequence: sp:wap_rat
+bsequence: sp:wap_mouse
+email: test@ebi.ac.uk

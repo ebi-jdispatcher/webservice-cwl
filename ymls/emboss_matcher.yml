@@ -1,4 +1,7 @@
-gapext: 4
-format: pair
-alternatives: 1
+gapext: '4'
+alternatives: '1'
 program: matcher
+stype: protein
+asequence: sp:wap_rat
+bsequence: sp:wap_mouse
+email: test@ebi.ac.uk

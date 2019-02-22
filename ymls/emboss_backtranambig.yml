@@ -1,2 +1,6 @@
-codontable: 0
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta
+codontable: '0'
 program: backtranambig

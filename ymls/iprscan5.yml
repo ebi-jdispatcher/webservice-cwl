@@ -3,3 +3,7 @@ appl: SFLD
 pathways: true
 program: iprscan5
 title: InterPro
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta

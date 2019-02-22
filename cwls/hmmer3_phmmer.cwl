@@ -149,7 +149,15 @@ inputs:
       position: 10
 
   # Web Service Clients: Different Entries
-  sequence:
+  sequence_file:
+    type: File?
+    label: "Input sequence"
+    doc: "Sequence filename or ID"
+    inputBinding:
+      prefix: --sequence
+      position: 8
+
+  sequence_string:
     type: string?
     label: "Input sequence"
     doc: "Sequence filename or ID"
@@ -284,7 +292,7 @@ inputs:
   evalue:
     type: string?
     label: Expectation Value Threshold
-    doc: "Expectation value cut-off for reporting target profiles in the per-target output. 
+    doc: "Expectation value cut-off for reporting target profiles in the per-target output.
 			"
     inputBinding:
       prefix: --evalue

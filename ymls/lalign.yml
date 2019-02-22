@@ -1,7 +1,11 @@
 match_scores: +5/-4
-gapopen: -12
-expthr: 10.0
-format: 0
+gapopen: '-12'
+expthr: '10.0'
+format: '0'
 program: lalign36
-graphics: true
+graphics: 'true'
 matrix: BL50
+email: test@ebi.ac.uk
+stype: protein
+asequence: sp:wap_rat
+bsequence: sp:wap_mouse

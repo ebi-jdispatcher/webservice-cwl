@@ -1,6 +1,9 @@
 database: pfam-a
-format: json
-evalue: 10
+evalue: '10'
 program: pfamscan
-asp: false
+asp: 'false'
 title: PfamScan
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta

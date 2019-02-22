@@ -3,3 +3,7 @@ tree: none
 program: muscle
 order: aligned
 title: Muscle
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequences.fasta

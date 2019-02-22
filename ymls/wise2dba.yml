@@ -1,3 +1,6 @@
-pretty: true
-para: true
+pretty: 'true'
+para: 'true'
 program: dba
+asequence: sp:wap_rat
+bsequence: sp:wap_mouse
+email: test@ebi.ac.uk

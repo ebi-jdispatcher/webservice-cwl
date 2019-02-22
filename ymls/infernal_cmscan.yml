@@ -1,2 +1,6 @@
 thresholdmodel: cut_ga
 program: Infernal_cmscan
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/rna_sequence.fasta

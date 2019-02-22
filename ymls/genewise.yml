@@ -10,5 +10,8 @@ para: true
 cdna: true
 embl: true
 diana: true
-alg: 623
+alg: '623'
 trans: true
+asequence: sp:wap_rat
+bsequence: sp:wap_mouse
+email: test@ebi.ac.uk

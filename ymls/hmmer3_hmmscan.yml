@@ -1,16 +1,7 @@
 program: HMMER3
 title: Hmmer3 hmmscan
-hmmdb: tigrfam
-dE: 1
-domE: 3
-incE: 0.01
-incdomE: 0.03
-#dT: 7.0
-#domT: 5.0
-#incT: 25
-#incdomT: 22
-cut_ga: 'true'
-nobias: 'true'
-#hmmdbparam: 52371
-alignView: 'true'
-acc: 5
+email: test@ebi.ac.uk
+database: Pfam
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta

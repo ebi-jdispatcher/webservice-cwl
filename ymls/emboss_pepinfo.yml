@@ -1,2 +1,6 @@
 program: pepinfo
-hwindow: 9
+hwindow: '9'
+email: test@ebi.ac.uk
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequence.fasta
