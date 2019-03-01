@@ -4,7 +4,7 @@ maxiterate: '2'
 gapext: '0.123'
 gapopen: '1.53'
 format_param: fasta
-treeout: true
+treeout: 'true'
 program: mafft
 matrix: bl62
 order: aligned

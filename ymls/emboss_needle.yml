@@ -1,7 +1,7 @@
-endweight: false
+endweight: 'false'
 gapext: '0.5'
 gapopen: '10'
-endopen: '0'
+endopen: '10'
 program: needle
 endextend: '0.5'
 matrix: EBLOSUM62

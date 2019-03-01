@@ -1,8 +1,8 @@
 regions: START-END
-trim: false
+trim: 'false'
 codontable: '0'
 program: transeq
-reverse: false
+reverse: 'false'
 frame: '1'
 email: test@ebi.ac.uk
 sequence_file:

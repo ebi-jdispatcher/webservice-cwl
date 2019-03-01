@@ -1,18 +1,15 @@
 filter: none
-dbrange: START-END
-hist: false
+hist: 'false'
 scoreformat: default
 alignments: '50'
 scores: '50'
 stats: '1'
-seqrange: START-END
-hsps: false
+hsps: 'false'
 explowlim: '0'
 database: uniprotkb_swissprot
 email: test@ebi.ac.uk
 program: fastm
 stype: protein
-#sequence_string: sp:wap_rat
 sequence_file:
   class: File
-  location: ../sequence/prot_sequence.fasta
+  location: ../sequence/prot_fragments.fasta

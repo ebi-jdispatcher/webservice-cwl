@@ -1,6 +1,6 @@
-mono: false
+mono: 'false'
 program: pepstats
-termini: true
+termini: 'true'
 email: test@ebi.ac.uk
 sequence_file:
   class: File

@@ -1,6 +1,10 @@
-orfminsize: 1
-codontable: 0
-firstorf: true
+email: 'test@ebi.ac.uk'
+orfminsize: '1'
+codontable: '0'
+firstorf: 'true'
 program: sixpack
-reverse: true
-lastorf: true
+reverse: 'true'
+lastorf: 'true'
+sequence_file:
+  class: File
+  location: ../sequence/dna_sequence.fasta

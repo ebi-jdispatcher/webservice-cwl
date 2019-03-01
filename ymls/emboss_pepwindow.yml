@@ -1,5 +1,5 @@
 windowsize: '10'
-normalize: false
+normalize: 'false'
 program: pepwindow
 email: test@ebi.ac.uk
 sequence_file:

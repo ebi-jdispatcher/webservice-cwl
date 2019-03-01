@@ -1,6 +1,6 @@
-goterms: true
+goterms: 'true'
 appl: SFLD
-pathways: true
+pathways: 'true'
 program: iprscan5
 title: InterPro
 email: test@ebi.ac.uk

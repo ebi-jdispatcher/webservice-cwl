@@ -1,11 +1,12 @@
 email: test@ebi.ac.uk
-stype: dna
-sequence_string: embl:M10051
-#feature: true
-#firstonly: false
-#outputformat: embl
-#outputcase: none
-#inputformat: unknown
-#seqrange: START-END
-#program: seqret
-#reverse: false
+stype: protein
+sequence_file:
+  class: File
+  location: ../sequence/prot_sequences.fasta
+outputformat: swiss
+feature: 'true'
+firstonly: 'false'
+outputcase: none
+inputformat: unknown
+program: seqret
+reverse: 'false'

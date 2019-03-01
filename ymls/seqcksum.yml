@@ -1,5 +1,5 @@
 stype: protein
-length: true
+length: 'true'
 program: seqcksum
 cksmethod: shae
 email: test@ebi.ac.uk
