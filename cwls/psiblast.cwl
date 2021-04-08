@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-# Copyright (C) 2019 EMBL - European Bioinformatics Institute
+# Copyright (C) 2019 - 2021 EMBL - European Bioinformatics Institute
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -262,7 +262,7 @@ inputs:
     inputBinding:
       prefix: --filter
       position: 19
-    default: "F"
+    default: "no"
 
   seqrange:
     type: string?
@@ -304,22 +304,13 @@ inputs:
       prefix: --cpfile
       position: 24
 
-  umode:
-    type: string?
-    label: Usage mode
-    doc: "Usage mode for PHI-BLAST functionality"
-    inputBinding:
-      prefix: --umode
-      position: 25
-    default: "blastpgp"
-
   patfile:
     type: string?
     label: Pattern File
     doc: "Pattern file for PHI-BLAST functionality. This file needs to be in the style of a prosite entry file, with at least an ID line, PA line and optional HI line."
     inputBinding:
       prefix: --patfile
-      position: 26
+      position: 25
 
 
 outputs:

@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-# Copyright (C) 2019 EMBL - European Bioinformatics Institute
+# Copyright (C) 2019 - 2021 EMBL - European Bioinformatics Institute
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -168,8 +168,8 @@ inputs:
   minPerc:
     type: string?
     label: Min Percentage Seqs to Match
-    doc: "Set the minimum percentage of the input sequences that should match a pattern (C%).
-				If you set this to, say 80, Pratt will only report patterns matching at least 80 % of the sequences input.
+    doc: "Set the minimum percentage of the input sequences that should match a pattern (C%). 
+				If you set this to, say 80, Pratt will only report patterns matching at least 80 % of the sequences input. 
 			"
     inputBinding:
       prefix: --minPerc
@@ -187,8 +187,8 @@ inputs:
   maxPatternLength:
     type: string?
     label: Max Pattern Length
-    doc: "Maximum pattern length (PL parameter) allows you to set the maximum length of a pattern.
-				The length of the pattern C-x(2,4)-[DE] is 1+4+1=6.
+    doc: "Maximum pattern length (PL parameter) allows you to set the maximum length of a pattern. 
+				The length of the pattern C-x(2,4)-[DE] is 1+4+1=6. 
 				The memory requirement of Pratt depends on L; a higher L value gives higher memory requirement.
 			"
     inputBinding:
@@ -198,8 +198,8 @@ inputs:
   maxNumPatternSymbols:
     type: string?
     label: Max Number Of Pattern Symbols
-    doc: "Maximum number of pattern symbols (PN parameter). Using this you can set the maximum number of symbols in a pattern.
-				The pattern C-x(2,4)-[DE] has 2 symbols (C and [DE]). When PN is increased, Pratt will require more memory.
+    doc: "Maximum number of pattern symbols (PN parameter). Using this you can set the maximum number of symbols in a pattern. 
+				The pattern C-x(2,4)-[DE] has 2 symbols (C and [DE]). When PN is increased, Pratt will require more memory. 
 			"
     inputBinding:
       prefix: --maxNumPatternSymbols
@@ -208,8 +208,8 @@ inputs:
   maxNumWildcard:
     type: string?
     label: Max Num Of Wildcard
-    doc: "Maximum length of a widecard (x).
-				Using this option  you can set the maximum length of a wildcard (PX parameter). Increasing this will increase the time used by Pratt, and also slightly the memory required.
+    doc: "Maximum length of a widecard (x). 
+				Using this option  you can set the maximum length of a wildcard (PX parameter). Increasing this will increase the time used by Pratt, and also slightly the memory required. 
 			"
     inputBinding:
       prefix: --maxNumWildcard
@@ -218,8 +218,8 @@ inputs:
   maxNumFlexSpaces:
     type: string?
     label: Max Num Of Flexible Spaces
-    doc: "Maximum length of flexible spaces.
-				Using this option you can set the maximum number of flexible wildcards (matching a variable number of arbitrary sequence symbols) (FN parameter). Increasing this will increase the time used by Pratt.
+    doc: "Maximum length of flexible spaces.  
+				Using this option you can set the maximum number of flexible wildcards (matching a variable number of arbitrary sequence symbols) (FN parameter). Increasing this will increase the time used by Pratt. 
 			"
     inputBinding:
       prefix: --maxNumFlexSpaces
@@ -229,8 +229,8 @@ inputs:
     type: string?
     label: Maximum Flexibility
     doc: "Maximum flexibility.
-				You can set the maximum flexibility of a flexible wildcard (matching a variable number of arbitrary sequence symbols) (FL parameter).
-				For instance x(2,4) and x(10,12) has flexibility 2, and x(10) has flexibility 0. Increasing this will increase the time used by Pratt.
+				You can set the maximum flexibility of a flexible wildcard (matching a variable number of arbitrary sequence symbols) (FL parameter). 
+				For instance x(2,4) and x(10,12) has flexibility 2, and x(10) has flexibility 0. Increasing this will increase the time used by Pratt. 
 			"
     inputBinding:
       prefix: --maxFlexibility
@@ -240,8 +240,8 @@ inputs:
     type: string?
     label: Maximum Flex. Product
     doc: "Maximum flex. product.
-				Using this option you can set an upper limit on the product of a flexibilities for a pattern (FP parameter).
-				This is related to the memory requirements of the search, and increasing the limit, increases the memory usage.
+				Using this option you can set an upper limit on the product of a flexibilities for a pattern (FP parameter). 
+				This is related to the memory requirements of the search, and increasing the limit, increases the memory usage. 
 			"
     inputBinding:
       prefix: --maxFlexProduct
@@ -285,8 +285,8 @@ inputs:
   searchGreediness:
     type: string?
     label: Search Greediness
-    doc: "Using the greediness parameter (E) you can adjust the greediness of the search. Setting E to 0 (zero), the search will be exhaustive.
-				Increasing E increases the greediness, and decreases the time used in the search.
+    doc: "Using the greediness parameter (E) you can adjust the greediness of the search. Setting E to 0 (zero), the search will be exhaustive. 
+				Increasing E increases the greediness, and decreases the time used in the search. 
 			"
     inputBinding:
       prefix: --searchGreediness
@@ -295,8 +295,8 @@ inputs:
   patternRefinement:
     type: string?
     label: Pattern Refinement
-    doc: "Pattern Refinement (R parameter).
-				When the R option is switched on, patterns found during the initial pattern search are input to a refinement algorithm where more ambiguous pattern symbols can be added.
+    doc: "Pattern Refinement (R parameter). 
+				When the R option is switched on, patterns found during the initial pattern search are input to a refinement algorithm where more ambiguous pattern symbols can be added. 
 			"
     inputBinding:
       prefix: --patternRefinement
@@ -306,9 +306,9 @@ inputs:
   genAmbigSymbols:
     type: string?
     label: Generalise Ambiguous Symbols
-    doc: "Generalise ambiguous symbols (RG parameter).
-				If the RG option is switched on, then ambiguous symbols listed in the symbols file are used.
-				If RG is off, only the letters needed to match the input sequences are included in the ambiguous pattern positions.
+    doc: "Generalise ambiguous symbols (RG parameter). 
+				If the RG option is switched on, then ambiguous symbols listed in the symbols file are used. 
+				If RG is off, only the letters needed to match the input sequences are included in the ambiguous pattern positions. 
 			"
     inputBinding:
       prefix: --genAmbigSymbols
@@ -319,7 +319,7 @@ inputs:
     type: string?
     label: PROSITE Pattern Format
     doc: "PROSITE Pattern Format (OP parameter).
-				When switched on, patterns will be output in PROSITE style (for instance C-x(2,4)-[DE]).
+				When switched on, patterns will be output in PROSITE style (for instance C-x(2,4)-[DE]). 
 				When switched off, patterns are output in a simpler consensus pattern style (for instance Cxx--[DE]
 				where x matches exactly one arbitrary sequence symbol and - matches zero or one arbitrary sequence symbol).
 			"
@@ -340,7 +340,7 @@ inputs:
   maxNumAlignments:
     type: string?
     label: Max Number Alignments
-    doc: "Maximum number of alignments (OA parameter) between 1 and 100.
+    doc: "Maximum number of alignments (OA parameter) between 1 and 100. 
 			"
     inputBinding:
       prefix: --maxNumAlignments
@@ -350,9 +350,9 @@ inputs:
     type: string?
     label: Print Patterns
     doc: "Print Patterns in sequences (M parameter)
-				If the M option is set, then Pratt will print out the location of the sequence segments matching each of the (maximum 52) best patterns.
-				The patterns are given labels A, B,...Z,a,b,...z in order of decreasing pattern score. Each sequence is printed on a line, one character per K-tuple in the sequence.
-				If pattern with label C matches the third K-tuple in a sequence C is printed out. If several patterns match in the same K-tuple, only the best will be printed.
+				If the M option is set, then Pratt will print out the location of the sequence segments matching each of the (maximum 52) best patterns. 
+				The patterns are given labels A, B,...Z,a,b,...z in order of decreasing pattern score. Each sequence is printed on a line, one character per K-tuple in the sequence. 
+				If pattern with label C matches the third K-tuple in a sequence C is printed out. If several patterns match in the same K-tuple, only the best will be printed. 
 			"
     inputBinding:
       prefix: --printPatterns
@@ -388,7 +388,7 @@ inputs:
   ppfile:
     type: string?
     label: Pattern Restriction File
-    doc: "Pattern restriction file.
+    doc: "Pattern restriction file. 
 				The restriction file limits the sequence range via the start/end parameter and is in the format '>Sequence (start, end)'. If parameter PP is off, the restiction file will be ignored."
     inputBinding:
       prefix: --ppfile

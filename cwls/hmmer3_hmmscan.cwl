@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-# Copyright (C) 2019 EMBL - European Bioinformatics Institute
+# Copyright (C) 2019 - 2021 EMBL - European Bioinformatics Institute
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -250,7 +250,7 @@ inputs:
   hmmdbparam:
     type: string?
     label: hmmdbparam
-    doc: "hmmdbparam"
+    doc: "The port number for the HMMER Demons"
     inputBinding:
       prefix: --hmmdbparam
       position: 19
@@ -275,8 +275,8 @@ inputs:
 
   database:
     type: string?
-    label: HMM Database
-    doc: "HMM Database"
+    label: Database
+    doc: "HMM Database for HMMER hmmscan"
     inputBinding:
       prefix: --database
       position: 22

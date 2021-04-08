@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-# Copyright (C) 2019 EMBL - European Bioinformatics Institute
+# Copyright (C) 2019 - 2021 EMBL - European Bioinformatics Institute
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -178,7 +178,7 @@ inputs:
     inputBinding:
       prefix: --appl
       position: 11
-    default: "ProDom,PRINTS,PIRSF,PfamA,SMART,TIGRFAM,PrositeProfiles,HAMAP,PrositePatterns,SuperFamily,SignalP,TMHMM,Panther,Gene3d,Phobius,Coils,CDD,SFLD,MobiDBLite"
+    default: "TIGRFAM,SFLD,Phobius,SignalP,SignalP_EUK,SignalP_GRAM_POSITIVE,SignalP_GRAM_NEGATIVE,SuperFamily,Panther,Gene3d,HAMAP,PrositeProfiles,PrositePatterns,Coils,SMART,CDD,PRINTS,PfamA,MobiDBLite,PIRSF,TMHMM"
 
 
 outputs:

@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-# Copyright (C) 2019 EMBL - European Bioinformatics Institute
+# Copyright (C) 2019 - 2021 EMBL - European Bioinformatics Institute
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -271,7 +271,7 @@ inputs:
   database:
     type: string?
     label: Sequence Database
-    doc: "Sequence Database"
+    doc: "Sequence Database Selection"
     inputBinding:
       prefix: --database
       position: 23

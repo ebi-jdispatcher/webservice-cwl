@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
 
-# Copyright (C) 2019 EMBL - European Bioinformatics Institute
+# Copyright (C) 2019 - 2021 EMBL - European Bioinformatics Institute
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -234,13 +234,21 @@ inputs:
       prefix: --match_scores
       position: 16
 
+  hsps:
+    type: string?
+    label: High-scoring Segment Pair 
+    doc: "Maximum number of HSPs (alignments) to keep for any single query-subject pair."
+    inputBinding:
+      prefix: --hsps
+      position: 17
+
   gapopen:
     type: string?
     label: Gap open
     doc: "Penalty taken away from the score when a gap is created in sequence. Increasing the gap openning penalty will decrease the number of gaps in the final alignment."
     inputBinding:
       prefix: --gapopen
-      position: 17
+      position: 18
     default: "-1"
 
   gapext:
@@ -249,7 +257,7 @@ inputs:
     doc: "Penalty taken away from the score for each base or residue in the gap. Increasing the gap extension penalty favors short gaps in the final alignment, conversly decreasing the gap extension penalty favors long gaps in the final alignment."
     inputBinding:
       prefix: --gapext
-      position: 18
+      position: 19
     default: "-1"
 
   filter:
@@ -258,7 +266,7 @@ inputs:
     doc: "Filter regions of low sequence complexity. This can avoid issues with low complexity sequences where matches are found due to composition rather than meaningful sequence similarity. However in some cases filtering also masks regions of interest and so should be used with caution."
     inputBinding:
       prefix: --filter
-      position: 19
+      position: 20
     default: "F"
 
   seqrange:
@@ -267,7 +275,7 @@ inputs:
     doc: "Specify a range or section of the input sequence to use in the search. Example: Specifying '34-89' in an input sequence of total length 100, will tell BLAST to only use residues 34 to 89, inclusive."
     inputBinding:
       prefix: --seqrange
-      position: 20
+      position: 21
 
   gapalign:
     type: string?
@@ -275,8 +283,32 @@ inputs:
     doc: "This is a true/false setting that tells the program the perform optimised alignments within regions involving gaps. If set to true, the program will perform an alignment using gaps. Otherwise, if it is set to false, it will report only individual HSP where two sequence match each other, and thus will not produce alignments with gaps."
     inputBinding:
       prefix: --gapalign
-      position: 21
+      position: 22
     default: "true"
+
+  wordsize:
+    type: string?
+    label: Word size
+    doc: "Word size for wordfinder algorithm"
+    inputBinding:
+      prefix: --wordsize
+      position: 23
+
+  taxids:
+    type: string?
+    label: Taxonomy Identifiers (included)
+    doc: "Specify one or more TaxIDs so that the BLAST search becomes taxonomically aware."
+    inputBinding:
+      prefix: --taxids
+      position: 24
+
+  negative_taxids:
+    type: string?
+    label: Taxonomy Identifiers (excluded)
+    doc: "TaxIDs excluded from the BLAST search."
+    inputBinding:
+      prefix: --negative_taxids
+      position: 25
 
   compstats:
     type: string?
@@ -284,7 +316,7 @@ inputs:
     doc: "Use composition-based statistics."
     inputBinding:
       prefix: --compstats
-      position: 22
+      position: 26
     default: "F"
 
   align:
@@ -293,7 +325,7 @@ inputs:
     doc: "Formating for the alignments"
     inputBinding:
       prefix: --align
-      position: 23
+      position: 27
     default: "0"
 
   transltable:
@@ -302,7 +334,7 @@ inputs:
     doc: "Query Genetic code to use in translation"
     inputBinding:
       prefix: --transltable
-      position: 24
+      position: 28
     default: "1"
 
   stype:
@@ -311,7 +343,7 @@ inputs:
     doc: "Indicates if the sequence is protein or DNA/RNA."
     inputBinding:
       prefix: --stype
-      position: 25
+      position: 29
 
   database:
     type: string?
@@ -319,7 +351,7 @@ inputs:
     doc: "Database"
     inputBinding:
       prefix: --database
-      position: 26
+      position: 30
 
 
 outputs:
