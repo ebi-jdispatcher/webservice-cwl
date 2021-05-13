@@ -189,7 +189,7 @@ outputs:
 
 
 $schemas:
-  - https://schema.org/version/latest/schema.rdf
+  - https://schema.org/version/latest/schemaorg-current-https.rdf
 
 $namespaces:
   s: http://schema.org/
